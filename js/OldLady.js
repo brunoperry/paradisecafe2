@@ -1,23 +1,18 @@
 (function(window) {
 
-    function Police(data) {
+    function OldLady(data) {
 
         //OBJECT PROPERTIES
         var instance = this;
-        var policeData = data;
+        var oldLadyData = data;
         var images;
-        var anims = policeData.animations;
+        var anims = oldLadyData.animations;
         var tick = 0;
 
         //PUBLIC
         this.isEnabled = false;
-        this.name = policeData.name;
+        this.name = oldLadyData.name;
         this.currentFrame;
-
-        this.isShown = false;
-        this.isAgressive = false;
-        this.hasAsked = false;
-        this.isDone = false;
 
         this.update = function() {
 
@@ -29,9 +24,6 @@
             if(tick >= anims.show.length) {
 
                 tick = 0;
-                instance.isShown = true;
-                instance.isAgressive = Math.random() < 0.5;
-
                 return;
             }
             instance.currentFrame = images[anims.show[tick]];
@@ -41,10 +33,6 @@
 
         this.idle = function() {
             instance.currentFrame = images[anims.show[0]];
-        }
-
-        this.action = function() {
-            instance.currentFrame = images[anims.action[0]];
         }
 
         this.hide = function() {
@@ -63,7 +51,6 @@
         this.enable = function() {
 
             instance.isEnabled = true;
-
             instance.currentFrame = images[anims.show[0]];
         }
         
@@ -72,15 +59,6 @@
 
             instance.isEnabled = false;
             tick = 0;
-            instance.isShown = false;
-            instance.hasAsked = false;
-            instance.isDone = false;
-        }
-
-        this.reset = function (){
-
-            instance.disable();
-            instance.enable();
         }
 
         //EVENTS
@@ -90,9 +68,9 @@
         }
 
         //LOAD SCENE IMAGES
-        Utils.loadImages(policeData.images, imagesLoaded);
+        Utils.loadImages(oldLadyData.images, imagesLoaded);
     }
 
-    window.Police = Police;
+    window.OldLady = OldLady;
 
 }(window));

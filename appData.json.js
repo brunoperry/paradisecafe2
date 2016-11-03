@@ -80,6 +80,22 @@ var appData = {
                 "idle_door": [2],
                 "action": [3],
             }
+        },
+        {
+            "id": 2,
+            "name": "whore",
+            "images": 
+                [
+                    "whore_show01",
+                    "whore_show02",
+                    "whore_show03",
+                ],
+            "animations":
+            {
+                "show": [0, 1, 2],
+                "hide": [2, 1, 0],
+                "idle_street": [2],
+            }
         }
     ],
     "keys": [
@@ -92,7 +108,18 @@ var appData = {
             "id": 1,
             "label": "HISCORES",
             "action": "key-scores"
+        },
+        {
+            "id": 2,
+            "label": "SIM",
+            "action": "key-yes"
+        },
+        {
+            "id": 3,
+            "label": "NÃO",
+            "action": "key-no"
         }
+          
     ],
     "door":
     {
@@ -109,7 +136,7 @@ var appData = {
             [
                 "street_action",
                 "police_action",
-                // "whore_action",
+                "whore_action",
                 // "thief_action",
                 // "oldlady_action"
             ]
@@ -118,8 +145,15 @@ var appData = {
         
         "empty": "empty",
         "hero_no_wallet": "hero_no_wallet",
+        "hero_everything_fine": "hero_everything_fine",
+        "hero_pussy": "hero_pussy",
         "police_ask_docs": "police_ask_docs",
         "police_come_with_me": "police_come_with_me",
-        "police_ok_you_can_go": "police_ok_you_can_go"
+        "police_ok_you_can_go": "police_ok_you_can_go",
+        "police_how_its_going": "police_how_its_going",
+        "whore_street_question01": "whore_street_question01",
+        "whore_street_question02": "whore_street_question02",
+        "whore_street_question03": "whore_street_question03",
+        "whore_come_on_then": "whore_come_on_then"
     }
 }   

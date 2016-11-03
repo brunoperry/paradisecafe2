@@ -30,6 +30,7 @@
         this.currentFrame;
 
         this.isOpen = false;
+        this.scrollLocked = true;
 
         this.scroll = function() {
 
@@ -100,6 +101,11 @@
             scrollTick = 0;
         }
 
+        this.setAction = function(action) {
+
+            doorAction = action;
+        }
+
         //Resets the door do initial position and new enemy to spawn
         var reset = function() {
 
@@ -107,7 +113,7 @@
             
             var index = Math.floor(Math.random() * doorData.actions.length);
             doorAction = doorData.actions[index];
-            doorAction = "police_action"
+            doorAction = "whore_action"
         }
 
         //get the image data from door

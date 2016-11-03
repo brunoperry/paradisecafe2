@@ -13,13 +13,8 @@
         var isShowing = false;
 
         this.currentFrame;
-
-        var imagesReady = function(data) {
-            images = data;
-            instance.currentFrame = images.empty;
-        }
         
-        this.showBalloon = function(balloon, callback) {
+        this.showBalloon = function(balloon, callback, keep) {
 
             instance.currentFrame = images[balloon];
 
@@ -27,7 +22,7 @@
             isShowing = true;
 
             if(callback) {
-            
+                
                 timeout = setTimeout( function() {
                     
                     instance.hideBalloon();
@@ -36,7 +31,9 @@
 
             } else {
 
-                timeout = setTimeout( instance.hideBalloon, BALLOON_TIMEOUT);
+                d("asd:" + keep);
+
+                if(!keep) timeout = setTimeout( instance.hideBalloon, BALLOON_TIMEOUT);
             }
         };
 
@@ -54,11 +51,30 @@
             timeout = null;
         }
 
+        /**
+         * GETS THE IMAGES FROM SPECIFIC OBJECT
+         */
+        this.getData = function(from) {
+
+            var imgs = [];
+            for(b in images) {
+                if(b.toString().includes(from)) {
+                    imgs.push(b);
+                }
+            }
+            return imgs;
+        }
+
         this.resume = function() {
 
             if(isShowing) {
                 timeout = setTimeout( instance.hideBalloon, BALLOON_TIMEOUT);
             }
+        }
+
+        var imagesReady = function(data) {
+            images = data;
+            instance.currentFrame = images.empty;
         }
 
         Utils.getBalloonImage(balloonsData, imagesReady);

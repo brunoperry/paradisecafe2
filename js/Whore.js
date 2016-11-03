@@ -1,23 +1,23 @@
 (function(window) {
 
-    function Police(data) {
+    function Whore(data) {
 
         //OBJECT PROPERTIES
         var instance = this;
-        var policeData = data;
+        var whoreData = data;
         var images;
-        var anims = policeData.animations;
+        var anims = whoreData.animations;
         var tick = 0;
 
         //PUBLIC
         this.isEnabled = false;
-        this.name = policeData.name;
+        this.name = whoreData.name;
         this.currentFrame;
 
-        this.isShown = false;
-        this.isAgressive = false;
-        this.hasAsked = false;
         this.isDone = false;
+        this.isShown = false;
+        this.hasAsked = false;
+        this.action = "";
 
         this.update = function() {
 
@@ -30,8 +30,6 @@
 
                 tick = 0;
                 instance.isShown = true;
-                instance.isAgressive = Math.random() < 0.5;
-
                 return;
             }
             instance.currentFrame = images[anims.show[tick]];
@@ -41,10 +39,6 @@
 
         this.idle = function() {
             instance.currentFrame = images[anims.show[0]];
-        }
-
-        this.action = function() {
-            instance.currentFrame = images[anims.action[0]];
         }
 
         this.hide = function() {
@@ -63,36 +57,37 @@
         this.enable = function() {
 
             instance.isEnabled = true;
-
             instance.currentFrame = images[anims.show[0]];
+        }
+
+        this.reset = function() {
+
+            instance.disable();
+            instance.enable();
         }
         
 
         this.disable = function() {
 
             instance.isEnabled = false;
-            tick = 0;
+            instance.isDone = false;
             instance.isShown = false;
             instance.hasAsked = false;
-            instance.isDone = false;
-        }
-
-        this.reset = function (){
-
-            instance.disable();
-            instance.enable();
+            instance.action = "";
+            tick = 0;
         }
 
         //EVENTS
         var imagesLoaded = function(data) {
 
             images = data;
+            instance.currentFrame = images[anims.show[0]];
         }
 
         //LOAD SCENE IMAGES
-        Utils.loadImages(policeData.images, imagesLoaded);
+        Utils.loadImages(whoreData.images, imagesLoaded);
     }
 
-    window.Police = Police;
+    window.Whore = Whore;
 
 }(window));

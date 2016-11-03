@@ -37,6 +37,11 @@
         }
     }
 
+    Utils.getRandomItem = function(data) {
+
+        return data[Math.floor(Math.random() * data.length)];
+    }
+
     Utils.mergeImages = function(images) {
 
         var img = new Image();

@@ -29,6 +29,8 @@
 
         var changeAction = function(action) {
 
+            actionDone = false;
+
             switch(action) {
 
                 case "street_action":
@@ -37,7 +39,101 @@
                 case "police_action":
                 doCurrentAction = policeAction;
                 break;
+                case "whore_action":
+                doCurrentAction = whoreAction;
+                break;
             }
+        }
+
+        var whoreAction = function() {
+
+
+            if(!actionDone) {
+
+                d(door.isOpen);
+                if(!door.isOpen && !whore.isDone) {
+
+                    door.open();
+                } else if(!whore.isDone){
+
+                    if(!whore.isShown) {
+
+                        hero.idleStreet("left");
+                        whore.show();
+                    } else {
+
+                        if(!whore.hasAsked) {
+
+                            var question = Utils.getRandomItem( balloon.getData("whore_street_question") );
+                            balloon.showBalloon(question, null, true);
+                            whore.hasAsked = true;
+
+                            keyboard.show([
+                                appData.keys[2],
+                                appData.keys[3]
+                                ], function(e) {
+
+                                    if(e === "key-yes") {
+
+                                        whore.action = "positive_call";
+                                    }
+                                    
+                                    balloon.hideBalloon();
+                                });
+                        } else {
+
+                            if(!whore.isDone) {
+
+                                if(whore.action === "positive_call") {
+
+                                    balloon.showBalloon("whore_come_on_then");
+                                    whore.isDone = true;
+                                } else {
+
+                                    whore.isDone = true;
+                                }
+                            }
+                        }
+                    }
+                } else {
+
+                    if(whore.isShown) {
+
+                        whore.hide();
+                    } else {
+
+                        if(whore.action === "positive_call") {
+
+                            hero.enterBuilding();
+                            return;
+                        }
+
+                        if(door.isOpen) {
+                            
+                            door.close();
+                        } else {
+                            hero.hasShownDocs = false;
+
+                            if(whore.action !== "positive_call") {
+
+                                balloon.showBalloon("hero_pussy");
+                                hero.idleStreet("right");
+                            }
+                            whore.reset();
+                            door.setAction("street_action");
+                            changeAction("street_action");
+                        }
+                    }
+                }
+            } 
+
+            instance.currentFrame = Utils.mergeImages([
+                images[anim[0]],
+                door.currentFrame,
+                whore.currentFrame,
+                hero.currentFrame,
+                balloon.currentFrame
+            ]);
         }
 
         //ACTIONS
@@ -82,14 +178,14 @@
 
                                 if(hero.wallet.isStolen) {
 
-                                    if(police.isDone) {
+                                    if(hero.hasShownDocs) {
                                         balloon.showBalloon("police_come_with_me", function() {
                                             changeScenes("jail_scene");
                                         });
 
                                     } else {
                                         balloon.showBalloon("hero_no_wallet");
-                                        police.isDone = true;
+                                        hero.hasShownDocs = true;
                                     }
                                 } else {
 
@@ -115,7 +211,14 @@
                                 balloon.showBalloon("police_how_its_going");
                                 police.hasAsked = true;
                             } else {
-                                ballon.showBalloon("hero_everything_ok");
+
+                                if(!hero.hasShownDocs) {
+
+                                    balloon.showBalloon("hero_everything_fine");
+                                    hero.hasShownDocs = true;
+                                } else {
+                                    police.isDone = true;
+                                }
                             }
                         }
                     }
@@ -125,13 +228,15 @@
 
                         police.hide();
                     } else {
-                            d(door.isOpen)
 
                         if(door.isOpen) {
                             
                             door.close();
                         } else {
-                            actionDone = true;
+                            police.reset();
+                            hero.hasShownDocs = false;
+                            door.setAction("street_action");
+                            changeAction("street_action");
                         }
                     }
                 }
@@ -164,6 +269,7 @@
         this.disable = function() {
 
             instance.isEnabled = false;
+            actionDone = false;
             tick = 0
 
             door.disable();

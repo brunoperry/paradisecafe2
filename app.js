@@ -25,6 +25,8 @@ var currentScene;
 //characters
 var hero;
 var police;
+var whore;
+var oldLady;
 
 //balloons
 var balloon;
@@ -48,6 +50,8 @@ function init() {
     //setup characters
     hero = new Hero(appData.characters[0]);
     police = new Police(appData.characters[1]);
+    whore = new Whore(appData.characters[2]); 
+    // oldLady = new OldLady(appData.characters[2]); 
 
     //setup scenes
     splashScene = new SplashScene(appData.scenes[0]);
