@@ -10,7 +10,7 @@
         var instance = this;
         var sceneData = data;
         var images = sceneData.images;
-        var anim = sceneData.animations[0].background;
+        var anim = sceneData.animations.background;
         var tick = 0;
 
         //PUBLIC

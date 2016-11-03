@@ -11,7 +11,7 @@ html, body {
     margin: 0;
     padding: 0;
     background: green;
-    font-family: "Mono";
+    font-family: "mono";
 }
 
 #main-container {
@@ -39,7 +39,6 @@ TOP STUFF
 #menu-button {
 
     position: absolute;
-    display: none;
     width: 64px;
     height: 64px;
     top: 20px;
@@ -47,17 +46,17 @@ TOP STUFF
     font-size: 46px;
     background-image: url(media/images/hamburger.png);
     cursor: pointer;
-    opacity: 0.8;
 }
 
 /*
 MID STUFF
 */
 #mid-container {
-
+    
     position: relative;
-    display: block;
+    display: flex;
     flex: 2;
+    align-items: center;
 }
 
 canvas {
@@ -70,6 +69,13 @@ canvas {
     image-rendering: -webkit-crisp-edges;
     image-rendering: pixelated;
     image-rendering: crisp-edges;
+}
+
+#virtual-canvas {
+    
+    position: absolute;
+    display: none;
+    background: black;
 }
 
 /*
@@ -120,13 +126,20 @@ BOTTOM STUFF
 
     position: relative;
     display: block;
+    flex: 1;
+    cursor: pointer;
+}
+
+label {
+    position: relative;
+    display: inline-flex;
     border: 2px solid #717c81;
     border-radius: 5px;
     padding: 0 10px;
     color: white;
-    cursor: pointer;
     font-size: 38px;
     font-weight: 100;
+    pointer-events: none;
     background: rgba(168,187,198,1);
     background: -moz-linear-gradient(top, rgba(168,187,198,1) 0%, rgba(88,118,132,1) 100%);
     background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(168,187,198,1)), color-stop(100%, rgba(88,118,132,1)));
@@ -135,16 +148,29 @@ BOTTOM STUFF
     background: -ms-linear-gradient(top, rgba(168,187,198,1) 0%, rgba(88,118,132,1) 100%);
     background: linear-gradient(to bottom, rgba(168,187,198,1) 0%, rgba(88,118,132,1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a8bbc6', endColorstr='#587684', GradientType=0 );
+
 }
 
 #perm-key-container {
 
     position: relative;
     display: block;
-    max-width: 64px;
+    max-width: 128px;
     flex: 1;
 }
 
+/*
+OTHER STUFF
+*/
+#debugger {
+
+    position: fixed;
+    display: block;
+    top: 0;
+    left: 0;   
+    font-size: "18px";
+    color: white;
+}
 
 /*
 ANIMATIONS

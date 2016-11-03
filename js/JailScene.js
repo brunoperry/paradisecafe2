@@ -1,17 +1,17 @@
 (function(window) {
 
-    function MainScene(data) {
+    function JailScene(data) {
 
         //OBJECT PROPERTIES
         var instance = this;
-        var sceneData = data;
-        var images = sceneData.images;
-        var anim = sceneData.animations.background;
+        var jailData = data;
+        var images = jailData.images;
+        var anim = jailData.animations.background;
         var tick = 0;
 
         //PUBLIC
         this.isEnabled = false;
-        this.name = sceneData.name;
+        this.name = jailData.name;
         this.currentFrame;
 
         this.update = function() {
@@ -21,7 +21,6 @@
             if(tick >= anim.length) {
 
                 tick = 0;
-
             }
             instance.currentFrame = images[anim[tick]];
             render(instance.currentFrame);
@@ -30,12 +29,6 @@
         }
 
         this.enable = function() {
-
-            document.body.style.backgroundColor = "black";
-
-            keyboard.show([
-                appData.keys[0],
-                appData.keys[1]], onKeyboardClick);
 
             instance.isEnabled = true;
             setSpeed(NORMAL_SPEED);
@@ -48,25 +41,6 @@
         }
 
         //EVENTS
-        var onKeyboardClick = function(action) {
-
-            switch(action) {
-
-                //play action
-                case appData.keys[0].action:
-
-                changeScenes(streetScene.name);
-                break;
-
-                //scores action
-                case appData.keys[1].action:
-
-                d("show scores")
-
-                break;
-            }
-        }
-
         var imagesLoaded = function(data) {
 
             images = data;
@@ -74,9 +48,9 @@
         }
 
         //LOAD SCENE IMAGES
-        Utils.loadImages(sceneData.images, imagesLoaded);
+        Utils.loadImages(jailData.images, imagesLoaded);
     }
 
-    window.MainScene = MainScene;
+    window.JailScene = JailScene;
 
 }(window));

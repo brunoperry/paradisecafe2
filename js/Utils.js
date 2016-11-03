@@ -18,6 +18,35 @@
             dataOut[i].src = "media/images/" + dataIn[i] + ".png";
         }
     };
+
+    Utils.getBalloonImage = function(dataIn, callback) {
+
+        var totalImages = Object.keys(dataIn).length;
+        var imagesLoaded = 0;
+        var dataOut = [];
+
+        for(balloon in dataIn) {
+            dataOut[balloon] = new Image();
+            dataOut[balloon].onload = function() {
+                imagesLoaded++;
+                if(imagesLoaded === totalImages) {
+                    callback(dataOut);
+                }
+            }
+            dataOut[balloon].src = "media/images/balloons_" + balloon + ".png";
+        }
+    }
+
+    Utils.mergeImages = function(images) {
+
+        var img = new Image();
+        for(var i = 0; i < images.length; i++) {
+            vContext.drawImage(images[i], 0, 0, canvasW, canvasH);
+        }
+
+        img.src = vCanvas.toDataURL();
+        return img;
+    }
     window.Utils = Utils;
 
 } (window));

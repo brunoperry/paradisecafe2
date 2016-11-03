@@ -20,6 +20,7 @@
     <div id="mid-container">
 
       <canvas id="canvas" width="256" height="192"></canvas>
+      <canvas id="virtual-canvas" width="256" height="192"></canvas>
 
     </div>
 
@@ -36,14 +37,22 @@
     </div>
   </div>
 
+  <div id="debugger">DEBUGGER</div>
+
     
    
   </body>
 
   <script type="text/javascript" src="js/Utils.js"></script>
-  <script type="text/javascript" src="js/keyboard.js"></script>
-  <script type="text/javascript" src="js/MainScene.js"></script>
+  <script type="text/javascript" src="js/Keyboard.js"></script>
+  <script type="text/javascript" src="js/Balloon.js"></script>
+  <script type="text/javascript" src="js/Door.js"></script>
+  <script type="text/javascript" src="js/Hero.js"></script>
+  <script type="text/javascript" src="js/Police.js"></script>
   <script type="text/javascript" src="js/SplashScene.js"></script>
+  <script type="text/javascript" src="js/MainScene.js"></script>
+  <script type="text/javascript" src="js/StreetScene.js"></script>
+  <script type="text/javascript" src="js/JailScene.js"></script>
   <script type="text/javascript" src="appData.json.js"></script>
   <script type="text/javascript" src="app.js"></script>
 </html>
