@@ -40,6 +40,9 @@ var balloon;
 //hud
 var hud;
 
+//side menu
+var sideMenu;
+
 //audio
 var audioSource;
 
@@ -68,6 +71,9 @@ function init() {
     //setup hud
     hud = new HUD();
 
+    //setup side menu
+    sideMenu = new SideMenu();
+
     //setup characters
     hero = new Hero(appData.characters[0]);
     police = new Police(appData.characters[1]);
@@ -91,8 +97,8 @@ function init() {
 function startGame() {
 
     //start
-    changeScenes(splashScene.name);
-    // changeScenes(streetScene.name);
+    // changeScenes(splashScene.name);
+    changeScenes(mainScene.name);
 }
 
 function gameLoop() {
@@ -121,6 +127,10 @@ function render(image) {
 function changeScenes(sceneName) {
 
     if(currentScene) {
+
+        if(currentScene.name === sceneName) {
+            return;
+        }
 
         clearCanvas();
         currentScene.disable();

@@ -41,6 +41,9 @@
             instance.isEnabled = true;
             setSpeed(NORMAL_SPEED);
             audioSource.playClip(instance.id);
+
+            d("ss")
+            sideMenu.enable();
         }
 
         this.disable = function() {

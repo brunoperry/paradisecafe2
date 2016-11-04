@@ -6,10 +6,12 @@ Using vanilla javascript.
 
 1. ##Todo
   * [x] add side menu.
+  * [x] add landing page (needed for touch activation).
   * [ ] fix mobile audio support.
   * [ ] add scores to records scene.
 
 2. ##Done
+  * [x] add side menu.
 
 
 #Images

@@ -36,6 +36,32 @@
       </div>
 
     </div>
+
+
+
+  <div id="side-menu">
+
+    <div id="side-menu-container">
+
+      <h1>PARADISE CAFÉ</h1>
+      <ul>
+        <li class="side-menu-item" data-action="mute">Música [X]</li>
+        <li data-action="speed">
+          Velocidade
+          <br>
+          <div id="speed-container" class="flexed">
+            <div class="side-menu-item" data-action="slow" data-value="300">0.5x[ ]</div>
+            <div class="side-menu-item" data-action="normal" data-value="150">1x[ ]</div>
+            <div class="side-menu-item" data-action="turbo" data-value="50">turbo[X]</div>
+          </div>
+        
+        </li>
+        <li class="side-menu-item" data-action="exit">Sair</li>
+        <li class="side-menu-item" data-action="close">Fechar</li>
+      </ul>
+    </div>
+
+  </div>
   </div>
 
   <div id="debugger">DEBUGGER</div>
@@ -53,6 +79,7 @@
   <script type="text/javascript" src="js/Utils.js"></script>
   <script type="text/javascript" src="js/AudioSource.js"></script>
   <script type="text/javascript" src="js/Keyboard.js"></script>
+  <script type="text/javascript" src="js/SideMenu.js"></script>
   <script type="text/javascript" src="js/Balloon.js"></script>
   <script type="text/javascript" src="js/HUD.js"></script>
   <script type="text/javascript" src="js/Door.js"></script>

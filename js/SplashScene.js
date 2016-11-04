@@ -46,12 +46,13 @@
             instance.isEnabled = true;
             setSpeed(SCENE_SPEED);
             audioSource.playClip(instance.id);
+
         }
 
         this.disable = function() {
 
             instance.isEnabled = false;
-            tick = 0
+            tick = 0;
         }
 
         //EVENTS
