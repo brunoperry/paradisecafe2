@@ -19,7 +19,7 @@
         //HERO PROPERTIES
         this.wallet = {
             isStolen: false,
-            hasGun: false,
+            hasGun: true,
             cash: 1000,
             points: 0
         }
@@ -28,6 +28,8 @@
         this.hasEnteredBrothel = false;
         this.hasRaped = false;
         this.hasRobbed = false;
+
+        this.isDefending = false;
 
         this.update = function() {
 

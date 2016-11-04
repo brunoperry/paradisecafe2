@@ -132,7 +132,7 @@
             
             var index = Math.floor(Math.random() * doorData.actions.length);
             doorAction = doorData.actions[index];
-            // doorAction = "cafe_action"
+            // doorAction = "thief_action"
         }
 
         //get the image data from door

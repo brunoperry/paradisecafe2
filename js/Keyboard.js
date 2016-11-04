@@ -10,6 +10,8 @@
 
         this.isVisible = false;
 
+        var timeout;
+
 
         //OBJECT METHODS
         //build keys
@@ -57,6 +59,37 @@
             instance.isVisible = true;
         }
 
+        this.showTimedout = function(data, tO, icallback) {
+
+            callback = icallback;
+
+            buildKeys(data);
+
+            var cont = document.getElementById("keyboard-container");
+            cont.className = "slide-in";
+
+            instance.isVisible = true;
+
+            var tick = tO;
+            var btnLabel = cont.getElementsByClassName("keyboard-key")[0].getElementsByTagName("label")[0];
+            var label = btnLabel.innerHTML;
+            btnLabel.innerHTML = label + " " + tick.toString();
+            timeout = setInterval(function() {
+
+                tick--;
+
+                if(tick === -1) {
+
+                    clearInterval(timeout);
+                    timeout = null;
+
+                    callback("fail");  
+                    return; 
+                };
+                btnLabel.innerHTML = label + " " + tick.toString();
+            }, tO * 200);
+        }
+
         this.hide = function() {
 
             callback = null;
@@ -69,6 +102,12 @@
             keysContainer.innerHTML = "";
             keys = null;
             instance.isVisible = false;
+
+            if(timeout) {
+
+                clearInterval(timeout);
+                timeout = null;
+            }
         }
     }
 

@@ -20,6 +20,8 @@
         this.hasPulledCigar = false;
         this.action = "";
         this.isAggressive;
+        this.isHurt = false;
+        this.scoreValue;
 
         this.update = function() {
 
@@ -32,7 +34,10 @@
 
                 tick = 0;
                 instance.isShown = true;
+
+                instance.scoreValue = Utils.getRandomItem([100, 200, 300]);
                 instance.isAgressive = Math.random() < 0.5;
+                // instance.isAgressive = true;
                 return;
             }
             instance.currentFrame = images[anims.show[tick]];
@@ -88,6 +93,19 @@
             tick++;
         }
 
+        this.hurt = function() {
+
+            if(tick >= anims.hurt.length) {
+
+                tick = 0;
+                instance.isHurt = true;
+                return;
+            }
+            instance.currentFrame = images[anims.hurt[tick]];
+
+            tick++;
+        }
+
         this.enable = function() {
 
             instance.isEnabled = true;
@@ -107,6 +125,7 @@
             instance.isShown = false;
             instance.hasPulledCigar = false;
             instance.action = "";
+            instance.isHurt = false;
             tick = 0;
         }
 

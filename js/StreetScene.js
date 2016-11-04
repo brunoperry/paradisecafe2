@@ -117,9 +117,52 @@
 
                     if(thief.isAgressive) {
 
-                        thief.showGun();
-                        balloon.showBalloon("thief_give_me_your_wallet");
-                        thief.isDone = true;
+                        if(hero.wallet.hasGun) {
+
+                            if(!hero.isDefending) {
+
+                                thief.showGun();
+                                balloon.showBalloon("thief_give_me_your_wallet", null, true);
+
+                                if(!keyboard.isVisible) {
+
+                                    keyboard.showTimedout([
+                                        appData.keys[8]
+                                    ], 3, function(e) {
+
+
+                                        balloon.hideBalloon();
+                                        if(e === "fail") {
+
+                                            thief.isDone = true;
+                                        } else {
+
+                                            hero.isDefending = true;
+                                        }
+
+                                        keyboard.hide();
+                                    });
+                                }
+                            } else {
+
+                                hero.idleGun();
+
+                                if(!thief.isHurt) {
+                                    thief.hurt();
+                                } else {
+
+                                    balloon.showBalloon("thief_only_wanted_light");
+                                    thief.isDone = true;
+                                }
+                            }
+                            
+                        } else {
+
+                            thief.showGun();
+                            balloon.showBalloon("thief_give_me_your_wallet");
+                            thief.isDone = true;
+                        }
+                        
                     } else {
 
                         if(!thief.hasPulledCigar) {
@@ -159,23 +202,36 @@
                          
                         if(thief.isAgressive) {
 
-                            hero.idleStreet("right");
 
-                            var msg;
-                            if(hero.wallet.hasGun) {
+                            var msg = "";
+                            if(hero.wallet.hasGun && !thief.isHurt) {
                                 msg = "hero_dont_have_gun";
-                            } else {
+                            } else if(!hero.wallet.hasGun) {
                                 msg = "hero_shit";
                             }
-                            balloon.showBalloon(msg, function() {
-                                hero.wallet.isStolen = true;
-                                hero.wallet.cash = 0;
-                                hero.wallet.points = 0;
-                            });
+
+                            if(msg !== "") {
+
+                                hero.idleStreet("right");
+                                balloon.showBalloon(msg, function() {
+                                    hero.wallet.isStolen = true;
+                                    hero.wallet.cash = 0;
+                                    hero.wallet.points = 0;
+                                });
+                            } else {
+
+                                hero.idleStreet();
+                            }
+
+                            if(thief.isHurt){
+                                
+                                hero.wallet.points += thief.scoreValue;
+                            }
                         }
 
                         thief.reset();
                         balloon.doneDialog = false;
+                        hero.isDefending = false;
                         door.setAction("street_action");
                         changeAction("street_action");
                      }

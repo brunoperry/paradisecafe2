@@ -169,7 +169,10 @@ var appData = {
                     "thief_hide02",
                     "thief_hide03",
                     "thief_pull_cigar01",
-                    "thief_pull_cigar02"
+                    "thief_pull_cigar02",
+                    "thief_hurt01",
+                    "thief_hurt02",
+                    "thief_hurt03"
                 ],
             "animations":
             {
@@ -177,7 +180,8 @@ var appData = {
                 "gun": [4],
                 "hide": [5, 6, 7],
                 "pull_cigar": [3, 8, 9],
-                "unpull_cigar": [9, 8, 3]
+                "unpull_cigar": [9, 8, 3],
+                "hurt": [10, 11, 12, 12, 12, 12, 12, 12]
             }
         }
     ],
@@ -221,6 +225,11 @@ var appData = {
             "id": 7,
             "label": "ENTRAR",
             "action": "key-enter"
+        },
+        {
+            "id": 8,
+            "label": "DEFESA",
+            "action": "key-defend"
         }
           
     ],
@@ -273,6 +282,7 @@ var appData = {
         "oldlady_only_got_100": "oldlady_only_got_100",
         "oldlady_only_got_500": "oldlady_only_got_500",
         "thief_give_me_your_wallet": "thief_give_me_your_wallet",
-        "thief_got_light": "thief_got_light"
+        "thief_got_light": "thief_got_light",
+        "thief_only_wanted_light": "thief_only_wanted_light"
     }
 }   
