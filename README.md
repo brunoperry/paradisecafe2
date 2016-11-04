@@ -1,6 +1,6 @@
 # paradisecafe2 / remastered
-The idea 
-Remake of a popular portuguese game using vanilla javascript.
+The idea came from [falsovsky](https://github.com/falsovsky/paradise.js) who is doing a similar project. I decided to give it a try and make my own remake of the game.
+Using vanilla javascript.
 
 [Play it here](http://brunoperry.net/paradisecafe2/)
 
