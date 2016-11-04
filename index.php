@@ -12,7 +12,7 @@
 
     <div class="container">
       <h1>PARADISE CAFÉ 2 / REMASTERED</h1>
-      <p>Interdito a menores de idade.<br>Tens mais de 18 anos?</p>
+      <p>Interdito a menores de idade.<br>Tem mais de 18 anos?</p>
     </div>
   </div>
 
@@ -28,7 +28,6 @@
 
       <canvas id="canvas" width="256" height="192"></canvas>
       <canvas id="hud-canvas" width="256" height="192"></canvas>
-      <canvas id="virtual-canvas" width="256" height="192"></canvas>
 
     </div>
 

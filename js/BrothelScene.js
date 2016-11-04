@@ -15,6 +15,7 @@
         this.name = sceneData.name;
         this.currentFrame;
         this.bill;
+        this.showHUD = true;
 
         //ACTIONS STUFF
         var doCurrentAction;

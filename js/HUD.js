@@ -4,15 +4,33 @@
 
         var instance = this;
 
-        var canvas = document.getElementById("hud-canvas");
-        var context = canvas.getContext("2d");
-        context.font="24px Mono";
-        context.fillStyle = "#ffffff";
+        var hudCanvas = document.getElementById("hud-canvas");
+        // var hudCanvas = document.createElement("canvas");
+        hudCanvas.width = canvasW;
+        hudCanvas.height = canvasH;
+        var hudContext = hudCanvas.getContext("2d");
+        hudContext.font="24px Mono";
+        hudContext.fillStyle = "#ffffff";
         this.isEnbaled = false;
+        var currentFrame = new Image();
 
-        this.render = function() {
+        this.getRender = function() {
 
+            render();
+            currentFrame.src =  hudCanvas.toDataURL();
+
+            return currentFrame;
+        }
+
+        var render = function() {
+
+            d("render")
             instance.clear();
+
+            hudContext.fillText("SCORE= ", 0, canvasH);
+
+
+            return;
 
             var score = hero.wallet.points.toString();
             if(score.length < 3) {
@@ -32,8 +50,8 @@
                 cash = str + cash;
             }
 
-            context.fillText("SCORE= " + score, 0, (canvasH - 20));
-            context.fillText("DINHEIRO= " + cash, (canvasW - 153), (canvasH - 20));
+            hudContext.fillText("SCORE= " + score, 0, (canvasH - 20));
+            hudContext.fillText("DINHEIRO= " + cash, (canvasW - 153), (canvasH - 20));
 
             if(currentScene.name === brothelScene.name || currentScene.name === paradiseCafeScene.name) {
 
@@ -45,13 +63,13 @@
                     }
                     bill = str + bill;
                 }
-                context.fillText("DESPESA= " + bill, (canvasW - 143), (canvasH - 43));
+                hudContext.fillText("DESPESA= " + bill, (canvasW - 143), (canvasH - 43));
             }
         }
 
         this.clear = function() {
 
-            context.clearRect(0, 0, canvasW, canvasH);
+            hudContext.clearRect(0, 0, canvasW, canvasH);
         }
 
         this.enable = function() {

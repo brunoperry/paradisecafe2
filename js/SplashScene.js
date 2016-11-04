@@ -18,6 +18,7 @@
         this.id = sceneData.id;
         this.name = sceneData.name;
         this.currentFrame;
+        this.showHUD = false;
 
         this.update = function() {
 

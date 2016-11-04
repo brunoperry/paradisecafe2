@@ -13,6 +13,7 @@
         this.isEnabled = false;
         this.id = sceneData.id;
         this.name = sceneData.name;
+        this.showHUD = true;
         this.currentFrame;
 
         //ACTIONS STUFF
@@ -353,7 +354,6 @@
 
                                     if(!hero.hasRobbed) {
                                         var spoils = oldLady.rob();
-                                        d(spoils)
                                         balloon.showBalloon(spoils.message);
                                         hero.wallet.cash += spoils.value;
                                         hero.hasRobbed = true;

@@ -14,6 +14,7 @@
         this.id = sceneData.id;
         this.name = sceneData.name;
         this.currentFrame;
+        this.showHUD = false;
 
         this.update = function() {
 
@@ -42,7 +43,6 @@
             setSpeed(NORMAL_SPEED);
             audioSource.playClip(instance.id);
 
-            d("ss")
             sideMenu.enable();
         }
 

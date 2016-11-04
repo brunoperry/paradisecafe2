@@ -18,6 +18,7 @@ var vContext;
 var vCanvas;
 var canvasW;
 var canvasH;
+var currentFrame;
 
 
 
@@ -57,8 +58,10 @@ function init() {
     //setup render stuff
     canvas = document.getElementById("canvas");
     context = canvas.getContext("2d");
-    vCanvas = document.getElementById("virtual-canvas");
+    vCanvas = document.createElement("canvas");
     vContext = vCanvas.getContext("2d");
+    vCanvas.width = canvas.width;
+    vCanvas.height = canvas.height;
     canvasW = canvas.width;
     canvasH = canvas.height;
 
@@ -121,13 +124,12 @@ function initGame() {
 function startGame() {
 
     //start
-    changeScenes(splashScene.name);
-    // changeScenes(mainScene.name);
+    // changeScenes(splashScene.name);
+    changeScenes(streetScene.name);
 }
 
 function gameLoop() {
 
-    clearCanvas();
     currentScene.update();
 }
 
@@ -137,15 +139,15 @@ function clearCanvas(){
 }
 function render(image) {
 
-    context.drawImage(image, 0, 0, canvasW, canvasH);
-    if( currentScene.name !== splashScene.name && 
-        currentScene.name !== mainScene.name && 
-        currentScene.name !== jailScene.name && 
-        currentScene.name !== recordsScene.name) {
-        hud.render();
+    clearCanvas();
+    if(currentScene.showHUD) {
+
+        currentFrame = Utils.mergeImages([ hud.getRender(), image])
     } else {
-        hud.clear();
+        currentFrame = image;
     }
+
+    context.drawImage(currentFrame, 0, 0, canvasW, canvasH);
 }
 
 function changeScenes(sceneName) {
@@ -156,7 +158,6 @@ function changeScenes(sceneName) {
             return;
         }
 
-        clearCanvas();
         currentScene.disable();
     }
 
@@ -216,6 +217,17 @@ function setSpeed(speed) {
         interval = setInterval(gameLoop, SPEED);
     }
 }
+
+// function addHUD() {
+
+//     if(!currentScene) return;
+
+//     if( currentScene.showHUD) {
+//         hud.render();
+//     } else {
+//         hud.clear();
+//     }
+// }
 
 function wait(seconds) {
 

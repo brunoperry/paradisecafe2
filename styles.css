@@ -70,21 +70,12 @@ canvas {
     image-rendering: -moz-crisp-edges;
     image-rendering: -webkit-crisp-edges;
     image-rendering: pixelated;
-    image-rendering: crisp-edges;
 }
 
 #hud-canvas {
     
     position: absolute;
     top: 0;
-    background: transparent;
-}
-
-#virtual-canvas {
-    
-    position: absolute;
-    display: none;
-    background: black;
 }
 
 /*
@@ -99,7 +90,7 @@ BOTTOM STUFF
 
 #keyboard {
 
-    position: relative;
+    position: absolute;
     display: flex;
     width: 100%;
     height: 100%;
@@ -118,7 +109,15 @@ BOTTOM STUFF
     background-size: 100% auto;
     background-repeat: no-repeat;
     background-position: bottom;
+    -ms-transform: translate3d(0, 100%, 0);
+    -webkit-transform: translate3d(0, 100%, 0);
+    -moz-transform: translate3d(0, 100%, 0);
+    -o-transform: translate3d(0, 100%, 0);
     transform: translate3d(0, 100%, 0);
+
+    -webkit-transition: -webkit-transform 0.3s ease;
+    -moz-transition: transform 0.3s ease;
+    -o-transition: transform 0.3s ease;
     transition: transform 0.3s ease;
 }
 
@@ -188,7 +187,16 @@ SIDE MENU STUFF
     height: 100%;
     background: green;
     pointer-events: initial;
+
+    -ms-transform: translate3d(100%, 0, 0);
+    -webkit-transform: translate3d(100%, 0, 0);
+    -moz-transform: translate3d(100%, 0, 0);
+    -o-transform: translate3d(100%, 0, 0);
     transform: translate3d(100%, 0, 0);
+
+    -webkit-transition: -webkit-transform 0.3s ease;
+    -moz-transition: transform 0.3s ease;
+    -o-transition: transform 0.3s ease;
     transition: transform 0.3s ease;
 }
 #side-menu-container h1 {
@@ -264,11 +272,12 @@ LANDING PAGE STUFF
     margin: 0 auto;
 }
 #landing-page h1 {
-
     position: relative;
     display: block;
     font-size: 45px;
+    margin: 0;
     font-weight: bold;
+    margin-bottom: 30px;
 }
 #landing-page p {
 
@@ -300,6 +309,10 @@ ANIMATIONS
 }
 
 .slide-in {
+    -ms-transform: translate3d(0, 0, 0) !important;
+    -webkit-transform: translate3d(0, 0, 0) !important;
+    -moz-transform: translate3d(0, 0, 0) !important;
+    -o-transform: translate3d(0, 0, 0) !important;
     transform: translate3d(0, 0, 0) !important;
 }
 
