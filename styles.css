@@ -236,12 +236,46 @@ SIDE MENU STUFF
 /*
 AUDIO STUFF
 */
-
 #audio-player {
 
     position: absolute;
     display: none;
     top: 0;
+}
+/*
+LANDING PAGE STUFF
+*/
+#landing-page {
+
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    background: green;
+}
+#landing-page .container {
+
+    position: relative;
+    display: block;
+    width: 100%;
+    max-width: 512px;
+    height: 100%;
+    margin: 0 auto;
+}
+#landing-page h1 {
+
+    position: relative;
+    display: block;
+    font-size: 45px;
+    font-weight: bold;
+}
+#landing-page p {
+
+    position: relative;
+    display: block;
+    font-size: 40px;
+    color: white;
 }
 
 

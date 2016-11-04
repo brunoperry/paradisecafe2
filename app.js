@@ -2,6 +2,9 @@ var NORMAL_SPEED = 50;
 var SPEED = NORMAL_SPEED;
 var interval;
 
+//landing page
+var landingPage;
+
 
 //Door
 var door;
@@ -47,6 +50,9 @@ var sideMenu;
 var audioSource;
 
 function init() {
+
+    //landing page stuff
+    landingPage = document.getElementById("landing-page");
 
     //setup render stuff
     canvas = document.getElementById("canvas");
@@ -94,11 +100,29 @@ function init() {
     onResize();
 }
 
+function initGame() {
+
+    keyboard.show([
+        appData.keys[2],
+        appData.keys[3]
+
+    ], function(e) {
+
+        if(e === "key-yes") {
+            landingPage.style.display = "none";
+            startGame();
+        } else {
+            d("go to home");
+        }
+        keyboard.hide();
+    });
+}
+
 function startGame() {
 
     //start
-    // changeScenes(splashScene.name);
-    changeScenes(mainScene.name);
+    changeScenes(splashScene.name);
+    // changeScenes(mainScene.name);
 }
 
 function gameLoop() {
@@ -209,7 +233,7 @@ function sceneReady() {
 
     if(numScenes === appData.scenes.length) {
 
-        startGame();
+        initGame();
     }
 }
 

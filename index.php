@@ -8,6 +8,13 @@
   </head>
   <body onload="init();">
 
+  <div id="landing-page">
+
+    <div class="container">
+      <h1>PARADISE CAFÉ 2 / REMASTERED</h1>
+      <p>Interdito a menores de idade.<br>Tens mais de 18 anos?</p>
+    </div>
+  </div>
 
   <div id="main-container">
 
