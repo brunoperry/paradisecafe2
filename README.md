@@ -1,4 +1,4 @@
 # paradisecafe2
 Remake of a popular portugueses game: ParadiseCafe
 
-[More info]()
+[Play it here](http://brunoperry.net/paradisecafe2/)
