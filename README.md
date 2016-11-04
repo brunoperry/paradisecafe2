@@ -8,3 +8,7 @@ Remake of a popular portuguese game using vanilla javascript
   * [ ] add scores to records scene.
 
 2. ##Done
+
+
+##Images
+![alt text](http://brunoperry.net/paradisecafe2/media/images/thumb01.png "Logo Title Text 1")
