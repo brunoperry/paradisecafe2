@@ -13,6 +13,7 @@
 
         //PUBLIC
         this.isEnabled = false;
+        this.id = sceneData.id;
         this.name = sceneData.name;
         this.currentFrame;
         this.bill;
@@ -68,6 +69,7 @@
 
             instance.isEnabled = true;
             setSpeed(NORMAL_SPEED);
+            audioSource.playClip(instance.id);
 
             changeAction("idle_action");
 

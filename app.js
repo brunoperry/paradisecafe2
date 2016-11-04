@@ -40,6 +40,9 @@ var balloon;
 //hud
 var hud;
 
+//audio
+var audioSource;
+
 function init() {
 
     //setup render stuff
@@ -50,11 +53,17 @@ function init() {
     canvasW = canvas.width;
     canvasH = canvas.height;
 
+    //setup audio
+    audioSource = new AudioSource();
+
     //setup door object
     door = new Door(appData.door);
 
     //setup balloon
     balloon = new Balloon(appData.balloons);
+
+    //setup keyboard
+    keyboard = new Keyboard();
 
     //setup hud
     hud = new HUD();
@@ -73,9 +82,7 @@ function init() {
     jailScene = new JailScene(appData.scenes[3]);
     brothelScene = new BrothelScene(appData.scenes[4]);
     paradiseCafeScene = new ParadiseCafeScene(appData.scenes[5]);
-
-    //setup keyboard
-    keyboard = new Keyboard();
+    recordsScene = new RecordsScene(appData.scenes[6]);
 
     //prepare
     onResize();
@@ -84,8 +91,8 @@ function init() {
 function startGame() {
 
     //start
-    // changeScenes(splashScene.name);
-    changeScenes(streetScene.name);
+    changeScenes(splashScene.name);
+    // changeScenes(streetScene.name);
 }
 
 function gameLoop() {
@@ -103,8 +110,11 @@ function render(image) {
     context.drawImage(image, 0, 0, canvasW, canvasH);
     if( currentScene.name !== splashScene.name && 
         currentScene.name !== mainScene.name && 
-        currentScene.name !== jailScene.name) {
+        currentScene.name !== jailScene.name && 
+        currentScene.name !== recordsScene.name) {
         hud.render();
+    } else {
+        hud.clear();
     }
 }
 
@@ -142,6 +152,9 @@ function changeScenes(sceneName) {
         case paradiseCafeScene.name:
         
         currentScene = paradiseCafeScene;
+        break;
+        case recordsScene.name:
+        currentScene = recordsScene;
         break;
     }
 

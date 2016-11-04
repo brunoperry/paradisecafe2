@@ -18,8 +18,8 @@
 
         //HERO PROPERTIES
         this.wallet = {
-            isStolen: false,
-            hasGun: true,
+            isStolen: true,
+            hasGun: false,
             cash: 1000,
             points: 0
         }

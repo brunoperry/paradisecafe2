@@ -11,6 +11,7 @@
 
         //PUBLIC
         this.isEnabled = false;
+        this.id = jailData.id;
         this.name = jailData.name;
         this.currentFrame;
 
@@ -30,14 +31,33 @@
 
         this.enable = function() {
 
+            document.body.style.backgroundColor = "black";
+
             instance.isEnabled = true;
             setSpeed(NORMAL_SPEED);
+            audioSource.playClip(instance.id);
+
+            keyboard.show([
+                appData.keys[9],
+                appData.keys[10]
+
+            ], function(e) {
+
+                keyboard.hide();
+                if(e === "key-restart") {
+
+                    changeScenes(mainScene.name);
+                } else {
+
+                    changeScenes(recordsScene.name);
+                }
+            });
         }
 
         this.disable = function() {
 
             instance.isEnabled = false;
-            tick = 0
+            tick = 0;
         }
 
         //EVENTS

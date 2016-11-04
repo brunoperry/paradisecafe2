@@ -12,7 +12,7 @@
 
         this.render = function() {
 
-            context.clearRect(0, 0, canvasW, canvasH);
+            instance.clear();
 
             var score = hero.wallet.points.toString();
             if(score.length < 3) {
@@ -47,6 +47,11 @@
                 }
                 context.fillText("DESPESA= " + bill, (canvasW - 143), (canvasH - 43));
             }
+        }
+
+        this.clear = function() {
+
+            context.clearRect(0, 0, canvasW, canvasH);
         }
 
         this.enable = function() {

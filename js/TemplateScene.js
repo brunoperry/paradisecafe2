@@ -11,6 +11,7 @@
 
         //PUBLIC
         this.isEnabled = false;
+        this.id = sceneData.id;
         this.name = sceneData.name;
         this.currentFrame;
 

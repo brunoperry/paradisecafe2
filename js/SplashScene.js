@@ -15,6 +15,7 @@
 
         //PUBLIC
         this.isEnabled = false;
+        this.id = sceneData.id;
         this.name = sceneData.name;
         this.currentFrame;
 
@@ -44,6 +45,7 @@
 
             instance.isEnabled = true;
             setSpeed(SCENE_SPEED);
+            audioSource.playClip(instance.id);
         }
 
         this.disable = function() {

@@ -11,6 +11,7 @@
 
         //PUBLIC
         this.isEnabled = false;
+        this.id = sceneData.id;
         this.name = sceneData.name;
         this.currentFrame;
 
@@ -623,6 +624,7 @@
 
             instance.isEnabled = true;
             setSpeed(NORMAL_SPEED);
+            audioSource.playClip(instance.id);
 
             door.enable();
             door.addEventListener(changeAction);

@@ -11,6 +11,7 @@
 
         //PUBLIC
         this.isEnabled = false;
+        this.id = sceneData.id;
         this.name = sceneData.name;
         this.currentFrame;
 
@@ -39,6 +40,7 @@
 
             instance.isEnabled = true;
             setSpeed(NORMAL_SPEED);
+            audioSource.playClip(instance.id);
         }
 
         this.disable = function() {
@@ -49,6 +51,8 @@
 
         //EVENTS
         var onKeyboardClick = function(action) {
+
+            keyboard.hide();
 
             switch(action) {
 
@@ -61,12 +65,10 @@
                 //scores action
                 case appData.keys[1].action:
 
-                d("show scores")
+                changeScenes(recordsScene.name);
 
                 break;
             }
-
-            keyboard.hide();
         }
 
         var imagesLoaded = function(data) {

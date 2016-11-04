@@ -31,6 +31,7 @@
                 tick = 0;
                 instance.isShown = true;
                 instance.isAgressive = Math.random() < 0.5;
+                // instance.isAgressive = true;
 
                 return;
             }

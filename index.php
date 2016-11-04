@@ -39,12 +39,19 @@
   </div>
 
   <div id="debugger">DEBUGGER</div>
-
-    
+  <audio id="audio-player" controls>
+    <source src="media/sounds/splash_track.ogg" type="audio/ogg">
+    <source src="media/sounds/main_track.ogg" type="audio/ogg">
+    <source src="media/sounds/streets_track.ogg" type="audio/ogg">
+    <source src="media/sounds/jail_track.ogg" type="audio/ogg">
+    <source src="media/sounds/brothel_track.ogg" type="audio/ogg">
+    <source src="media/sounds/paradisecafe_track.ogg" type="audio/ogg">
+  </audio>
    
   </body>
 
   <script type="text/javascript" src="js/Utils.js"></script>
+  <script type="text/javascript" src="js/AudioSource.js"></script>
   <script type="text/javascript" src="js/Keyboard.js"></script>
   <script type="text/javascript" src="js/Balloon.js"></script>
   <script type="text/javascript" src="js/HUD.js"></script>
@@ -59,6 +66,7 @@
   <script type="text/javascript" src="js/StreetScene.js"></script>
   <script type="text/javascript" src="js/JailScene.js"></script>
   <script type="text/javascript" src="js/BrothelScene.js"></script>
+  <script type="text/javascript" src="js/RecordsScene.js"></script>
   <script type="text/javascript" src="js/ParadiseCafeScene.js"></script>
   <script type="text/javascript" src="appData.json.js"></script>
   <script type="text/javascript" src="app.js"></script>

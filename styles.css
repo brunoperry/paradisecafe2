@@ -167,6 +167,19 @@ label {
     flex: 1;
 }
 
+
+/*
+AUDIO STUFF
+*/
+
+#audio-player {
+
+    position: absolute;
+    display: none;
+    top: 0;
+}
+
+
 /*
 OTHER STUFF
 */

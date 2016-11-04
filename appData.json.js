@@ -54,6 +54,15 @@ var appData = {
             {
                 "background": [0, 1, 2, 3]
             }
+        },
+        {
+            "id": 6,
+            "name": "records_scene",
+            "images": ["records_bckgrd01", "records_bckgrd02"],
+            "animations":
+            {
+                "background": [0, 0, 1, 1]
+            }
         }
     ],
 
@@ -230,6 +239,16 @@ var appData = {
             "id": 8,
             "label": "DEFESA",
             "action": "key-defend"
+        },
+        {
+            "id": 9,
+            "label": "INICIO",
+            "action": "key-restart"
+        },
+        {
+            "id": 10,
+            "label": "REGISTAR",
+            "action": "key-register"
         }
           
     ],
