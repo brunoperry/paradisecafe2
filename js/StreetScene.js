@@ -42,15 +42,321 @@
                 case "whore_action":
                 doCurrentAction = whoreAction;
                 break;
+                case "oldlady_action":
+                doCurrentAction = oldLadyAction;
+                break;
+                case "thief_action":
+                doCurrentAction = thiefAction;
+                break;
+                case "cafe_action":
+                doCurrentAction = cafeAction;
+                break;
             }
+        }
+
+        var cafeAction = function() {
+
+            if(!door.isCafeDone) {
+
+                hero.idleStreet("left");
+                if(!door.isOpen) {
+
+                    door.open();
+                } else {
+
+                    door.showParadiseCafe();
+
+                    if(!keyboard.isVisible) {
+                        keyboard.show([
+                            appData.keys[7],
+                            appData.keys[6],
+                        ], function(e) {
+
+                            if(e === "key-enter") {
+
+                                changeScenes(paradiseCafeScene.name);
+                            }
+                            door.isCafeDone = true;
+                            keyboard.hide();
+                        });
+                    }
+                }
+            } else {
+
+                if(door.isOpen) {
+
+                    door.close();
+                } else {
+
+                    door.isCafeDone = false;
+                    door.setAction("street_action");
+                    changeAction("street_action");
+                }
+            }
+            
+            instance.currentFrame = Utils.mergeImages([
+                images[anim[0]],
+                door.currentFrame,
+                hero.currentFrame,
+            ]);
+        }
+
+        var thiefAction = function() {
+
+            if(!door.isOpen && !thief.isDone) {
+
+                hero.idleStreet();
+                door.open();
+
+            } else if(!thief.isDone) {
+
+                if(!thief.isShown) {
+                    hero.idleStreet();
+                    thief.show();
+                } else {
+
+                    if(thief.isAgressive) {
+
+                        thief.showGun();
+                        balloon.showBalloon("thief_give_me_your_wallet");
+                        thief.isDone = true;
+                    } else {
+
+                        if(!thief.hasPulledCigar) {
+
+                            thief.pullCigar();
+                        } else {
+
+                            if(!balloon.doneDialog) {
+
+                                balloon.showDialog(["thief_got_light", "hero_dont_smoke"]);
+                            } else {
+
+                                thief.isDone = true;
+                            }
+                        }
+                    }
+                }
+            } else {
+
+                if(thief.isShown) {
+
+                    if(thief.hasPulledCigar) {
+
+                        thief.unpullCigar();
+                    } else {
+
+                        thief.hide();
+                    }
+                    
+                } else {
+                     
+                     if(door.isOpen) {
+                         
+                         balloon.hideBalloon();
+                         door.close();
+                     } else {
+                         
+                        if(thief.isAgressive) {
+
+                            hero.idleStreet("right");
+
+                            var msg;
+                            if(hero.wallet.hasGun) {
+                                msg = "hero_dont_have_gun";
+                            } else {
+                                msg = "hero_shit";
+                            }
+                            balloon.showBalloon(msg, function() {
+                                hero.wallet.isStolen = true;
+                                hero.wallet.cash = 0;
+                                hero.wallet.points = 0;
+                            });
+                        }
+
+                        thief.reset();
+                        balloon.doneDialog = false;
+                        door.setAction("street_action");
+                        changeAction("street_action");
+                     }
+                }
+            }
+
+            instance.currentFrame = Utils.mergeImages([
+                images[anim[0]],
+                door.currentFrame,
+                thief.currentFrame,
+                hero.currentFrame,
+                balloon.currentFrame
+            ]);
+        }
+
+        var oldLadyAction = function() {
+
+            if(!actionDone) {
+
+                if(!door.isOpen && !oldLady.isDone) {
+
+                    hero.idleStreet();
+                    door.open();
+                } else if(!oldLady.isDone) {
+
+                    if(!oldLady.isShown) {
+
+                        hero.idleStreet();
+                        oldLady.show();
+                    } else if(oldLady.action === "") {
+
+                        setSpeed(0);
+
+                        keyboard.show([
+                            appData.keys[4],
+                            appData.keys[5],
+                            appData.keys[6]
+                            ], function(e) {
+
+                                switch(e) {
+
+                                    case "key-rape":
+                                    oldLady.action = "rape";
+                                    break;
+
+                                    case "key-assault":
+                                    oldLady.action = "assault";
+                                    break;
+
+                                    case "key-continue":
+
+                                    hero.wallet.points += 1;
+                                    oldLady.action = "hide";
+                                    break;
+                                }
+                                setSpeed(NORMAL_SPEED);
+                                keyboard.hide();
+                            });
+                    } else {
+
+                        if(oldLady.action === "rape") {
+
+                            if(hero.wallet.hasGun) {
+
+
+                                if(!balloon.doneDialog) {
+
+                                    hero.idleGun();
+                                    balloon.showDialog(["hero_turn_around", "oldlady_ho_my_god"]);
+                                } else {
+
+                                    if(!oldLady.isBended && !hero.hasRaped) {
+
+                                        balloon.hideBalloon();
+                                        hero.idleStreet();
+                                        oldLady.bend();
+                                    } else {
+
+                                        if(!hero.hasRaped) {
+                                            hero.rape();
+
+                                            if(hero.SEX_TICK === Math.round(hero.SEX_TICK / 2)) {
+                                                balloon.showDialog(["oldlady_so_big", "hero_its_done"]);
+                                            }
+                                        } else {
+
+                                            hero.idleStreet();
+
+                                            if(oldLady.isBended) {
+
+                                                oldLady.unbend();
+                                            } else {
+
+                                                balloon.showBalloon("oldlady_deserves100");
+                                                hero.wallet.points += 100;
+                                                oldLady.isDone = true;
+                                            }
+                                        }
+                                    }
+                                }
+
+                            } else {
+                                hero.idleStreet("right");
+                                balloon.showBalloon("hero_no_gun");
+                                oldLady.isDone = true;
+                            }
+
+
+                        } else if(oldLady.action === "assault") {
+
+                            if(hero.wallet.hasGun) {
+
+                                if(!balloon.doneDialog) {
+
+                                    hero.idleGun();
+                                    balloon.showDialog(["hero_this_is_a_robbery", "oldlady_ho_my_god"]);
+                                } else {
+
+                                    if(!hero.hasRobbed) {
+                                        var spoils = oldLady.rob();
+                                        d(spoils)
+                                        balloon.showBalloon(spoils.message);
+                                        hero.wallet.cash += spoils.value;
+                                        hero.hasRobbed = true;
+
+                                    } else {
+                                        oldLady.isDone = true;
+                                    }
+                                }
+
+                            } else {
+
+                                hero.idleStreet("right");
+                                balloon.showBalloon("hero_no_gun");
+                                oldLady.isDone = true;
+                            }
+
+
+                        } else {
+
+                            oldLady.isDone = true;
+                        }
+                    }
+                } else {
+
+                    hero.idleStreet();
+                    if(oldLady.isShown) {
+
+                        oldLady.hide();
+                    } else {
+
+                        if(door.isOpen) {
+
+                            door.close();
+                        } else {
+                            oldLady.reset();
+                            balloon.doneDialog = false;
+                            hero.hasRaped = false;
+                            hero.hasRobbed = false;
+                            hero.SEX_TICK = 0;
+                            door.setAction("street_action");
+                            changeAction("street_action");
+                            return;
+                        }
+                    }
+                }
+            }
+
+            instance.currentFrame = Utils.mergeImages([
+                images[anim[0]],
+                door.currentFrame,
+                oldLady.currentFrame,
+                hero.currentFrame,
+                balloon.currentFrame
+            ]);
         }
 
         var whoreAction = function() {
 
-
             if(!actionDone) {
 
-                d(door.isOpen);
                 if(!door.isOpen && !whore.isDone) {
 
                     door.open();
@@ -79,6 +385,7 @@
                                     }
                                     
                                     balloon.hideBalloon();
+                                    keyboard.hide();
                                 });
                         } else {
 
@@ -88,6 +395,7 @@
 
                                     balloon.showBalloon("whore_come_on_then");
                                     whore.isDone = true;
+                                    hero.resetTick();
                                 } else {
 
                                     whore.isDone = true;
@@ -101,27 +409,29 @@
 
                         whore.hide();
                     } else {
+                        if(whore.action === "positive_call" && !hero.hasEnteredBrothel) {
 
-                        if(whore.action === "positive_call") {
-
-                            hero.enterBuilding();
-                            return;
-                        }
-
-                        if(door.isOpen) {
-                            
-                            door.close();
+                            hero.enterBrothel();
                         } else {
-                            hero.hasShownDocs = false;
 
-                            if(whore.action !== "positive_call") {
+                            if(door.isOpen) {
+                                
+                                door.close();
+                            } else {
+                                hero.hasShownDocs = false;
 
-                                balloon.showBalloon("hero_pussy");
-                                hero.idleStreet("right");
+                                if(whore.action !== "positive_call") {
+
+                                    balloon.showBalloon("hero_pussy");
+                                    hero.idleStreet("right");
+                                } else {
+
+                                    changeScenes(brothelScene.name);
+                                }
+                                whore.reset();
+                                door.setAction("street_action");
+                                changeAction("street_action");
                             }
-                            whore.reset();
-                            door.setAction("street_action");
-                            changeAction("street_action");
                         }
                     }
                 }

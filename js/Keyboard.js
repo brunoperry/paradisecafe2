@@ -8,6 +8,8 @@
         var keysContainer = document.getElementById("keys-container");
         var keys;
 
+        this.isVisible = false;
+
 
         //OBJECT METHODS
         //build keys
@@ -51,6 +53,8 @@
             buildKeys(data);
 
             document.getElementById("keyboard-container").className = "slide-in";
+
+            instance.isVisible = true;
         }
 
         this.hide = function() {
@@ -64,6 +68,7 @@
             }
             keysContainer.innerHTML = "";
             keys = null;
+            instance.isVisible = false;
         }
     }
 

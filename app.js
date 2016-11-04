@@ -2,11 +2,14 @@ var NORMAL_SPEED = 50;
 var SPEED = NORMAL_SPEED;
 var interval;
 
+
+//Door
 var door;
 
 
 //canvas properties
 var context;
+var hudContext;
 var canvas;
 var vContext;
 var vCanvas;
@@ -20,6 +23,8 @@ var numScenes = 0;
 var splashScene;
 var mainScene;
 var streetScene;
+var brothelScene;
+var paradiseCafeScene;
 var currentScene;
 
 //characters
@@ -27,9 +32,13 @@ var hero;
 var police;
 var whore;
 var oldLady;
+var thief;
 
 //balloons
 var balloon;
+
+//hud
+var hud;
 
 function init() {
 
@@ -47,17 +56,23 @@ function init() {
     //setup balloon
     balloon = new Balloon(appData.balloons);
 
+    //setup hud
+    hud = new HUD();
+
     //setup characters
     hero = new Hero(appData.characters[0]);
     police = new Police(appData.characters[1]);
     whore = new Whore(appData.characters[2]); 
-    // oldLady = new OldLady(appData.characters[2]); 
+    oldLady = new OldLady(appData.characters[3]); 
+    thief = new Thief(appData.characters[4]); 
 
     //setup scenes
     splashScene = new SplashScene(appData.scenes[0]);
     mainScene = new MainScene(appData.scenes[1]);
     streetScene = new StreetScene(appData.scenes[2]);
     jailScene = new JailScene(appData.scenes[3]);
+    brothelScene = new BrothelScene(appData.scenes[4]);
+    paradiseCafeScene = new ParadiseCafeScene(appData.scenes[5]);
 
     //setup keyboard
     keyboard = new Keyboard();
@@ -69,6 +84,7 @@ function init() {
 function startGame() {
 
     //start
+    // changeScenes(splashScene.name);
     changeScenes(streetScene.name);
 }
 
@@ -85,6 +101,11 @@ function clearCanvas(){
 function render(image) {
 
     context.drawImage(image, 0, 0, canvasW, canvasH);
+    if( currentScene.name !== splashScene.name && 
+        currentScene.name !== mainScene.name && 
+        currentScene.name !== jailScene.name) {
+        hud.render();
+    }
 }
 
 function changeScenes(sceneName) {
@@ -113,6 +134,14 @@ function changeScenes(sceneName) {
         case jailScene.name:
         
         currentScene = jailScene;
+        break;
+        case brothelScene.name:
+        
+        currentScene = brothelScene;
+        break;
+        case paradiseCafeScene.name:
+        
+        currentScene = paradiseCafeScene;
         break;
     }
 

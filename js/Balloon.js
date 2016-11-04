@@ -11,6 +11,8 @@
         var timeout;
 
         var isShowing = false;
+        var isDialog = false;
+        this.doneDialog = false;
 
         this.currentFrame;
         
@@ -31,15 +33,45 @@
 
             } else {
 
-                d("asd:" + keep);
-
                 if(!keep) timeout = setTimeout( instance.hideBalloon, BALLOON_TIMEOUT);
             }
+
+            instance.isDialog = false;
         };
+
+        this.showDialog = function(balloons) {
+
+            if(isDialog) return;
+
+            isDialog = true;
+
+            var vInstance = this;
+            vInstance.i = 0;
+            var dialog = function() {
+
+                instance.currentFrame = images[balloons[vInstance.i]];
+
+                setTimeout(function() {
+
+                    if(vInstance.i < balloons.length) {
+
+                        dialog();
+                    } else {
+
+                        isDialog = false;
+                        instance.doneDialog = true;
+                    }
+                    
+                }, BALLOON_TIMEOUT);
+                vInstance.i++;
+            }
+            dialog();
+        }
 
         this.hideBalloon = function() {
 
             isShowing = false;
+            isDialog = false;
             setSpeed(NORMAL_SPEED);
 
             instance.currentFrame = images.empty;

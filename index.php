@@ -20,6 +20,7 @@
     <div id="mid-container">
 
       <canvas id="canvas" width="256" height="192"></canvas>
+      <canvas id="hud-canvas" width="256" height="192"></canvas>
       <canvas id="virtual-canvas" width="256" height="192"></canvas>
 
     </div>
@@ -46,15 +47,19 @@
   <script type="text/javascript" src="js/Utils.js"></script>
   <script type="text/javascript" src="js/Keyboard.js"></script>
   <script type="text/javascript" src="js/Balloon.js"></script>
+  <script type="text/javascript" src="js/HUD.js"></script>
   <script type="text/javascript" src="js/Door.js"></script>
   <script type="text/javascript" src="js/Hero.js"></script>
   <script type="text/javascript" src="js/Police.js"></script>
   <script type="text/javascript" src="js/Whore.js"></script>
   <script type="text/javascript" src="js/OldLady.js"></script>
+  <script type="text/javascript" src="js/Thief.js"></script>
   <script type="text/javascript" src="js/SplashScene.js"></script>
   <script type="text/javascript" src="js/MainScene.js"></script>
   <script type="text/javascript" src="js/StreetScene.js"></script>
   <script type="text/javascript" src="js/JailScene.js"></script>
+  <script type="text/javascript" src="js/BrothelScene.js"></script>
+  <script type="text/javascript" src="js/ParadiseCafeScene.js"></script>
   <script type="text/javascript" src="appData.json.js"></script>
   <script type="text/javascript" src="app.js"></script>
 </html>

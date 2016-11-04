@@ -38,7 +38,12 @@
         }
 
         this.idle = function() {
-            instance.currentFrame = images[anims.show[0]];
+            instance.currentFrame = images[anims.idle_street[0]];
+        }
+
+        this.idleBrothel = function () {
+
+            instance.currentFrame = images[anims.idle_brothel[0]];
         }
 
         this.hide = function() {

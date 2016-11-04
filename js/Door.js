@@ -20,6 +20,8 @@
         var doorCtx = doorVCanvas.getContext("2d");
         var doorImage = new Image();
 
+        var cafeTick = 0;
+
         //EVENTS STUFF
         var callback;
         var doorAction;
@@ -31,6 +33,7 @@
 
         this.isOpen = false;
         this.scrollLocked = true;
+        this.isCafeDone = false;
 
         this.scroll = function() {
 
@@ -55,6 +58,19 @@
             scrollTick++;
         }
 
+        this.showParadiseCafe = function() {
+
+            if(cafeTick >= anims.show_cafe.length) {
+
+                cafeTick = 0;
+            }
+
+            getImage(images[anims.show_cafe[cafeTick]]);
+            instance.currentFrame = doorImage;
+
+            cafeTick++;
+        }
+
         this.open = function() {
 
             if(tick >= anims.open.length) {
@@ -64,14 +80,16 @@
                 return;
             }
 
-            instance.currentImage = getImage(images[anims.open[tick]]);
+            getImage(images[anims.open[tick]]);
+            instance.currentFrame = doorImage;
 
             tick++;
         }
 
         this.idle = function() {
 
-            instance.currentImage = getImage(images[anims.open[anims.open.length - 1]]);
+            getImage(images[anims.open[anims.open.length - 1]]);
+            instance.currentFrame = doorImage;
         }
 
         this.close = function() {
@@ -83,7 +101,8 @@
                 return;
             }
 
-            instance.currentImage = getImage(images[anims.close[tick]]);
+            getImage(images[anims.close[tick]])
+            instance.currentFrame = doorImage;
 
             tick++;
         }
@@ -113,12 +132,12 @@
             
             var index = Math.floor(Math.random() * doorData.actions.length);
             doorAction = doorData.actions[index];
-            doorAction = "whore_action"
+            // doorAction = "cafe_action"
         }
 
         //get the image data from door
         var getImage = function(img) {
-            
+
             doorCtx.drawImage(img, doorX, 0, doorW, canvasH);
             doorImage.src = doorVCanvas.toDataURL();
             doorCtx.clearRect(0, 0, canvasW, canvasH);

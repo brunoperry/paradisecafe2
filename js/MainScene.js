@@ -65,6 +65,8 @@
 
                 break;
             }
+
+            keyboard.hide();
         }
 
         var imagesLoaded = function(data) {

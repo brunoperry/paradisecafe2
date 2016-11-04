@@ -12,6 +12,7 @@ html, body {
     padding: 0;
     background: green;
     font-family: "mono";
+    -webkit-font-smoothing: none;
 }
 
 #main-container {
@@ -54,9 +55,9 @@ MID STUFF
 #mid-container {
     
     position: relative;
-    display: flex;
+    /*display: flex;*/
     flex: 2;
-    align-items: center;
+    /*align-items: center;*/
 }
 
 canvas {
@@ -69,6 +70,13 @@ canvas {
     image-rendering: -webkit-crisp-edges;
     image-rendering: pixelated;
     image-rendering: crisp-edges;
+}
+
+#hud-canvas {
+    
+    position: absolute;
+    top: 0;
+    background: transparent;
 }
 
 #virtual-canvas {
@@ -182,3 +190,4 @@ ANIMATIONS
 .slide-in {
     transform: translate3d(0, 0, 0) !important;
 }
+
