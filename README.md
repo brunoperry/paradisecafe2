@@ -5,6 +5,7 @@ Using vanilla javascript.
 [Play it here](http://brunoperry.net/paradisecafe2/)
 
 1. ##Todo
+  * [x] add side menu.
   * [ ] fix mobile audio support.
   * [ ] add scores to records scene.
 
