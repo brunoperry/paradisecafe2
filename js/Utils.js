@@ -8,7 +8,7 @@
         var dataOut = [];
         for(var i = 0; i < dataIn.length; i++) {
             dataOut[i] = new Image();
-            dataOut[i].crossOrigin = "anonymous";
+            // dataOut[i].crossOrigin = "anonymous";
             dataOut[i].onload = function() { 
                 totalImages++;
                 if(totalImages === dataIn.length && callback) {
@@ -45,6 +45,7 @@
     Utils.mergeImages = function(images) {
 
         var img = new Image();
+
         for(var i = 0; i < images.length; i++) {
             vContext.drawImage(images[i], 0, 0, canvasW, canvasH);
         }

@@ -5,22 +5,16 @@ var interval;
 //landing page
 var landingPage;
 
-
 //Door
 var door;
-
 
 //canvas properties
 var context;
 var hudContext;
 var canvas;
-var vContext;
-var vCanvas;
 var canvasW;
 var canvasH;
 var currentFrame;
-
-
 
 //scenes
 var numScenes = 0;
@@ -58,10 +52,8 @@ function init() {
     //setup render stuff
     canvas = document.getElementById("canvas");
     context = canvas.getContext("2d");
-    vCanvas = document.createElement("canvas");
-    vContext = vCanvas.getContext("2d");
-    vCanvas.width = canvas.width;
-    vCanvas.height = canvas.height;
+    context.font="24px Mono";
+    context.fillStyle = "#ffffff";
     canvasW = canvas.width;
     canvasH = canvas.height;
 
@@ -111,13 +103,13 @@ function initGame() {
 
     ], function(e) {
 
+        keyboard.hide();
         if(e === "key-yes") {
             landingPage.style.display = "none";
             startGame();
         } else {
             d("go to home");
         }
-        keyboard.hide();
     });
 }
 
@@ -125,29 +117,25 @@ function startGame() {
 
     //start
     // changeScenes(splashScene.name);
-    changeScenes(streetScene.name);
+    changeScenes(mainScene.name);
 }
 
 function gameLoop() {
-
     currentScene.update();
 }
 
 function clearCanvas(){
-
     context.clearRect(0, 0, canvasW, canvasH);
 }
 function render(image) {
 
     clearCanvas();
-    if(currentScene.showHUD) {
-
-        currentFrame = Utils.mergeImages([ hud.getRender(), image])
-    } else {
-        currentFrame = image;
+    for(i = 0; i < image.length; i++) {
+        context.drawImage(image[i], 0, 0, canvasW, canvasH);
     }
-
-    context.drawImage(currentFrame, 0, 0, canvasW, canvasH);
+    if(currentScene.showHUD) {
+        hud.render();
+    }
 }
 
 function changeScenes(sceneName) {
@@ -217,17 +205,6 @@ function setSpeed(speed) {
         interval = setInterval(gameLoop, SPEED);
     }
 }
-
-// function addHUD() {
-
-//     if(!currentScene) return;
-
-//     if( currentScene.showHUD) {
-//         hud.render();
-//     } else {
-//         hud.clear();
-//     }
-// }
 
 function wait(seconds) {
 

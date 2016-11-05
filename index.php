@@ -27,7 +27,6 @@
     <div id="mid-container">
 
       <canvas id="canvas" width="256" height="192"></canvas>
-      <canvas id="hud-canvas" width="256" height="192"></canvas>
 
     </div>
 

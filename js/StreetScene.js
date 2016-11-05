@@ -56,6 +56,19 @@
             }
         }
 
+        //ACTIONS
+        var streetAction = function() {
+
+            door.scroll();
+            hero.walk();
+
+            instance.currentFrame = [
+                images[anim[0]],
+                door.currentFrame,
+                hero.currentFrame
+            ];
+        }
+
         var cafeAction = function() {
 
             if(!door.isCafeDone) {
@@ -96,11 +109,11 @@
                 }
             }
             
-            instance.currentFrame = Utils.mergeImages([
+            instance.currentFrame = [
                 images[anim[0]],
                 door.currentFrame,
                 hero.currentFrame,
-            ]);
+            ];
         }
 
         var thiefAction = function() {
@@ -240,13 +253,13 @@
                 }
             }
 
-            instance.currentFrame = Utils.mergeImages([
+            instance.currentFrame = [
                 images[anim[0]],
                 door.currentFrame,
                 thief.currentFrame,
                 hero.currentFrame,
                 balloon.currentFrame
-            ]);
+            ];
         }
 
         var oldLadyAction = function() {
@@ -401,13 +414,13 @@
                 }
             }
 
-            instance.currentFrame = Utils.mergeImages([
+            instance.currentFrame = [
                 images[anim[0]],
                 door.currentFrame,
                 oldLady.currentFrame,
                 hero.currentFrame,
                 balloon.currentFrame
-            ]);
+            ];
         }
 
         var whoreAction = function() {
@@ -494,26 +507,13 @@
                 }
             } 
 
-            instance.currentFrame = Utils.mergeImages([
+            instance.currentFrame = [
                 images[anim[0]],
                 door.currentFrame,
                 whore.currentFrame,
                 hero.currentFrame,
                 balloon.currentFrame
-            ]);
-        }
-
-        //ACTIONS
-        var streetAction = function() {
-
-            door.scroll();
-            hero.walk();
-
-            instance.currentFrame = Utils.mergeImages([
-                images[anim[0]],
-                door.currentFrame,
-                hero.currentFrame
-            ]);
+            ];
         }
 
 
@@ -609,13 +609,13 @@
                 }
             }
 
-            instance.currentFrame = Utils.mergeImages([
+            instance.currentFrame = [
                 images[anim[0]],
                 door.currentFrame,
                 police.currentFrame,
                 hero.currentFrame,
                 balloon.currentFrame
-            ]);
+            ];
         }
 
         this.enable = function() {

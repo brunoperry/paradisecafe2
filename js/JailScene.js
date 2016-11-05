@@ -23,7 +23,7 @@
 
                 tick = 0;
             }
-            instance.currentFrame = images[anim[tick]];
+            instance.currentFrame = [images[anim[tick]]];
             render(instance.currentFrame);
 
             tick++;

@@ -4,8 +4,8 @@
 
         var instance = this;
 
-        var hudCanvas = document.getElementById("hud-canvas");
-        // var hudCanvas = document.createElement("canvas");
+        // var hudCanvas = document.getElementById("hud-canvas");
+        var hudCanvas = document.createElement("canvas");
         hudCanvas.width = canvasW;
         hudCanvas.height = canvasH;
         var hudContext = hudCanvas.getContext("2d");
@@ -22,15 +22,9 @@
             return currentFrame;
         }
 
-        var render = function() {
+        this.render = function() {
 
-            d("render")
-            instance.clear();
-
-            hudContext.fillText("SCORE= ", 0, canvasH);
-
-
-            return;
+            // instance.clear();
 
             var score = hero.wallet.points.toString();
             if(score.length < 3) {
@@ -50,8 +44,10 @@
                 cash = str + cash;
             }
 
-            hudContext.fillText("SCORE= " + score, 0, (canvasH - 20));
-            hudContext.fillText("DINHEIRO= " + cash, (canvasW - 153), (canvasH - 20));
+            // hudContext.fillText("SCORE= " + score, 0, (canvasH - 20));
+            // hudContext.fillText("DINHEIRO= " + cash, (canvasW - 153), (canvasH - 20));
+            context.fillText("SCORE= " + score, 0, (canvasH - 20));
+            context.fillText("DINHEIRO= " + cash, (canvasW - 153), (canvasH - 20));
 
             if(currentScene.name === brothelScene.name || currentScene.name === paradiseCafeScene.name) {
 
@@ -63,7 +59,8 @@
                     }
                     bill = str + bill;
                 }
-                hudContext.fillText("DESPESA= " + bill, (canvasW - 143), (canvasH - 43));
+                // hudContext.fillText("DESPESA= " + bill, (canvasW - 143), (canvasH - 43));
+                context.fillText("DESPESA= " + bill, (canvasW - 143), (canvasH - 43));
             }
         }
 
