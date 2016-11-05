@@ -54,7 +54,6 @@
             //build keys
             buildKeys(data);
 
-            d("sds")
             document.getElementById("keyboard-container").className = "slide-in";
 
             instance.isVisible = true;

@@ -10,11 +10,11 @@
         var tick = 0;
 
         //SCROES CANVAS STUFF
-        var recordsCanvas = document.createElement("canvas");
-        recordsCanvas.width = canvasW;
-        recordsCanvas.height = canvasH;
-        var recordsCtx = recordsCanvas.getContext("2d");
-        var recordsImage = new Image();
+        // var recordsCanvas = document.createElement("canvas");
+        // recordsCanvas.width = canvasW;
+        // recordsCanvas.height = canvasH;
+        // var recordsCtx = recordsCanvas.getContext("2d");
+        // var recordsImage = new Image();
 
         //PUBLIC
         this.isEnabled = false;
@@ -31,20 +31,25 @@
                 tick = 0;
             }
 
-            getImage(images[anims.background[tick]])
-            instance.currentFrame = recordsImage;
+            // getImage(images[anims.background[tick]])
+            // instance.currentFrame = recordsImage;
+            // render(instance.currentFrame);
+
+
+
+            instance.currentFrame = [images[anims.background[tick]]];
             render(instance.currentFrame);
 
             tick++;
         }
 
         //get the image data from scene records
-        var getImage = function(img) {
+        // var getImage = function(img) {
 
-            recordsCtx.drawImage(img, 0, 0, canvasW, canvasH);
-            recordsImage.src = recordsCanvas.toDataURL();
-            recordsCtx.clearRect(0, 0, canvasW, canvasH);
-        }
+        //     recordsCtx.drawImage(img, 0, 0, canvasW, canvasH);
+        //     recordsImage.src = recordsCanvas.toDataURL();
+        //     recordsCtx.clearRect(0, 0, canvasW, canvasH);
+        // }
 
         this.enable = function() {
 

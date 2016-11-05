@@ -43,6 +43,9 @@
             setSpeed(NORMAL_SPEED);
             audioSource.playClip(instance.id);
 
+            //reset characters and components
+            hero.reset();
+
             sideMenu.enable();
         }
 

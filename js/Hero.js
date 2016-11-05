@@ -146,6 +146,20 @@
             tick = 0;
         }
 
+        this.reset = function() {
+
+            instance.disable();
+            instance.wallet.isStolen =  false;
+            instance.wallet.hasGun =  false;
+            instance.wallet.cash =  1000;
+            instance.wallet.points =  0;
+            instance.hasShownDocs = false;
+            instance.hasEnteredBrothel = false;
+            instance.hasRaped = false;
+            instance.hasRobbed = false;
+            instance.isDefending = false;
+        }
+
         //EVENTS
         var imagesLoaded = function(data) {
 
