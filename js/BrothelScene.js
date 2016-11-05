@@ -11,10 +11,12 @@
 
         //PUBLIC
         this.isEnabled = false;
+        this.isReady = false;
+        this.doTransition = true;
         this.id = sceneData.id;
         this.name = sceneData.name;
         this.currentFrame;
-        this.bill;
+        this.bill = 0;
         this.showHUD = true;
 
         //ACTIONS STUFF
@@ -26,11 +28,11 @@
 
             doCurrentAction();
 
-            instance.currentFrame = Utils.mergeImages([
+            instance.currentFrame = [
                 images[anims.background[0]],
                 whore.currentFrame,
                 hero.currentFrame,
-            ]);
+            ];
 
             render(instance.currentFrame);
         }
@@ -71,11 +73,17 @@
             document.body.style.backgroundColor = "#bd00bd";
 
             instance.isEnabled = true;
-            setSpeed(NORMAL_SPEED);
-            audioSource.playClip(instance.id);
 
             hero.enable();
             whore.enable();
+
+            audioSource.addListener(function(e) {
+
+                instance.isReady = true;
+                audioSource.addListener(null);
+            });
+            audioSource.playClip(instance.id);
+            setSpeed(NORMAL_SPEED);
 
             changeAction("idle_action");
             instance.bill = 0;
@@ -84,6 +92,7 @@
         this.disable = function() {
 
             instance.isEnabled = false;
+            instance.isReady = false;
             tick = 0;
             instance.bill = 0;
         }

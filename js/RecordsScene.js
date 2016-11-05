@@ -9,15 +9,10 @@
         var anims = sceneData.animations;
         var tick = 0;
 
-        //SCROES CANVAS STUFF
-        // var recordsCanvas = document.createElement("canvas");
-        // recordsCanvas.width = canvasW;
-        // recordsCanvas.height = canvasH;
-        // var recordsCtx = recordsCanvas.getContext("2d");
-        // var recordsImage = new Image();
-
         //PUBLIC
         this.isEnabled = false;
+        this.isReady = false;
+        this.doTransition = true;
         this.id = sceneData.id;
         this.name = sceneData.name;
         this.currentFrame;
@@ -31,33 +26,21 @@
                 tick = 0;
             }
 
-            // getImage(images[anims.background[tick]])
-            // instance.currentFrame = recordsImage;
-            // render(instance.currentFrame);
-
-
-
             instance.currentFrame = [images[anims.background[tick]]];
             render(instance.currentFrame);
 
             tick++;
         }
 
-        //get the image data from scene records
-        // var getImage = function(img) {
-
-        //     recordsCtx.drawImage(img, 0, 0, canvasW, canvasH);
-        //     recordsImage.src = recordsCanvas.toDataURL();
-        //     recordsCtx.clearRect(0, 0, canvasW, canvasH);
-        // }
-
         this.enable = function() {
 
             document.body.style.backgroundColor = "#bdbd00";
             
             instance.isEnabled = true;
-            setSpeed(NORMAL_SPEED);
+            instance.isReady = true;
+
             audioSource.playClip(mainScene.id);
+            setSpeed(NORMAL_SPEED);
 
             keyboard.show([
                 appData.keys[9]
@@ -72,6 +55,7 @@
         this.disable = function() {
 
             instance.isEnabled = false;
+            instance.isReady = false;
             tick = 0
         }
 

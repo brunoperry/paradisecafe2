@@ -11,6 +11,8 @@
 
         //PUBLIC
         this.isEnabled = false;
+        this.isReady = false;
+        this.doTransition = true;
         this.id = sceneData.id;
         this.name = sceneData.name;
         this.currentFrame;
@@ -33,25 +35,30 @@
 
         this.enable = function() {
 
-            document.body.style.backgroundColor = "black";
-
             keyboard.show([
                 appData.keys[0],
                 appData.keys[1]], onKeyboardClick);
 
             instance.isEnabled = true;
-            setSpeed(NORMAL_SPEED);
-            audioSource.playClip(instance.id);
 
-            //reset characters and components
+            //reset hero for a new game
             hero.reset();
 
             sideMenu.enable();
+
+            audioSource.addListener(function(e) {
+                document.body.style.backgroundColor = "black";
+                instance.isReady = true;
+                audioSource.addListener(null);
+            });
+            audioSource.playClip(instance.id);
+            setSpeed(NORMAL_SPEED);
         }
 
         this.disable = function() {
 
             instance.isEnabled = false;
+            instance.isReady = false;
             tick = 0
         }
 

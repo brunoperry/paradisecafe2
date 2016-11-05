@@ -6,6 +6,7 @@
         var player = document.getElementById("audio-player");
         var clips = [];
         var currentAudio;
+        var loadedCallback = null;
 
         var isOff = false;
 
@@ -18,6 +19,20 @@
 
                 clips.push(srcs[i].src);
             }
+
+            player.preload = "auto";
+        }
+
+        this.onAudioCanPlayThrough = function(e) {
+
+            if(loadedCallback) {
+                loadedCallback();
+            }
+        }
+
+        this.addListener = function(listener) {
+
+            loadedCallback = listener;
         }
 
         this.setVolume = function(vol) {
@@ -45,6 +60,11 @@
             instance.isEnabled = false;
         }
 
+        this.getSourceFromSceneID = function(sceneID) {
+
+            return clips[sceneID];
+        }
+
         this.playClip = function(sceneID) {
 
             currentAudio = clips[sceneID];
@@ -61,6 +81,9 @@
             if(player.src !== currentAudio) {
                 player.src = currentAudio;
                 player.play();
+            } else if(loadedCallback) {
+
+                loadedCallback();
             }
         }
 

@@ -6,13 +6,21 @@ Using vanilla javascript.
 
 1. ##Todo
   * [x] add side menu.
+  * [x] add music.
+  * [x] add transitions.
   * [x] add landing page (needed for touch activation).
   * [x] fix mobile audio support.
-  * [ ] add scores to records scene.
+  * [x] add scores to records scene.
+  * [ ] finish brothel scene.
+  * [ ] finish cafe scene.
+  * [ ] add another characer (scout).
 
 2. ##Done
   * [x] add side menu.
+  * [x] add music.
+  * [x] add transitions.
   * [x] add landing page (needed for touch activation).
+  * [x] fix mobile audio support.
 
 
 #Images

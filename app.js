@@ -1,3 +1,4 @@
+var TRANSTION_TIME = 2000;
 var NORMAL_SPEED = 50;
 var SPEED = NORMAL_SPEED;
 var interval;
@@ -43,6 +44,8 @@ var sideMenu;
 
 //audio
 var audioSource;
+
+var isTransition = false;
 
 function init() {
 
@@ -116,12 +119,15 @@ function initGame() {
 function startGame() {
 
     //start
-    // changeScenes(splashScene.name);
-    changeScenes(mainScene.name);
+    changeScenes(splashScene.name);
+    // changeScenes(mainScene.name);
 }
 
 function gameLoop() {
-    currentScene.update();
+
+    if(currentScene.isReady) {
+        currentScene.update();
+    }
 }
 
 function clearCanvas(){
@@ -145,9 +151,9 @@ function changeScenes(sceneName) {
         if(currentScene.name === sceneName) {
             return;
         }
-
-        currentScene.disable();
     }
+
+    var previousScene = currentScene;
 
     switch(sceneName) {
 
@@ -181,7 +187,18 @@ function changeScenes(sceneName) {
         break;
     }
 
-    currentScene.enable();
+    if(previousScene) {
+
+        if(previousScene.doTransition) {
+            previousScene.disable();
+            transition();
+        } else {
+            previousScene.disable();
+            currentScene.enable();
+        }
+    } else {
+        currentScene.enable();
+    }
 }
 
 function setSpeed(speed) {
@@ -241,4 +258,39 @@ function d(message) {
 window.onresize = function() {
 
     onResize();
+}
+
+//EFFECTS
+function transition() {
+
+    isTransition = true;
+    setSpeed(0);
+
+    var int;
+    var blocksize = 2;
+    var vc = document.createElement("canvas");
+    vc.width = canvasW;
+    vc.height = canvasH;
+    var vctx = vc.getContext("2d");
+    vctx.drawImage(canvas, 0, 0);
+
+    int = setInterval(function(e) {
+        blocksize += Math.round(blocksize / 2);
+        //apply pixalate algorithm
+        for(var x = 1; x < canvasW; x += blocksize) {
+            for(var y = 1; y < canvasH; y += blocksize) {
+                var pixel = vctx.getImageData(x, y, 1, 1);
+                context.fillStyle = "rgb("+pixel.data[0]+","+pixel.data[1]+","+pixel.data[2]+")";
+                context.fillRect(x, y, x + blocksize - 1, y + blocksize - 1);
+            }
+        }
+
+        if(blocksize >= 64) {
+            context.fillStyle = "white";
+            isTransition = true;
+            setSpeed(SPEED);
+            currentScene.enable();
+            clearInterval(int);
+        }
+    }, 200);
 }

@@ -11,6 +11,8 @@
 
         //PUBLIC
         this.isEnabled = false;
+        this.isReady = false;
+        this.doTransition = true;
         this.id = jailData.id;
         this.name = jailData.name;
         this.currentFrame;
@@ -34,8 +36,14 @@
             document.body.style.backgroundColor = "black";
 
             instance.isEnabled = true;
-            setSpeed(NORMAL_SPEED);
+
+            audioSource.addListener(function(e) {
+
+                instance.isReady = true;
+                audioSource.addListener(null);
+            });
             audioSource.playClip(instance.id);
+            setSpeed(NORMAL_SPEED);
 
             keyboard.show([
                 appData.keys[9],
@@ -57,6 +65,7 @@
         this.disable = function() {
 
             instance.isEnabled = false;
+            instance.isReady = false;
             tick = 0;
         }
 

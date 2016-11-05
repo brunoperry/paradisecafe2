@@ -11,6 +11,7 @@
 
         //PUBLIC
         this.isEnabled = false;
+        this.isReady = false;
         this.id = sceneData.id;
         this.name = sceneData.name;
         this.currentFrame;
@@ -25,12 +26,20 @@
         this.enable = function() {
 
             instance.isEnabled = true;
+
+            audioSource.playClip(instance.id);
+            audioSource.addListener(function(e) {
+
+                instance.isReady = true;
+                audioSource.addListener(null);
+            });
             setSpeed(NORMAL_SPEED);
         }
 
         this.disable = function() {
 
             instance.isEnabled = false;
+            instance.isReady = false;
             tick = 0
         }
 

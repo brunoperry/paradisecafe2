@@ -70,13 +70,13 @@
   </div>
 
   <div id="debugger">DEBUGGER</div>
-  <audio id="audio-player" controls>
-    <source src="media/sounds/splash_track.ogg" type="audio/ogg">
-    <source src="media/sounds/main_track.ogg" type="audio/ogg">
-    <source src="media/sounds/streets_track.ogg" type="audio/ogg">
-    <source src="media/sounds/jail_track.ogg" type="audio/ogg">
-    <source src="media/sounds/brothel_track.ogg" type="audio/ogg">
-    <source src="media/sounds/paradisecafe_track.ogg" type="audio/ogg">
+  <audio id="audio-player" preload="none" oncanplaythrough="audioSource.onAudioCanPlayThrough();">
+    <source src="media/sounds/splash_track.mp3" type="audio/mp3">
+    <source src="media/sounds/main_track.mp3" type="audio/mp3">
+    <source src="media/sounds/streets_track.mp3" type="audio/mp3">
+    <source src="media/sounds/jail_track.mp3" type="audio/mp3">
+    <source src="media/sounds/brothel_track.mp3" type="audio/mp3">
+    <source src="media/sounds/paradisecafe_track.mp3" type="audio/mp3">
   </audio>
    
   </body>

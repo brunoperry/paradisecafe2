@@ -13,10 +13,12 @@
 
         //PUBLIC
         this.isEnabled = false;
+        this.isReady = false;
+        this.doTransition = true;
         this.id = sceneData.id;
         this.name = sceneData.name;
         this.currentFrame;
-        this.bill;
+        this.bill = 20;
         this.showHUD = true;
 
         //ACTIONS STUFF
@@ -47,10 +49,10 @@
 
             hero.idleCafe();
 
-            instance.currentFrame = Utils.mergeImages([
+            instance.currentFrame = [
                 backgroundFrame,
                 hero.currentFrame,
-            ]);
+            ];
         }
 
         var updateBackground = function () {
@@ -69,8 +71,14 @@
             document.body.style.backgroundColor = "black";
 
             instance.isEnabled = true;
-            setSpeed(NORMAL_SPEED);
+
+            audioSource.addListener(function(e) {
+
+                instance.isReady = true;
+                audioSource.addListener(null);
+            });
             audioSource.playClip(instance.id);
+            setSpeed(NORMAL_SPEED);
 
             changeAction("idle_action");
 
@@ -82,6 +90,7 @@
         this.disable = function() {
 
             instance.isEnabled = false;
+            instance.isReady = false;
             tick = 0;
             backgroundInterval = clearInterval(backgroundInterval);
             backgroundInterval = null;

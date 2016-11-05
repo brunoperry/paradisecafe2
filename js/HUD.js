@@ -51,6 +51,7 @@
 
             if(currentScene.name === brothelScene.name || currentScene.name === paradiseCafeScene.name) {
 
+                d(currentScene.name);
                 var bill = currentScene.bill.toString();
                 if(bill.length < 6) {
                     var str = "";

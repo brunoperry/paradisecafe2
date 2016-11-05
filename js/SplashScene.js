@@ -15,6 +15,7 @@
 
         //PUBLIC
         this.isEnabled = false;
+        this.isReady = false;
         this.id = sceneData.id;
         this.name = sceneData.name;
         this.currentFrame;
@@ -45,14 +46,20 @@
             document.body.style.backgroundColor = "#bd0000";
 
             instance.isEnabled = true;
-            setSpeed(SCENE_SPEED);
-            audioSource.playClip(instance.id);
 
+            audioSource.addListener(function(e) {
+
+                instance.isReady = true;
+                audioSource.addListener(null);
+            });
+            audioSource.playClip(instance.id);
+            setSpeed(SCENE_SPEED);
         }
 
         this.disable = function() {
 
             instance.isEnabled = false;
+            instance.isReady = false;
             tick = 0;
         }
 

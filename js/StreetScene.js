@@ -11,6 +11,8 @@
 
         //PUBLIC
         this.isEnabled = false;
+        this.isReady = false;
+        this.doTransition = true;
         this.id = sceneData.id;
         this.name = sceneData.name;
         this.showHUD = true;
@@ -623,13 +625,19 @@
             document.body.style.backgroundColor = "blue";
 
             instance.isEnabled = true;
-            setSpeed(NORMAL_SPEED);
-            audioSource.playClip(instance.id);
 
             door.enable();
             door.addEventListener(changeAction);
             hero.enable();
             police.enable();
+
+            audioSource.addListener(function(e) {
+
+                instance.isReady = true;
+                audioSource.addListener(null);
+            });
+            audioSource.playClip(instance.id);
+            setSpeed(NORMAL_SPEED);
 
             changeAction("street_action");
         }
@@ -637,6 +645,7 @@
         this.disable = function() {
 
             instance.isEnabled = false;
+            instance.isReady = false;
             actionDone = false;
             tick = 0
 
