@@ -25,7 +25,6 @@
             if(tick >= anim.length) {
 
                 tick = 0;
-
             }
             instance.currentFrame = [images[anim[tick]]];
             render(instance.currentFrame);

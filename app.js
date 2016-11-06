@@ -119,8 +119,8 @@ function initGame() {
 function startGame() {
 
     //start
-    changeScenes(splashScene.name);
-    // changeScenes(mainScene.name);
+    // changeScenes(splashScene.name);
+    changeScenes(mainScene.name);
 }
 
 function gameLoop() {

@@ -69,15 +69,19 @@
             }
 
             if(isRegister) {
-                var text = listContext.measureText("NOVO HI-SCORE"); // TextMetrics object
-                text.width;
-                var x = Math.round((canvas.offsetWidth / 2) - (text.width / 2));
-                var y = Math.round(canvas.offsetHeight - 50);
+                var text = listContext.measureText("NOVO HI-SCORE!");
+                var x = Math.round((canvas.width / 2) - (text.width / 2));
+                var y = Math.round(canvasH - 40);
+                listContext.font = "24px Mono";
+                listContext.fillStyle = "black";
+                listContext.fillText("NOVO HI-SCORE!", x, y);
 
-                d(x)
-                d(y + "ss")
-                listContext.fillStyle = "red";
-                listContext.fillText("NOVO HI-SCORE", 0, 0);
+                text = listContext.measureText(hero.wallet.points.toString());
+                x = Math.round((canvas.width / 2) - (text.width / 2));
+                y = Math.round(canvasH - 27);
+                listContext.font = "28px Mono";
+                listContext.fillStyle = "white";
+                listContext.fillText(hero.wallet.points.toString(), x, y);
             }
             listImage.src = listCanvas.toDataURL();
         }
@@ -100,13 +104,11 @@
                     break;
                 }
             }
+            // isRegister = true;
 
             if(isRegister) {
 
-
                 nameInput.style.display = "block";
-
-
                 nameInput.focus();
 
                 keyboard.show([
@@ -166,6 +168,7 @@
                 scoresData = JSON.parse(data);
                 sceneReady();
             });
+            // sceneReady();
         }
 
         //LOAD SCENE IMAGES
