@@ -11,6 +11,7 @@ Using vanilla javascript.
   * [x] add landing page (needed for touch activation).
   * [x] fix mobile audio support.
   * [x] add scores to records scene.
+  * [x] add label "NEW SCORE" to records scene.
   * [ ] finish brothel scene.
   * [ ] finish cafe scene.
   * [ ] add another characer (scout).
@@ -21,6 +22,7 @@ Using vanilla javascript.
   * [x] add transitions.
   * [x] add landing page (needed for touch activation).
   * [x] fix mobile audio support.
+  * [x] add scores to records scene.
 
 
 #Images

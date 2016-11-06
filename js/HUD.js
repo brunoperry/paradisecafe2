@@ -3,14 +3,6 @@
     function HUD() {
 
         var instance = this;
-
-        // var hudCanvas = document.getElementById("hud-canvas");
-        var hudCanvas = document.createElement("canvas");
-        hudCanvas.width = canvasW;
-        hudCanvas.height = canvasH;
-        var hudContext = hudCanvas.getContext("2d");
-        hudContext.font="24px Mono";
-        hudContext.fillStyle = "#ffffff";
         this.isEnbaled = false;
         var currentFrame = new Image();
 
@@ -23,8 +15,6 @@
         }
 
         this.render = function() {
-
-            // instance.clear();
 
             var score = hero.wallet.points.toString();
             if(score.length < 3) {
@@ -44,14 +34,11 @@
                 cash = str + cash;
             }
 
-            // hudContext.fillText("SCORE= " + score, 0, (canvasH - 20));
-            // hudContext.fillText("DINHEIRO= " + cash, (canvasW - 153), (canvasH - 20));
             context.fillText("SCORE= " + score, 0, (canvasH - 20));
             context.fillText("DINHEIRO= " + cash, (canvasW - 153), (canvasH - 20));
 
             if(currentScene.name === brothelScene.name || currentScene.name === paradiseCafeScene.name) {
 
-                d(currentScene.name);
                 var bill = currentScene.bill.toString();
                 if(bill.length < 6) {
                     var str = "";
@@ -60,14 +47,8 @@
                     }
                     bill = str + bill;
                 }
-                // hudContext.fillText("DESPESA= " + bill, (canvasW - 143), (canvasH - 43));
                 context.fillText("DESPESA= " + bill, (canvasW - 143), (canvasH - 43));
             }
-        }
-
-        this.clear = function() {
-
-            hudContext.clearRect(0, 0, canvasW, canvasH);
         }
 
         this.enable = function() {

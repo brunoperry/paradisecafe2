@@ -27,6 +27,7 @@
     <div id="mid-container">
 
       <canvas id="canvas" width="256" height="192"></canvas>
+      <canvas id="virtual-canvas" width="256" height="192"></canvas>
 
     </div>
 
@@ -43,7 +44,9 @@
     </div>
 
 
+  
 
+  <input id="name-input" type="input" maxlength="3" placeholder="NOME">
   <div id="side-menu">
 
     <div id="side-menu-container">

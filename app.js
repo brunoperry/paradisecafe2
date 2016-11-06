@@ -246,6 +246,14 @@ function sceneReady() {
 function onResize() {
     canvasW = canvas.width;
     canvasH = canvas.height;
+
+    var pos = canvas.getBoundingClientRect();
+    var ni = document.getElementById("name-input");
+
+    var x = Math.round((canvas.offsetWidth / 2 ) - (128 / 2));
+    var y = Math.round((pos.top + canvas.offsetHeight - 40));
+    ni.style.left = x + "px";
+    ni.style.top = y + "px";
 }
 
 function d(message) {
@@ -277,15 +285,15 @@ function transition() {
     int = setInterval(function(e) {
         blocksize += Math.round(blocksize / 2);
         //apply pixalate algorithm
-        for(var x = 1; x < canvasW; x += blocksize) {
-            for(var y = 1; y < canvasH; y += blocksize) {
+        for(var x = 0; x < canvasW; x += blocksize) {
+            for(var y = 0; y < canvasH; y += blocksize) {
                 var pixel = vctx.getImageData(x, y, 1, 1);
                 context.fillStyle = "rgb("+pixel.data[0]+","+pixel.data[1]+","+pixel.data[2]+")";
                 context.fillRect(x, y, x + blocksize - 1, y + blocksize - 1);
             }
         }
 
-        if(blocksize >= 64) {
+        if(blocksize >= 32) {
             context.fillStyle = "white";
             isTransition = true;
             setSpeed(SPEED);

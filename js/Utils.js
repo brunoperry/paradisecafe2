@@ -8,7 +8,7 @@
         var dataOut = [];
         for(var i = 0; i < dataIn.length; i++) {
             dataOut[i] = new Image();
-            // dataOut[i].crossOrigin = "anonymous";
+            dataOut[i].crossOrigin = "anonymous";
             dataOut[i].onload = function() { 
                 totalImages++;
                 if(totalImages === dataIn.length && callback) {
@@ -52,6 +52,27 @@
 
         img.src = vCanvas.toDataURL();
         return img;
+    }
+
+    Utils.getScores = function(apiRoute, callback) {
+        var request = new XMLHttpRequest();
+        request.addEventListener('load', dataHandler);
+        request.open('GET', apiRoute);
+        request.send();
+        
+        function dataHandler() {
+            callback(this.responseText);
+        }
+    }
+    Utils.setScore = function(apiRoute, callback) {
+        var request = new XMLHttpRequest();
+        request.addEventListener('load', dataHandler);
+        request.open('POST', apiRoute);
+        request.send();
+        
+        function dataHandler() {
+            callback(this.responseText);
+        }
     }
     window.Utils = Utils;
 
