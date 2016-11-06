@@ -152,7 +152,7 @@
             instance.wallet.isStolen =  false;
             instance.wallet.hasGun =  false;
             instance.wallet.cash =  1000;
-            instance.wallet.points =  330;
+            instance.wallet.points =  0;
             instance.hasShownDocs = false;
             instance.hasEnteredBrothel = false;
             instance.hasRaped = false;
