@@ -1,3 +1,8 @@
+
+//DEBUG
+var DEBUG = false;
+
+//ANIM PROPERTIES
 var TRANSTION_TIME = 2000;
 var NORMAL_SPEED = 50;
 var SPEED = NORMAL_SPEED;
@@ -32,6 +37,7 @@ var police;
 var whore;
 var oldLady;
 var thief;
+var pimp;
 
 //balloons
 var balloon;
@@ -83,7 +89,8 @@ function init() {
     police = new Police(appData.characters[1]);
     whore = new Whore(appData.characters[2]); 
     oldLady = new OldLady(appData.characters[3]); 
-    thief = new Thief(appData.characters[4]); 
+    thief = new Thief(appData.characters[4]);
+    pimp = new Pimp(appData.characters[5]);
 
     //setup scenes
     splashScene = new SplashScene(appData.scenes[0]);
@@ -119,8 +126,11 @@ function initGame() {
 function startGame() {
 
     //start
-    // changeScenes(splashScene.name);
-    changeScenes(mainScene.name);
+    if(!DEBUG) {
+        changeScenes(splashScene.name);
+    } else {
+        changeScenes(brothelScene.name);
+    }
 }
 
 function gameLoop() {
@@ -190,8 +200,7 @@ function changeScenes(sceneName) {
     if(previousScene) {
 
         if(previousScene.doTransition) {
-            previousScene.disable();
-            transition();
+            transition(previousScene);
         } else {
             previousScene.disable();
             currentScene.enable();
@@ -269,7 +278,7 @@ window.onresize = function() {
 }
 
 //EFFECTS
-function transition() {
+function transition(prevScene) {
 
     isTransition = true;
     setSpeed(0);
@@ -297,6 +306,7 @@ function transition() {
             context.fillStyle = "white";
             isTransition = true;
             setSpeed(SPEED);
+            prevScene.disable();
             currentScene.enable();
             clearInterval(int);
         }

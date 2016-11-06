@@ -18,6 +18,8 @@
         this.isShown = false;
         this.hasAsked = false;
         this.action = "";
+        this.power;
+        this.cost;
 
         this.update = function() {
 
@@ -59,10 +61,44 @@
             tick++;
         }
 
+        this.oral = function() {
+
+            if(tick >= anims.oral.length) {
+
+                tick = 0;
+            }
+            instance.currentFrame = images[anims.oral[tick]];
+
+            tick++;
+        }
+
+        this.sex = function() {
+
+            if(tick >= anims.sex.length) {
+
+                tick = 0;
+            }
+            instance.currentFrame = images[anims.sex[tick]];
+
+            tick++;
+        }
+
+        this.anal = function() {
+
+            if(tick >= anims.anal.length) {
+                tick = 0;
+            }
+            instance.currentFrame = images[anims.anal[tick]];
+            tick++;
+        }
+
         this.enable = function() {
 
             instance.isEnabled = true;
             instance.currentFrame = images[anims.show[0]];
+
+            instance.cost = Math.round(Utils.getRandomItem([500, 1000, 2000, 3000]));
+            instance.power = Math.round(instance.cost / 15);
         }
 
         this.reset = function() {
@@ -78,7 +114,9 @@
             instance.isDone = false;
             instance.isShown = false;
             instance.hasAsked = false;
+            instance.cost = 0;
             instance.action = "";
+            instance.currentFrame = images[anims.show[0]];
             tick = 0;
         }
 

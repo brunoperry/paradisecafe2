@@ -14,7 +14,7 @@ Using vanilla javascript.
   * [x] add scores to records scene.
   * [x] add label "NEW SCORE" to records scene.
   * [x] finish brothel scene.
-  * [ ] finish cafe scene.
+  * [x] finish cafe scene.
   * [ ] add another characer (scout).
 
 2. ##Done
@@ -25,6 +25,7 @@ Using vanilla javascript.
   * [x] fix mobile audio support.
   * [x] add scores to records scene.
   * [x] add label "NEW SCORE" to records scene.
+  * [x] finish brothel scene.
 
 
 #Images

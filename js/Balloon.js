@@ -10,18 +10,40 @@
 
         var timeout;
 
-        var isShowing = false;
+        this.isShowing = false;
         var isDialog = false;
         this.doneDialog = false;
 
         this.currentFrame;
+
+        this.justShowBalloon = function(balloon, callback) {
+
+            instance.currentFrame = images[balloon];
+            instance.isShowing = true;
+                
+            if(timeout) {
+                clearTimeout(timeout);
+                timeout = null;
+            }
+
+            timeout = setTimeout( function() {
+                
+                if(callback) callback();
+                instance.justHideBalloon();
+            }, BALLOON_TIMEOUT);
+        }
         
         this.showBalloon = function(balloon, callback, keep) {
 
             instance.currentFrame = images[balloon];
 
             setSpeed(0);
-            isShowing = true;
+            instance.isShowing = true;
+                
+            if(timeout) {
+                clearTimeout(timeout);
+                timeout = null;
+            }
 
             if(callback) {
                 
@@ -44,6 +66,7 @@
             if(isDialog) return;
 
             isDialog = true;
+            instance.isShowing = true;
 
             var vInstance = this;
             vInstance.i = 0;
@@ -51,6 +74,10 @@
 
                 instance.currentFrame = images[balloons[vInstance.i]];
 
+                if(timeout) {
+                    clearTimeout(timeout);
+                    timeout = null;
+                }
                 setTimeout(function() {
 
                     if(vInstance.i < balloons.length) {
@@ -68,9 +95,15 @@
             dialog();
         }
 
+        this.justHideBalloon = function() {
+
+            instance.isShowing = false;
+            instance.currentFrame = images.empty;
+        }
+
         this.hideBalloon = function() {
 
-            isShowing = false;
+            instance.isShowing = false;
             isDialog = false;
             setSpeed(NORMAL_SPEED);
 
@@ -99,7 +132,7 @@
 
         this.resume = function() {
 
-            if(isShowing) {
+            if(instance.isShowing) {
                 timeout = setTimeout( instance.hideBalloon, BALLOON_TIMEOUT);
             }
         }

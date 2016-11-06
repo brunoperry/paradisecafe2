@@ -3,6 +3,7 @@
     function Hero(data) {
 
         //OBJECT PROPERTIES
+        var INITIAL_CASH = 30000;
         var instance = this;
         var heroData = data;
         var images;
@@ -20,7 +21,7 @@
         this.wallet = {
             isStolen: false,
             hasGun: false,
-            cash: 1000,
+            cash: INITIAL_CASH,
             points: 0
         }
 
@@ -28,7 +29,8 @@
         this.hasEnteredBrothel = false;
         this.hasRaped = false;
         this.hasRobbed = false;
-
+        this.hasFucked = false;
+        this.isFucking = false;
         this.isDefending = false;
 
         this.update = function() {
@@ -66,6 +68,40 @@
                 tick++;
             }
 
+            instance.SEX_TICK++;
+        }
+
+        this.bend = function() {
+
+            instance.currentFrame = images[anims.bend[0]];
+        }
+
+        this.oral = function() {
+
+            if(tick >= anims.oral.length) {
+                tick = 0;
+            }
+            instance.currentFrame = images[anims.oral[tick]];
+            tick++;
+            instance.SEX_TICK++;
+        }
+
+        this.anal = function() {
+
+            if(tick >= anims.anal.length) {
+                tick = 0;
+            }
+            instance.currentFrame = images[anims.anal[tick]];
+            tick++;
+        }
+
+        this.sex = function() {
+
+            if(tick >= anims.sex.length) {
+                tick = 0;
+            }
+            instance.currentFrame = images[anims.sex[tick]];
+            tick++;
             instance.SEX_TICK++;
         }
 
@@ -151,12 +187,14 @@
             instance.disable();
             instance.wallet.isStolen =  false;
             instance.wallet.hasGun =  false;
-            instance.wallet.cash =  1000;
+            instance.wallet.cash =  INITIAL_CASH;
             instance.wallet.points =  0;
             instance.hasShownDocs = false;
             instance.hasEnteredBrothel = false;
             instance.hasRaped = false;
             instance.hasRobbed = false;
+            instance.isFucking = false;
+            instance.hasFucked = false;
             instance.isDefending = false;
         }
 

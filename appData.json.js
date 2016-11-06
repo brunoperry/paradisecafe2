@@ -90,7 +90,14 @@ var appData = {
                     "hero_rape03",
                     "hero_rape04",
                     "hero_rape05",
-                    "hero_idle_cafe"
+                    "hero_idle_cafe",
+                    "hero_blowjob01",
+                    "hero_blowjob02",
+                    "hero_bend",
+                    "hero_anal01",
+                    "hero_anal02",
+                    "hero_sex01",
+                    "hero_sex02"
                 ],
             "animations":
             {
@@ -105,7 +112,11 @@ var appData = {
                 "undress": [13, 14, 15],
                 "rape": [16, 17],
                 "dress": [15, 14, 13],
-                "cafe_idle": [18]
+                "cafe_idle": [18],
+                "oral": [19, 20],
+                "bend": [21],
+                "anal": [22, 23],
+                "sex": [24, 25]
             }
         },
         {
@@ -134,14 +145,22 @@ var appData = {
                     "whore_show01",
                     "whore_show02",
                     "whore_show03",
-                    "whore_idle_brothel"
+                    "whore_idle_brothel",
+                    "whore_blowjob01",
+                    "whore_blowjob02",
+                    "whore_anal01",
+                    "whore_anal02",
+                    "whore_sex01"
                 ],
             "animations":
             {
                 "show": [0, 1, 2],
                 "hide": [2, 1, 0],
                 "idle_street": [2],
-                "idle_brothel": [3]
+                "idle_brothel": [3],
+                "oral": [4, 5],
+                "anal": [6, 7],
+                "sex": [8]
             }
         },
         {
@@ -191,6 +210,24 @@ var appData = {
                 "pull_cigar": [3, 8, 9],
                 "unpull_cigar": [9, 8, 3],
                 "hurt": [10, 11, 12, 12, 12, 12, 12, 12]
+            }
+        },
+        {
+            "id": 5,
+            "name": "pimp",
+            "images": 
+                [
+                    "pimp_show01",
+                    "pimp_show02",
+                    "pimp_idle",
+                    "pimp_rape01",
+                    "pimp_rape02"
+                ],
+            "animations":
+            {
+                "show": [0, 1, 1, 1],
+                "idle": [2],
+                "rape": [3, 4]
             }
         }
     ],
@@ -249,6 +286,26 @@ var appData = {
             "id": 10,
             "label": "REGISTAR",
             "action": "key-register"
+        },
+        {
+            "id": 11,
+            "label": "ORAL",
+            "action": "key-oral"
+        },
+        {
+            "id": 12,
+            "label": "SEXO",
+            "action": "key-sex"
+        },
+        {
+            "id": 13,
+            "label": "ANAL",
+            "action": "key-anal"
+        },
+        {
+            "id": 14,
+            "label": "SAIR",
+            "action": "key-exit"
         }
           
     ],
@@ -287,6 +344,15 @@ var appData = {
         "hero_dont_smoke": "hero_dont_smoke",
         "hero_this_is_a_robbery": "hero_this_is_a_robbery",
         "hero_turn_around": "hero_turn_around",
+        "hero_do_me_blowjob": "hero_do_me_blowjob",
+        "hero_suck_it_all": "hero_suck_it_all",
+        "hero_so_good": "hero_so_good",
+        "hero_eat_your_ass": "hero_eat_your_ass",
+        "hero_no_cash_brothel": "hero_no_cash_brothel",
+        "hero_what_a_dick": "hero_what_a_dick",
+        "hero_aaa": "hero_aaa",
+        "hero_eat_your_pussy": "hero_eat_your_pussy",
+        "hero_im_coming": "hero_im_coming",
         "police_ask_docs": "police_ask_docs",
         "police_come_with_me": "police_come_with_me",
         "police_ok_you_can_go": "police_ok_you_can_go",
@@ -295,6 +361,17 @@ var appData = {
         "whore_street_question02": "whore_street_question02",
         "whore_street_question03": "whore_street_question03",
         "whore_come_on_then": "whore_come_on_then",
+        "whore_cost_3000": "whore_cost_3000",
+        "whore_cost_2000": "whore_cost_2000",
+        "whore_cost_1000": "whore_cost_1000",
+        "whore_cost_500": "whore_cost_500",
+        "whore_what_you_want": "whore_what_you_want",
+        "whore_call_pimp": "whore_call_pimp",
+        "whore_this_no_pay": "whore_this_no_pay",
+        "whore_so_thick": "whore_so_thick",
+        "pimp_hello": "pimp_hello",
+        "pimp_he_will_see": "pimp_he_will_see",
+        "pimp_whats_going_on": "pimp_whats_going_on",
         "oldlady_deserves100": "oldlady_deserves100",
         "oldlady_ho_my_god": "oldlady_ho_my_god",
         "oldlady_so_big": "oldlady_so_big",

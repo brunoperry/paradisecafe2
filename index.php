@@ -96,6 +96,7 @@
   <script type="text/javascript" src="js/Whore.js"></script>
   <script type="text/javascript" src="js/OldLady.js"></script>
   <script type="text/javascript" src="js/Thief.js"></script>
+  <script type="text/javascript" src="js/Pimp.js"></script>
   <script type="text/javascript" src="js/SplashScene.js"></script>
   <script type="text/javascript" src="js/MainScene.js"></script>
   <script type="text/javascript" src="js/StreetScene.js"></script>

@@ -164,11 +164,16 @@
         var imagesLoaded = function(data) {
 
             images = data;
-            Utils.getScores("api.php?action=scores", function(data) {
-                scoresData = JSON.parse(data);
+
+            if(!DEBUG) {
+
+                Utils.getScores("api.php?action=scores", function(data) {
+                    scoresData = JSON.parse(data);
+                    sceneReady();
+                });
+            } else {
                 sceneReady();
-            });
-            // sceneReady();
+            }
         }
 
         //LOAD SCENE IMAGES
