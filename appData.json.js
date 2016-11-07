@@ -99,7 +99,13 @@ var appData = {
                     "hero_sex01",
                     "hero_sex02",
                     "hero_drink01",
-                    "hero_drink02"                  //28
+                    "hero_drink02",                //28
+                    "hero_rob_scout01",
+                    "hero_rob_scout02",
+                    "hero_rob_scout03",
+                    "hero_rob_scout04",
+                    "hero_rob_scout05",
+                    "hero_rob_scout06"
                 ],
             "animations":
             {
@@ -119,7 +125,8 @@ var appData = {
                 "bend": [21],
                 "anal": [22, 23],
                 "sex": [24, 25],
-                "drink": [18, 26, 27, 27, 27, 27, 27, 26, 18]
+                "drink": [18, 26, 27, 27, 27, 27, 27, 26, 18],
+                "rob_scout": [28, 29, 30, 31, 32, 33]
             }
         },
         {
@@ -269,6 +276,31 @@ var appData = {
             },
             drugs_avail: ["lsd", "weed"]
 
+        },
+        {
+            "id": 8,
+            "name": "scout",
+            "images": 
+                [
+                    "scout_show01",
+                    "scout_show02",
+                    "scout_show03",
+                    "scout_salute01",
+                    "scout_salute02",
+                    "scout_salute03",
+                    "scout_hide01",
+                    "scout_hide02",
+                    "scout_hide03",
+                    "scout_fear"
+                ],
+            "animations":
+            {
+                "show": [0, 1, 2],
+                "salute": [3, 4, 5],
+                "hide": [2, 1, 0],
+                "hide_robbed": [6, 7, 8],
+                "idle": [9]
+            }
         }
     ],
     "hud": {
@@ -393,7 +425,8 @@ var appData = {
                 "whore_action",
                 "thief_action",
                 "oldlady_action",
-                "cafe_action"
+                "cafe_action",
+                "scout_action"
             ]
     },
     "balloons": {
@@ -421,6 +454,7 @@ var appData = {
         "hero_accept": "hero_accept",
         "hero_refuse": "hero_refuse",
         "hero_no_cash_cafe": "hero_no_cash_cafe",
+        "hero_whats_in_pack": "hero_whats_in_pack",
 
         "police_ask_docs": "police_ask_docs",
         "police_come_with_me": "police_come_with_me",
@@ -469,6 +503,12 @@ var appData = {
         "dealer_got_gun": "dealer_got_gun",
 
         "waitress_wait_there": "waitress_wait_there",
-        "waitress_your_bill": "waitress_your_bill"
+        "waitress_your_bill": "waitress_your_bill",
+
+        "scout_hi_friend": "scout_hi_friend",
+        "scout_only_got_cookies": "scout_only_got_cookies",
+        "scout_only_got_100": "scout_only_got_100",
+        "scout_only_got_500": "scout_only_got_500",
+        "scout_only_got_10000": "scout_only_got_10000"
     }
 }   

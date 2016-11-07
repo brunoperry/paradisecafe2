@@ -2,7 +2,7 @@
 
     function Balloon(data) {
 
-        var BALLOON_TIMEOUT = 1000;
+        var BALLOON_TIMEOUT = 2000;
 
         var instance = this;
         var balloonsData = data;
@@ -36,6 +36,23 @@
         this.clearBalloon = function() {
 
             instance.currentFrame = images.empty;
+        }
+
+        this.setSpeed = function(speed) {
+
+            var val = 2000;
+            switch(speed) {
+                case "slow":
+                val = 2000;
+                break;
+                case "normal":
+                val = 1700;
+                break;
+                case "turbo":
+                val = 1000;
+                break;
+            }
+            BALLOON_TIMEOUT = val;
         }
         
         this.showBalloon = function(balloon, callback, keep) {
@@ -153,4 +170,4 @@
     }
 
     window.Balloon = Balloon;
-} (window))
+} (window));

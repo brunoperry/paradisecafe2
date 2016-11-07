@@ -43,6 +43,7 @@ var thief;
 var pimp;
 var dealer;
 var waitress;
+var scout;
 
 //balloons
 var balloon;
@@ -98,6 +99,7 @@ function init() {
     pimp = new Pimp(appData.characters[5]);
     waitress = new Waitress(appData.characters[6]);
     dealer = new Dealer(appData.characters[7]);
+    scout = new Scout(appData.characters[8]);
 
     //setup scenes
     splashScene = new SplashScene(appData.scenes[0]);
@@ -125,7 +127,7 @@ function initGame() {
             landingPage.style.display = "none";
             startGame();
         } else {
-            d("go to home");
+            window.open("https://www.youtube.com/watch?v=PyAZaMtvrDY","_self");
         }
     });
 }

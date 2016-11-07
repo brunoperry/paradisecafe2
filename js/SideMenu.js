@@ -88,6 +88,7 @@
                 currentSpeedButton.innerHTML = currentSpeedButton.innerHTML.replace("[ ]", "[X]");
                 NORMAL_SPEED = parseFloat(currentSpeedButton.dataset.value);
                 SPEED = NORMAL_SPEED;
+                balloon.setSpeed(e.target.dataset.action);
 
                 break;
             }

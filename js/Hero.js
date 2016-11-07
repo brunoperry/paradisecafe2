@@ -134,6 +134,19 @@
             tick++;
         }
 
+        this.robScout = function() {
+
+            if(tick >= anims.rob_scout.length) {
+
+                instance.hasRobbed = true;
+                tick = 0;
+                return;
+            }
+            instance.currentFrame = images[anims.rob_scout[tick]];
+
+            tick++;
+        }
+
         this.idleStreet = function(look) {
 
             if(look === "left") {

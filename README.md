@@ -3,7 +3,7 @@ The idea came from [falsovsky](https://github.com/falsovsky/paradise.js) who is 
 Using vanilla javascript.
 
 ##[Play it here[1]](http://brunoperry.net/paradisecafe2/)
-![alt text](http://brunoperry.net/paradisecafe2/media/images/thumb00.png "thumb00")
+![alt text](http://brunoperry.net/paradisecafe2/media/images/thumb00.png "hero image")
 *[1]portuguese*
 
 1. ##Todo
@@ -19,7 +19,9 @@ Using vanilla javascript.
   * [x] add more values (balloons) to dealer deals.
   * [x] bug when entering brothel for the second time (must reset hasEntered value).
   * [x] fix hud layout.
-  * [x] add another character (e.g scout), that hero can rob even without gun.
+  * [x] add about page.
+  * [x] add another character (e.g scout), that hero can rob without gun.
+  * [ ] add splash screen loading effect (spectrum stripes like).
 
 2. ##Done
   * [x] add side menu.
@@ -34,6 +36,8 @@ Using vanilla javascript.
   * [x] add more values (balloons) to dealer deals.
   * [x] bug when entering brothel for the second time (must reset hasEntered value).
   * [x] fix hud layout.
+  * [x] add about page.
+  * [x] add another character (e.g scout), that hero can rob without gun.
 
 
 #Images

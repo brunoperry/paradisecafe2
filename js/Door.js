@@ -131,8 +131,11 @@
             scrollTick = 0;
             
             var index = Math.floor(Math.random() * doorData.actions.length);
-            doorAction = doorData.actions[index];
-            // doorAction = "police_action";
+            if(!DEBUG) {
+                doorAction = doorData.actions[index];
+            } else {
+                doorAction = "scout_action";
+            }
             door.isOpen = false;
         }
 

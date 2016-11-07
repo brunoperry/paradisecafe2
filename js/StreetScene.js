@@ -55,10 +55,101 @@
                 case "cafe_action":
                 doCurrentAction = cafeAction;
                 break;
+                case "scout_action":
+                doCurrentAction = scoutAction;
+                break;
             }
         }
 
         //ACTIONS
+        var scoutAction = function() {
+
+            if(!scout.isDone) {
+
+                if(!door.isOpen) {
+                    door.open();
+                } else {
+                    if(!scout.isShown) {
+                        scout.show();
+                    } else {
+                        if(!scout.hasSalute) {
+
+                            scout.salute();
+                        } else {
+
+                            if(!scout.isRobbed) {
+                                hero.idleStreet();
+                                balloon.showBalloon("scout_hi_friend");
+                                if(!keyboard.isVisible) {
+                                    keyboard.show([
+                                        appData.keys[5],
+                                        appData.keys[6]
+                                    ], function(e) {
+                                        if(e === "key-assault") {
+                                            balloon.hideBalloon();
+                                            scout.isRobbed = true;
+                                        } else {
+                                            scout.isDone = true;
+                                        }
+                                        keyboard.hide();
+                                    });
+                                }
+                            } else {
+                                if(!hero.hasRobbed) {
+
+                                    hero.robScout();
+
+                                } else {
+                                    if(!balloon.doneDialog) {
+
+                                        balloon.showDialog(["hero_whats_in_pack", scout.pack.message]);
+                                        scout.idleRobbed();
+                                    } else {
+
+                                        balloon.hideBalloon();
+                                        scout.isDone = true;
+
+                                        if(scout.pack.value !== -1) {
+                                            hero.wallet.cash += parseInt(scout.pack.value);
+                                            hero.wallet.points += 1;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+            } else {
+                if(scout.isShown) {
+                    if(scout.isRobbed) {
+                        scout.hideRobbed();
+                    } else {
+                        scout.hide();
+                    }
+                } else {
+                    if(door.isOpen) {
+                        door.close();
+                    } else {
+                        hero.hasRobbed = false;
+                        balloon.doneDialog = false;
+                        scout.reset();
+                        door.isScoutDone = false;
+                        door.setAction("street_action");
+                        changeAction("street_action");
+                    }
+                }
+            }
+            
+            instance.currentFrame = [
+                images[anim[0]],
+                door.currentFrame,
+                scout.currentFrame,
+                hero.currentFrame,
+                balloon.currentFrame
+            ];
+        }
+
         var streetAction = function() {
 
             door.scroll();
