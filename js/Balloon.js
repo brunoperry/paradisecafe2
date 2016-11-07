@@ -32,6 +32,11 @@
                 instance.justHideBalloon();
             }, BALLOON_TIMEOUT);
         }
+
+        this.clearBalloon = function() {
+
+            instance.currentFrame = images.empty;
+        }
         
         this.showBalloon = function(balloon, callback, keep) {
 

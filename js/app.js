@@ -1,10 +1,13 @@
 
 //DEBUG
-var DEBUG = true;
+var DEBUG = false;
+
+//ROOT REFERNCE
+var root = "http://brunoperry.net/paradisecafe2/";
 
 //ANIM PROPERTIES
 var TRANSTION_TIME = 2000;
-var NORMAL_SPEED = 50;
+var NORMAL_SPEED = 150;
 var SPEED = NORMAL_SPEED;
 var interval;
 
@@ -133,7 +136,7 @@ function startGame() {
     if(!DEBUG) {
         changeScenes(splashScene.name);
     } else {
-        changeScenes(paradiseCafeScene.name);
+        changeScenes(streetScene.name);
     }
 }
 
@@ -169,35 +172,37 @@ function changeScenes(sceneName) {
 
     var previousScene = currentScene;
 
+    balloon.clearBalloon();
+
     switch(sceneName) {
 
         case splashScene.name:
-        
         currentScene = splashScene;
+        sideMenu.disable();
         break;
-
         case mainScene.name:
-        
         currentScene = mainScene;
+        sideMenu.enable();
         break;
-
         case streetScene.name:
         currentScene = streetScene;
+        sideMenu.enable();
         break;
         case jailScene.name:
-        
         currentScene = jailScene;
+        sideMenu.enable();
         break;
         case brothelScene.name:
-        
         currentScene = brothelScene;
+        sideMenu.enable();
         break;
         case paradiseCafeScene.name:
-        
         currentScene = paradiseCafeScene;
+        sideMenu.enable();
         break;
         case recordsScene.name:
         currentScene = recordsScene;
+        sideMenu.enable();
         break;
     }
 
@@ -309,6 +314,7 @@ function transition(prevScene) {
         if(blocksize >= 32) {
             context.fillStyle = "white";
             isTransition = true;
+            
             setSpeed(SPEED);
             prevScene.disable();
             currentScene.enable();

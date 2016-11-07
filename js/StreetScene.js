@@ -301,7 +301,6 @@
 
                                     case "key-continue":
 
-                                    hero.wallet.points += 1;
                                     oldLady.action = "hide";
                                     break;
                                 }
@@ -632,6 +631,7 @@
             door.enable();
             door.addEventListener(changeAction);
             hero.enable();
+            whore.enable();
             police.enable();
 
             audioSource.addListener(function(e) {
@@ -640,6 +640,7 @@
                 audioSource.addListener(null);
             });
             audioSource.playClip(instance.id);
+            
             setSpeed(NORMAL_SPEED);
 
             changeAction("street_action");
@@ -655,6 +656,7 @@
             door.disable();
             door.removeEventListener();
             hero.disable();
+            whore.disable();
             police.disable();
         }
 

@@ -70,6 +70,10 @@
             currentAudio = clips[sceneID];
 
             if(isOff) {
+
+                if(loadedCallback) {
+                    loadedCallback();
+                }
                 return;
             }
 

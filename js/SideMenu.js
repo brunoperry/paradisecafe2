@@ -10,6 +10,8 @@
 
         var currentSpeedButton;
 
+        var isVisible = false;
+
         var init = function() {
 
             //HAMBURGER BUTTON EVENT SETUP
@@ -73,6 +75,10 @@
                     changeScenes(mainScene.name);
                 break;
 
+                case "about":
+                    window.open(root + "about.html", "_blank");
+                break;
+
                 case "slow":
                 case "normal":
                 case "turbo":
@@ -91,12 +97,18 @@
 
         this.enable = function() {
 
+            if(isVisible) return;
+
             hamburgerBtn.style.display = "block";
+            isVisible = true;
         }
 
         this.disable = function() {
 
+            if(!isVisible) return;
+
             hamburgerBtn.style.display = "none";
+            isVisible = false;
         }
 
         init();

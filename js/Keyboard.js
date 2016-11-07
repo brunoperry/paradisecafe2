@@ -14,7 +14,6 @@
 
         var timeout;
 
-
         //OBJECT METHODS
         //build keys
         var buildKeys = function(data, container) {

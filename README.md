@@ -19,7 +19,7 @@ Using vanilla javascript.
   * [x] add more values (balloons) to dealer deals.
   * [x] bug when entering brothel for the second time (must reset hasEntered value).
   * [x] fix hud layout.
-  * [x] add another characer (scout).
+  * [x] add another character (e.g scout), that hero can rob even without gun.
 
 2. ##Done
   * [x] add side menu.

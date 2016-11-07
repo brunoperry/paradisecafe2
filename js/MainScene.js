@@ -43,8 +43,6 @@
             //reset hero for a new game
             hero.reset();
 
-            sideMenu.enable();
-
             audioSource.addListener(function(e) {
                 document.body.style.backgroundColor = "black";
                 instance.isReady = true;
