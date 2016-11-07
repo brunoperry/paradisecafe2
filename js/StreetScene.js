@@ -233,7 +233,8 @@
                                 balloon.showBalloon(msg, function() {
                                     hero.wallet.isStolen = true;
                                     hero.wallet.cash = 0;
-                                    hero.wallet.points = 0;
+                                    hero.wallet.points = Math.round(hero.wallet.points / 2);
+                                    hero.wallet.drugs = 0;
                                 });
                             } else {
 

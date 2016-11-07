@@ -19,7 +19,7 @@ Using vanilla javascript.
   * [x] add more values (balloons) to dealer deals.
   * [x] bug when entering brothel for the second time (must reset hasEntered value).
   * [x] fix hud layout.
-  * [ ] add another characer (scout).
+  * [x] add another characer (scout).
 
 2. ##Done
   * [x] add side menu.
@@ -33,6 +33,7 @@ Using vanilla javascript.
   * [x] finish cafe scene.
   * [x] add more values (balloons) to dealer deals.
   * [x] bug when entering brothel for the second time (must reset hasEntered value).
+  * [x] fix hud layout.
 
 
 #Images

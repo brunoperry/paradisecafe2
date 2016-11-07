@@ -12,7 +12,7 @@
 
     <div class="container">
       <h1>PARADISE CAFÉ 2 / REMASTERED</h1>
-      <p>Interdito a menores de idade.<br>Tem mais de 18 anos?</p>
+      <p><span>INTERDITO A MENORES DE IDADE!</span><br>Tem mais de 17 anos?</p>
     </div>
   </div>
 
@@ -74,7 +74,7 @@
   </div>
   </div>
 
-  <div id="debugger">DEBUGGER</div>
+  <div id="debugger">C.C.2016</div>
   <audio id="audio-player" preload="none" oncanplaythrough="audioSource.onAudioCanPlayThrough();">
     <source src="media/sounds/splash_track.mp3" type="audio/mp3">
     <source src="media/sounds/main_track.mp3" type="audio/mp3">

@@ -3,10 +3,15 @@
     function HUD() {
 
         var instance = this;
-        this.isEnbaled = false;
+        this.isEnabled = false;
         var currentFrame = new Image();
 
+        var stateIcons = appData.hud.states;
+        var images;
+
         this.getRender = function() {
+
+            if(!instance.isEnabled) return;
 
             render();
             currentFrame.src =  hudCanvas.toDataURL();
@@ -16,10 +21,12 @@
 
         this.render = function() {
 
+            if(!instance.isEnabled) return;
+
             var score = hero.wallet.points.toString();
-            if(score.length < 3) {
+            if(score.length < 6) {
                 var str = "";
-                for(i = 0; i < (3 - score.length); i++) {
+                for(i = 0; i < (6 - score.length); i++) {
                     str += "0";
                 }
                 score = str + score;
@@ -34,8 +41,11 @@
                 cash = str + cash;
             }
 
-            context.fillText("SCORE= " + score, 0, (canvasH - 20));
-            context.fillText("DINHEIRO= " + cash, (canvasW - 153), (canvasH - 20));
+            context.font = "20px Mono";
+            context.fillText("SCORE=" + score, 0, (canvasH - 20));
+            var text = context.measureText("DINHEIRO=" + cash + "$");
+            context.fillText("DINHEIRO=" + cash + "$", (canvasW - text.width), (canvasH - 20));
+            context.fillText("DROGAS=" + hero.wallet.drugs, 0, (canvasH)- 5);
 
             if(currentScene.name === brothelScene.name || currentScene.name === paradiseCafeScene.name) {
 
@@ -47,19 +57,43 @@
                     }
                     bill = str + bill;
                 }
-                context.fillText("DESPESA= " + bill, (canvasW - 143), (canvasH - 43));
+                context.font = "24px Mono";
+                text = context.measureText("DESPESA=" + bill + "$");
+                context.fillText("DESPESA=" + bill + "$", (canvasW - text.width), (canvasH - 40));
+            }
+
+            if(hero.wallet.isStolen) {
+                context.drawImage(images[stateIcons.wallet_off], 0, 0, canvasW, canvasH);
+            } else {
+                context.drawImage(images[stateIcons.wallet_on], 0, 0, canvasW, canvasH);
+            }
+
+            if(hero.wallet.hasGun) {
+                context.drawImage(images[stateIcons.gun_on], 0, 0, canvasW, canvasH);
+            } else {
+                context.drawImage(images[stateIcons.gun_off], 0, 0, canvasW, canvasH);
             }
         }
 
         this.enable = function() {
 
-            instance.isEnbaled = true;
+            instance.isEnabled = true;
         }
 
         this.disable = function() {
 
-            instance.isEnbaled = false;
+            instance.isEnabled = false;
         }
+
+        //EVENTS
+        var imagesLoaded = function(data) {
+
+            images = data;
+            instance.enable();
+        }
+
+        //LOAD HUD IMAGES
+        Utils.loadImages(appData.hud.images, imagesLoaded);
     }
 
     window.HUD = HUD;

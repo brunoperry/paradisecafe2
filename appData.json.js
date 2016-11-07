@@ -271,6 +271,22 @@ var appData = {
 
         }
     ],
+    "hud": {
+        "images": 
+            [
+                "icons_gun_on",
+                "icons_gun_off",
+                "icons_wallet_on",
+                "icons_wallet_off"
+            ],
+        "states":
+        {
+            "gun_on": 0,
+            "gun_off": 1,
+            "wallet_on": 2,
+            "wallet_off": 3
+        }
+    },
     "keys": [
         {
             "id": 0,

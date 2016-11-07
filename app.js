@@ -133,7 +133,7 @@ function startGame() {
     if(!DEBUG) {
         changeScenes(splashScene.name);
     } else {
-        changeScenes(brothelScene.name);
+        changeScenes(paradiseCafeScene.name);
     }
 }
 

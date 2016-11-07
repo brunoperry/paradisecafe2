@@ -319,9 +319,12 @@ LANDING PAGE STUFF
     position: relative;
     display: block;
     font-size: 45px;
+    line-height: 30px;
     margin: 0;
     font-weight: bold;
     margin-bottom: 30px;
+    text-align: center;
+    border-bottom: 4px solid black;
 }
 #landing-page p {
 
@@ -329,6 +332,16 @@ LANDING PAGE STUFF
     display: block;
     font-size: 40px;
     color: white;
+}
+#landing-page span {
+    position: relative;
+    display: block;
+    font-size: 46px;
+    line-height: 28px;
+    color: red;
+    font-family: "Mono";
+    font-weight: bold;
+    text-transform: uppercase;
 }
 
 

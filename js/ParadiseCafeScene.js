@@ -88,7 +88,6 @@
                     if(!balloon.doneDialog) {
                         balloon.showDialog(dealer.deal.message);
                     } else {
-                        balloon.hideBalloon();
                         var sellType = (dealer.deal.type === "sell");
                         var isValid = true;
                         if(sellType) {
@@ -295,6 +294,11 @@
         }
 
         var onKeyboardClick = function(e) {
+
+            if(balloon.isShowing) {
+
+                balloon.hideBalloon();
+            }
 
             switch(e) {
 
