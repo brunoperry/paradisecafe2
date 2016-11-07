@@ -22,7 +22,8 @@
             isStolen: false,
             hasGun: false,
             cash: INITIAL_CASH,
-            points: 0
+            points: 0,
+            drugs: 0
         }
 
         this.hasShownDocs = false;
@@ -32,10 +33,23 @@
         this.hasFucked = false;
         this.isFucking = false;
         this.isDefending = false;
+        this.hasDrink = false;
 
         this.update = function() {
 
             if(!instance.isEnabled) return;
+        }
+
+        this.drink = function() {
+
+            if(tick >= anims.drink.length) {
+
+                instance.hasDrink = false;
+                tick = 0;
+                return;
+            }
+            instance.currentFrame = images[anims.drink[tick]];
+            tick++;
         }
 
         this.rape = function () {
@@ -189,6 +203,7 @@
             instance.wallet.hasGun =  false;
             instance.wallet.cash =  INITIAL_CASH;
             instance.wallet.points =  0;
+            instance.wallet.drugs =  0;
             instance.hasShownDocs = false;
             instance.hasEnteredBrothel = false;
             instance.hasRaped = false;
@@ -196,6 +211,7 @@
             instance.isFucking = false;
             instance.hasFucked = false;
             instance.isDefending = false;
+            instance.hasDrink = false;
         }
 
         //EVENTS

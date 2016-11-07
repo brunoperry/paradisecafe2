@@ -81,7 +81,7 @@ var appData = {
                     "hero_walk04",
                     "hero_show_docs",
                     "hero_enter_building01",
-                    "hero_enter_building02",
+                    "hero_enter_building02",        //10
                     "hero_enter_building03",
                     "hero_idle_brothel",
                     "hero_idle_gun",
@@ -91,13 +91,15 @@ var appData = {
                     "hero_rape04",
                     "hero_rape05",
                     "hero_idle_cafe",
-                    "hero_blowjob01",
+                    "hero_blowjob01",               //20
                     "hero_blowjob02",
                     "hero_bend",
                     "hero_anal01",
                     "hero_anal02",
                     "hero_sex01",
-                    "hero_sex02"
+                    "hero_sex02",
+                    "hero_drink01",
+                    "hero_drink02"                  //28
                 ],
             "animations":
             {
@@ -116,7 +118,8 @@ var appData = {
                 "oral": [19, 20],
                 "bend": [21],
                 "anal": [22, 23],
-                "sex": [24, 25]
+                "sex": [24, 25],
+                "drink": [18, 26, 27, 27, 27, 27, 27, 26, 18]
             }
         },
         {
@@ -229,6 +232,43 @@ var appData = {
                 "idle": [2],
                 "rape": [3, 4]
             }
+        },
+        {
+            "id": 6,
+            "name": "waitress",
+            "images": 
+                [
+                    "waitress_show01",
+                    "waitress_show02",
+                    "waitress_show03",
+                    "waitress_serve",
+                ],
+            "animations":
+            {
+                "show": [0, 1, 2],
+                "idle": [2],
+                "serve": [3, 3, 3, 3, 3, 3],
+                "hide": [2, 1, 0]
+            }
+        },
+        {
+            "id": 7,
+            "name": "dealer",
+            "images": 
+                [
+                    "dealer_show01",
+                    "dealer_show02",
+                    "dealer_show03",
+                    "dealer_show04"
+                ],
+            "animations":
+            {
+                "show": [0, 1, 2, 3],
+                "idle": [2],
+                "hide": [3, 2, 1, 0]
+            },
+            drugs_avail: ["lsd", "weed"]
+
         }
     ],
     "keys": [
@@ -306,8 +346,17 @@ var appData = {
             "id": 14,
             "label": "SAIR",
             "action": "key-exit"
+        },
+        {
+            "id": 15,
+            "label": "ACEITAR",
+            "action": "key-accept"
+        },
+        {
+            "id": 16,
+            "label": "RECUSAR",
+            "action": "key-refuse"
         }
-          
     ],
     "door":
     {
@@ -353,10 +402,15 @@ var appData = {
         "hero_aaa": "hero_aaa",
         "hero_eat_your_pussy": "hero_eat_your_pussy",
         "hero_im_coming": "hero_im_coming",
+        "hero_accept": "hero_accept",
+        "hero_refuse": "hero_refuse",
+        "hero_no_cash_cafe": "hero_no_cash_cafe",
+
         "police_ask_docs": "police_ask_docs",
         "police_come_with_me": "police_come_with_me",
         "police_ok_you_can_go": "police_ok_you_can_go",
         "police_how_its_going": "police_how_its_going",
+
         "whore_street_question01": "whore_street_question01",
         "whore_street_question02": "whore_street_question02",
         "whore_street_question03": "whore_street_question03",
@@ -369,16 +423,30 @@ var appData = {
         "whore_call_pimp": "whore_call_pimp",
         "whore_this_no_pay": "whore_this_no_pay",
         "whore_so_thick": "whore_so_thick",
+
         "pimp_hello": "pimp_hello",
         "pimp_he_will_see": "pimp_he_will_see",
         "pimp_whats_going_on": "pimp_whats_going_on",
+
         "oldlady_deserves100": "oldlady_deserves100",
         "oldlady_ho_my_god": "oldlady_ho_my_god",
         "oldlady_so_big": "oldlady_so_big",
         "oldlady_only_got_100": "oldlady_only_got_100",
         "oldlady_only_got_500": "oldlady_only_got_500",
+
         "thief_give_me_your_wallet": "thief_give_me_your_wallet",
         "thief_got_light": "thief_got_light",
-        "thief_only_wanted_light": "thief_only_wanted_light"
+        "thief_only_wanted_light": "thief_only_wanted_light",
+
+        "dealer_got_lsd": "dealer_got_lsd",
+        "dealer_got_weed": "dealer_got_weed",
+        "dealer_know_you_got_drugs": "dealer_know_you_got_drugs",
+        "dealer_accept_300": "dealer_accept_300",
+        "dealer_offer_1000": "dealer_offer_1000",
+        "dealer_got_wallet": "dealer_got_wallet",
+        "dealer_got_gun": "dealer_got_gun",
+
+        "waitress_wait_there": "waitress_wait_there",
+        "waitress_your_bill": "waitress_your_bill"
     }
 }   

@@ -38,6 +38,8 @@ var whore;
 var oldLady;
 var thief;
 var pimp;
+var dealer;
+var waitress;
 
 //balloons
 var balloon;
@@ -91,6 +93,8 @@ function init() {
     oldLady = new OldLady(appData.characters[3]); 
     thief = new Thief(appData.characters[4]);
     pimp = new Pimp(appData.characters[5]);
+    waitress = new Waitress(appData.characters[6]);
+    dealer = new Dealer(appData.characters[7]);
 
     //setup scenes
     splashScene = new SplashScene(appData.scenes[0]);
@@ -129,7 +133,7 @@ function startGame() {
     if(!DEBUG) {
         changeScenes(splashScene.name);
     } else {
-        changeScenes(brothelScene.name);
+        changeScenes(mainScene.name);
     }
 }
 

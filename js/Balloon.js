@@ -103,6 +103,8 @@
 
         this.hideBalloon = function() {
 
+            if(!instance.isShowing) return;
+
             instance.isShowing = false;
             isDialog = false;
             setSpeed(NORMAL_SPEED);
