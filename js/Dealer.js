@@ -21,7 +21,7 @@
         this.madeDeal = false;
 
 
-        var dealValues = [300, 800, 1000, 5000];
+        var dealValues = [300, 500, 1000, 5000];
 
         this.deal = {
 
@@ -92,9 +92,8 @@
 
                 instance.deal.type = "sell";
                 instance.deal.value = Utils.getRandomItem(dealValues);
-                instance.deal.value = 1000;
                 instance.deal.item = "wallet";
-                instance.deal.message = ["dealer_got_wallet", "dealer_offer_" + instance.deal.value];
+                instance.deal.message = ["dealer_got_wallet", "dealer_accept_" + instance.deal.value];
 
                 return;
             }
@@ -103,9 +102,8 @@
 
                 instance.deal.type = "sell";
                 instance.deal.value = Utils.getRandomItem(dealValues);
-                instance.deal.value = 1000;
                 instance.deal.item = "gun";
-                instance.deal.message = ["dealer_got_gun", "dealer_offer_" + instance.deal.value];
+                instance.deal.message = ["dealer_got_gun", "dealer_accept_" + instance.deal.value];
 
                 return;
             }
@@ -120,17 +118,17 @@
                 
                 instance.deal.type = "sell";
                 instance.deal.value = Utils.getRandomItem(dealValues);
-                instance.deal.value = 300;
                 instance.deal.item = "drug";
                 instance.deal.message = [("dealer_got_" + Utils.getRandomItem(dealerData.drugs_avail)), ("dealer_accept_" + instance.deal.value)];
 
             } else {
                 instance.deal.type = "buy";
                 instance.deal.value = Utils.getRandomItem(dealValues);
-                instance.deal.value = 1000;
                 instance.deal.item = "";
                 instance.deal.message = ["dealer_know_you_got_drugs", ("dealer_offer_" + instance.deal.value)];
             }
+            
+            d(instance.deal.value)
         }
 
         this.disable = function() {

@@ -1,6 +1,6 @@
 
 //DEBUG
-var DEBUG = false;
+var DEBUG = true;
 
 //ANIM PROPERTIES
 var TRANSTION_TIME = 2000;
@@ -133,7 +133,7 @@ function startGame() {
     if(!DEBUG) {
         changeScenes(splashScene.name);
     } else {
-        changeScenes(mainScene.name);
+        changeScenes(brothelScene.name);
     }
 }
 

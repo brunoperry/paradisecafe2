@@ -442,7 +442,13 @@ var appData = {
         "dealer_got_weed": "dealer_got_weed",
         "dealer_know_you_got_drugs": "dealer_know_you_got_drugs",
         "dealer_accept_300": "dealer_accept_300",
+        "dealer_accept_500": "dealer_accept_500",
+        "dealer_accept_1000": "dealer_accept_1000",
+        "dealer_accept_5000": "dealer_accept_5000",
+        "dealer_offer_300": "dealer_offer_300",
+        "dealer_offer_500": "dealer_offer_500",
         "dealer_offer_1000": "dealer_offer_1000",
+        "dealer_offer_5000": "dealer_offer_5000",
         "dealer_got_wallet": "dealer_got_wallet",
         "dealer_got_gun": "dealer_got_gun",
 

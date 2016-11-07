@@ -498,7 +498,9 @@
                                     hero.idleStreet("right");
                                 } else {
 
+
                                     changeScenes(brothelScene.name);
+                                    hero.hasEnteredBrothel = false;
                                 }
                                 whore.reset();
                                 door.setAction("street_action");

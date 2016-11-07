@@ -17,8 +17,8 @@ Using vanilla javascript.
   * [x] finish brothel scene.
   * [x] finish cafe scene.
   * [x] add more values (balloons) to dealer deals.
-  * [ ] bug when entering brothel for the second time (must reset hasEntered value).
-  * [ ] add another characer (scout).
+  * [x] bug when entering brothel for the second time (must reset hasEntered value).
+  * [x] add another characer (scout).
 
 2. ##Done
   * [x] add side menu.
@@ -30,6 +30,8 @@ Using vanilla javascript.
   * [x] add label "NEW SCORE" to records scene.
   * [x] finish brothel scene.
   * [x] finish cafe scene.
+  * [x] add more values (balloons) to dealer deals.
+  * [x] bug when entering brothel for the second time (must reset hasEntered value).
 
 
 #Images
