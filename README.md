@@ -25,6 +25,7 @@ Using vanilla javascript.
   * [x] normalize ux (include a "pay" button in cafe scene like in brothel scene).
   * [ ] fix scout hide anim (their state must be fear).
   * [ ] enhance graphics.
+  * [ ] add english version.
 
 2. ##Done
   * [x] add side menu.
