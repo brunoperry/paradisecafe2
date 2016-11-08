@@ -343,12 +343,11 @@ LANDING PAGE STUFF
 #landing-page span {
     position: relative;
     display: block;
-    font-size: 46px;
+    font-size: 67px;
     line-height: 28px;
     color: red;
-    font-family: "Mono";
     font-weight: bold;
-    text-transform: uppercase;
+    text-align: center;
 }
 
 

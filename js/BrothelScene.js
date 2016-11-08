@@ -256,7 +256,7 @@
                     if(!keyboard.isVisible) {
 
                         keyboard.show([
-                            appData.keys[14]
+                            appData.keys[17]
 
                         ], function(e) {
 

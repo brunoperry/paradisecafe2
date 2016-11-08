@@ -404,6 +404,11 @@ var appData = {
             "id": 16,
             "label": "RECUSAR",
             "action": "key-refuse"
+        },
+        {
+            "id": 17,
+            "label": "PAGAR",
+            "action": "key-pay"
         }
     ],
     "door":
