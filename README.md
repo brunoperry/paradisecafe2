@@ -3,7 +3,6 @@ The idea came from [falsovsky](https://github.com/falsovsky/paradise.js) who is 
 Using vanilla javascript.
 
 ##[Play it here[1]](http://brunoperry.net/paradisecafe2/)
-![alt text](http://brunoperry.net/paradisecafe2/media/images/thumb00.png "hero image")
 *[1]portuguese*
 
 1. ##Todo
