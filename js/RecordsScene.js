@@ -25,6 +25,9 @@
         this.name = sceneData.name;
         this.currentFrame;
 
+        this.highestScore = 0;
+        this.lowestScore = 0;
+
         //LIST
         var listImage = new Image();
 
@@ -59,14 +62,32 @@
             listContext.fillStyle = "white";
 
             var offsetY = 10;
-            for(var i = 0; i < scoresData.length; i++) {
+            var count = 0;
+            if(scoresData.length > 0) {
+                for(var i = 0; i < scoresData.length; i++) {
+                    if(i > 0) {
+                        listContext.fillStyle = "black";
+                    }
+                    listContext.fillText(scoresData[i].name, 55, 80 + (offsetY * i));
+                    listContext.fillText(scoresData[i].score, 170, 80 + (offsetY * i));
 
-                if(i > 0) {
-                    listContext.fillStyle = "black";
+                    if(i === 0) {
+                        highestScore = parseInt(scoresData[i].score);
+                    } else if( i === scores.length - 1) {
+                        lowestScore = parseInt(scoresData[i].score);
+                    }
+                    count++;
                 }
-                listContext.fillText(scoresData[i].name, 55, 80 + (offsetY * i));
-                listContext.fillText(scoresData[i].score, 170, 80 + (offsetY * i));
             }
+            listContext.fillStyle = "black";
+            if(scoresData.length < 6) {
+
+                for(var i = count; i < 6; i++) {
+                    listContext.fillText("---", 55, 80 + (offsetY * i));
+                    listContext.fillText("------", 170, 80 + (offsetY * i));
+                }
+            }
+            
 
             if(isRegister) {
                 var text = listContext.measureText("NOVO HI-SCORE!");
@@ -97,14 +118,17 @@
             setSpeed(NORMAL_SPEED);
 
             isRegister = false;
-            for(i = scoresData.length-1; i > -1; i--) {
-
-                if(hero.wallet.points > scoresData[i].score) {
-                    isRegister = true;
-                    break;
+            if(scoresData.length === 0 && hero.wallet.points > 0) {
+                isRegister = true;
+            } else {
+                for(i = scoresData.length-1; i > -1; i--) {
+                    if(hero.wallet.points > scoresData[i].score) {
+                        isRegister = true;
+                        break;
+                    }
                 }
-            }
-            // isRegister = true;
+            }   
+            
 
             if(isRegister) {
 

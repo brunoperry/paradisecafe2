@@ -45,21 +45,26 @@
             audioSource.playClip(instance.id);
             setSpeed(NORMAL_SPEED);
 
-            keyboard.show([
-                appData.keys[9],
-                appData.keys[10]
-
-            ], function(e) {
-
-                keyboard.hide();
-                if(e === "key-restart") {
-
+            if(hero.wallet.points > 0 && hero.wallet.points >= recordsScene.lowestScore) {
+                keyboard.show([
+                    appData.keys[9],
+                    appData.keys[10]
+                ], function(e) {
+                    keyboard.hide();
+                    if(e === "key-restart") {
+                        changeScenes(mainScene.name);
+                    } else {
+                        changeScenes(recordsScene.name);
+                    }
+                });
+            } else {
+                keyboard.show([
+                    appData.keys[9]
+                ], function(e) {
+                    keyboard.hide();
                     changeScenes(mainScene.name);
-                } else {
-
-                    changeScenes(recordsScene.name);
-                }
-            });
+                });
+            }
         }
 
         this.disable = function() {

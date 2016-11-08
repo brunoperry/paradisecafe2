@@ -11,10 +11,10 @@ function getScores() {
     foreach( $users as $user) {
 
         $score = (string)$user['score'];
-        if(strlen($score) == 2) {
+        $str = $score;
+        for($i = 6; $i > (strlen($str)); $i--) {
+
             $score = '0' . $score;
-        } else if(strlen($score) == 1) {
-            $score = '00' . $score;
         }
         $arr[] = (object) array('name' => $user['name'], 'score' => $score);
     }
