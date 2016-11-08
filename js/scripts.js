@@ -3279,7 +3279,7 @@
 
         this.enable = function() {
 
-            document.body.style.backgroundColor = "blue";
+            document.body.style.backgroundColor = "#0000C0";
 
             instance.isEnabled = true;
 
@@ -3691,7 +3691,7 @@
                     if(!keyboard.isVisible) {
 
                         keyboard.show([
-                            appData.keys[14]
+                            appData.keys[17]
 
                         ], function(e) {
 
@@ -4189,23 +4189,28 @@
 
                     if(!waitress.hasServed) {
 
-                        balloon.showBalloon("waitress_your_bill");
-                        waitress.hasServed = true;
+                        if(!balloon.isShowing) {
+                            balloon.showBalloon("waitress_your_bill", null, true);
+                            keyboard.show([
+                                appData.keys[17]
+                            ], function() {
+                                keyboard.hide();
+                                balloon.hideBalloon();
+                                waitress.hasServed = true;
+                            });
+                        }
+                        
                     } else {
 
                         if(instance.bill > hero.wallet.cash){
-
                             if(!balloon.doneDialog) {
-
                                 balloon.showDialog(["hero_no_cash_cafe", "waitress_wait_there"]);
                             } else {
-
                                 balloon.hideBalloon();
                                 keyboard.hide();
                                 changeScenes(jailScene.name);
                             }
                         } else {
-
                             hero.wallet.cash -= instance.bill;
                             waitress.isDone = true;
                         }
@@ -4214,10 +4219,10 @@
             } else {
 
                 keyboard.hide();
-                changeScenes(streetScene.name);
                 waitress.hasServed = false;
                 balloon.doneDialog = false;
                 waitress.reset();
+                changeScenes(streetScene.name);
             }
 
             instance.currentFrame = [

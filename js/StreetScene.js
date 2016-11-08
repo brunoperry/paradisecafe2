@@ -715,7 +715,7 @@
 
         this.enable = function() {
 
-            document.body.style.backgroundColor = "blue";
+            document.body.style.backgroundColor = "#0000C0";
 
             instance.isEnabled = true;
 
