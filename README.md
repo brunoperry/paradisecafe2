@@ -24,7 +24,7 @@ Using vanilla javascript.
   * [x] add splash screen loading effect (spectrum stripes like).
   * [x] normalize ux (include a "pay" button in cafe scene like in brothel scene).
   * [x] fix scout hide anim (their state must be fear).
-  * [ ] enhance graphics.
+  * [x] enhance graphics.
   * [ ] add english version.
 
 2. ##Done
@@ -44,6 +44,7 @@ Using vanilla javascript.
   * [x] add another character (e.g scout), that hero can rob without gun.
   * [x] add splash screen loading effect (spectrum stripes like).
   * [x] normalize ux (include a "pay" button in cafe scene like in brothel scene).
+  * [x] fix scout hide anim (their state must be fear).
 
 
 #Images
