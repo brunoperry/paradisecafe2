@@ -419,7 +419,7 @@
                                     } else {
 
                                         if(!hero.hasRaped) {
-                                            hero.rape();
+                                            hero.rapeOldLady();
 
                                             if(hero.SEX_TICK === Math.round(hero.SEX_TICK / 2)) {
                                                 balloon.showDialog(["oldlady_so_big", "hero_its_done"]);

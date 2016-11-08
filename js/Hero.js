@@ -52,7 +52,7 @@
             tick++;
         }
 
-        this.rape = function () {
+        this.rapeOldLady = function () {
 
             if(instance.SEX_TICK === SEX_TIMEOUT) {
 

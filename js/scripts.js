@@ -900,7 +900,7 @@
             if(!DEBUG) {
                 doorAction = doorData.actions[index];
             } else {
-                doorAction = "scout_action";
+                doorAction = "whore_action";
             }
             door.isOpen = false;
         }
@@ -1000,7 +1000,7 @@
             tick++;
         }
 
-        this.rape = function () {
+        this.rapeOldLady = function () {
 
             if(instance.SEX_TICK === SEX_TIMEOUT) {
 
@@ -2871,7 +2871,7 @@
                                     } else {
 
                                         if(!hero.hasRaped) {
-                                            hero.rape();
+                                            hero.rapeOldLady();
 
                                             if(hero.SEX_TICK === Math.round(hero.SEX_TICK / 2)) {
                                                 balloon.showDialog(["oldlady_so_big", "hero_its_done"]);
@@ -3655,6 +3655,7 @@
             instance.bill = 0;
             hero.isFucking = false;
             hero.hasFucked = false;
+            hero.SEX_TICK = 0;
             whore.disable();
         }
 

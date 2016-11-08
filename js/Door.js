@@ -134,7 +134,7 @@
             if(!DEBUG) {
                 doorAction = doorData.actions[index];
             } else {
-                doorAction = "scout_action";
+                doorAction = "whore_action";
             }
             door.isOpen = false;
         }
@@ -172,6 +172,3 @@
     window.Door = Door;
 
 }(window));
-
-
-

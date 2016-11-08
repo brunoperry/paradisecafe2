@@ -332,6 +332,7 @@
             instance.bill = 0;
             hero.isFucking = false;
             hero.hasFucked = false;
+            hero.SEX_TICK = 0;
             whore.disable();
         }
 
