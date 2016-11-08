@@ -21,7 +21,8 @@ Using vanilla javascript.
   * [x] fix hud layout.
   * [x] add about page.
   * [x] add another character (e.g scout), that hero can rob without gun.
-  * [ ] add splash screen loading effect (spectrum stripes like).
+  * [x] add splash screen loading effect (spectrum stripes like).
+  * [x] enhance graphics.
 
 2. ##Done
   * [x] add side menu.
@@ -38,6 +39,7 @@ Using vanilla javascript.
   * [x] fix hud layout.
   * [x] add about page.
   * [x] add another character (e.g scout), that hero can rob without gun.
+  * [x] add splash screen loading effect (spectrum stripes like).
 
 
 #Images

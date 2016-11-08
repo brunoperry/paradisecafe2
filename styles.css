@@ -57,6 +57,7 @@ MID STUFF
     
     position: relative;
     flex: 2;
+    z-index: 200;
 }
 
 canvas {
@@ -223,6 +224,7 @@ SIDE MENU STUFF
     top: 0;
     overflow: hidden;
     pointer-events: none;
+    z-index: 1000;
 }
 #side-menu-container {
 
@@ -328,9 +330,14 @@ LANDING PAGE STUFF
 }
 #landing-page p {
 
-    position: relative;
-    display: block;
-    font-size: 40px;
+    position: absolute;
+    display: none;
+    top: 50%;
+    margin: 0;
+    line-height: 20px;
+    font-size: 48px;
+    text-transform: uppercase;
+    text-align: center;
     color: white;
 }
 #landing-page span {

@@ -98,88 +98,68 @@
         var loadedCallback = null;
 
         var isOff = false;
-
         this.isEnabled = true;
 
         var init = function() {
-
             var srcs = player.getElementsByTagName("source");
             for(var i = 0; i < srcs.length; i++) {
-
                 clips.push(srcs[i].src);
             }
-
             player.preload = "auto";
         }
 
         this.onAudioCanPlayThrough = function(e) {
-
             if(loadedCallback) {
                 loadedCallback();
             }
         }
 
         this.addListener = function(listener) {
-
             loadedCallback = listener;
         }
 
         this.setVolume = function(vol) {
-
             player.volume = vol;
         }
 
         this.enable = function() {
-
             if(isOff) {
-
                 player.pause();
                 player.src = currentAudio;
                 player.play();
             }
-
             isOff = false;
             instance.isEnabled = true;
         }
 
         this.disable = function() {
-
             isOff = true;
             player.pause();
             instance.isEnabled = false;
         }
 
         this.getSourceFromSceneID = function(sceneID) {
-
             return clips[sceneID];
         }
 
         this.playClip = function(sceneID) {
-
             currentAudio = clips[sceneID];
-
             if(isOff) {
-
                 if(loadedCallback) {
                     loadedCallback();
                 }
                 return;
             }
-
             if(!player.paused && player.src !== currentAudio) {
-
                 player.pause();
             }
-            
             if(player.src !== currentAudio) {
                 player.src = currentAudio;
                 player.play();
             } else if(loadedCallback) {
-
                 loadedCallback();
             }
         }
-
         init();
     }
 
@@ -2276,6 +2256,17 @@
         var anim = sceneData.animations.background;
         var tick = 0;
 
+        //IMAGE STUFF
+        var loadCanvas;
+        var loadContext;
+        var WIDTH = document.getElementById("main-container").offsetWidth;
+        var HEIGHT = document.getElementById("main-container").offsetHeight;
+        var currentTime;
+        var startTime;
+        var yPos = 0;
+        var vH;
+        var LOAD_ANIM_TICK = 0;
+
         //PUBLIC
         this.isEnabled = false;
         this.isReady = false;
@@ -2287,43 +2278,164 @@
         this.update = function() {
 
             if(!instance.isEnabled) return;
-
             if(tick >= anim.length) {
-
                 tick = 0;
             }
-
             context.drawImage(images[anim[tick]], 0, 0, canvasW, canvasH);
 
             SCENE_TIMEOUT++;
             if(SCENE_TIMEOUT >= SCENE_TIME) {
-
                 changeScenes(mainScene.name);
                 return;
             }
             tick++;
         }
 
+        var renderLoading = function(timestamp) {
+
+            if(!instance.isEnabled) {
+                return;
+            };
+
+            if(!startTime) {
+
+                startTime = timestamp;
+            }
+
+            currentTime = timestamp - startTime;
+            loadContext.fillStyle = "rgb(100, 0, 0)";
+            loadContext.fillRect(0, 0, WIDTH, HEIGHT);
+
+            if(currentTime < 597) {
+                waitForDataAnim();
+
+            } else if(currentTime >= 596 && currentTime < 4446) {
+                loadHeadDataAnim();
+            } else if(currentTime >= 4446){
+                loadDataAnim();
+            }
+            window.requestAnimationFrame(renderLoading);
+        }
+
+        var waitForDataAnim = function() {
+
+            var colIndex = 0;
+            var colors = ["rgb(0, 255, 255)", "rgb(192, 0, 0)"];
+            vH = 32;
+            for(var i = 0; i < HEIGHT; i++) {
+
+                if(colIndex >= colors.length) {
+                    colIndex = 0;
+                }
+                
+                loadContext.fillStyle = colors[colIndex];
+                loadContext.fillRect(0, yPos, WIDTH, vH);
+                if(yPos >= HEIGHT + 32) {
+                    yPos = -64;
+                    break;
+                } else {
+                    yPos += vH;
+                    colIndex++;
+                }
+            }
+
+            LOAD_ANIM_TICK++;
+            if(LOAD_ANIM_TICK === 64 ){
+                LOAD_ANIM_TICK = 0;
+            }
+            yPos += LOAD_ANIM_TICK;
+        }
+
+        var loadHeadDataAnim = function() {
+
+            var colIndex = 0;
+            var colors = ["rgb(255, 255, 0)", "rgb(0, 0, 255)"];
+            var hs = [8, 16, 32, 32, 64];
+            for(var i = 0; i < HEIGHT; i++) {
+
+                vH = Utils.getRandomItem( hs );
+                if(colIndex >= colors.length) {
+                    colIndex = 0;
+                }
+                loadContext.fillStyle = colors[colIndex];
+                loadContext.fillRect(0, yPos, WIDTH, vH);
+                if(yPos >= HEIGHT) {
+                    yPos = 0;
+                    break;
+                } else {
+                    yPos += vH;
+                    colIndex ++;
+                }
+            }
+        }
+
+        var loadDataAnim = function() {
+
+            var colors = [  "rgb(0, 0, 0)",
+                            "rgb(0, 0, 192)",
+                            "rgb(192, 0, 0)", 
+                            "rgb(192, 0, 192)",
+                            "rgb(0, 0, 255)",
+                            "rgb(255, 0, 0)",
+                            "rgb(255, 0, 255)",
+                            "rgb(0, 192, 0)",
+                            "rgb(0, 192, 192)",
+                            "rgb(192, 192, 0)",
+                            "rgb(192, 192, 192)",
+                            "rgb(0, 255, 0)",
+                            "rgb(0, 255, 255)",
+                            "rgb(255, 255, 0)",
+                            "rgb(255, 255, 255)"
+                            ];
+            for(var i = 0; i < HEIGHT; i++) {
+                vH = 4;
+                loadContext.fillStyle = Utils.getRandomItem(colors);
+                loadContext.fillRect(0, yPos, WIDTH, vH);
+                if(yPos >= HEIGHT) {
+                    yPos = 0;
+                    break;
+                } else {
+                    yPos += vH;
+                }
+            }
+        }
+
         this.enable = function() {
 
             document.body.style.backgroundColor = "#bd0000";
-
-            instance.isEnabled = true;
-
             audioSource.addListener(function(e) {
 
                 instance.isReady = true;
+
+                loadCanvas = document.createElement("canvas");
+                loadContext = loadCanvas.getContext("2d");
+                loadCanvas.width = WIDTH;
+                loadCanvas.height = HEIGHT;
+                loadCanvas.style.position = "absolute";
+                loadCanvas.style.top = "0";
+                loadCanvas.style.background = "black";
+
+                document.getElementById("main-container").appendChild(loadCanvas);
+
+                renderLoading();
                 audioSource.addListener(null);
             });
             audioSource.playClip(instance.id);
             setSpeed(SCENE_SPEED);
+
+            instance.isEnabled = true;
         }
 
         this.disable = function() {
-
             instance.isEnabled = false;
             instance.isReady = false;
             tick = 0;
+            if(loadCanvas) {
+                var c = document.getElementById("main-container");
+                c.removeChild(c.childNodes[c.childNodes.length - 1]);
+                loadCanvas = null;
+            }
+            currentTime = 0;
         }
 
         //EVENTS
@@ -4291,25 +4403,19 @@
 /**
  * APP START
  */
-
 //DEBUG
 var DEBUG = false;
-
 //ROOT REFERNCE
 var root = "http://brunoperry.net/paradisecafe2/";
-
 //ANIM PROPERTIES
 var TRANSTION_TIME = 2000;
 var NORMAL_SPEED = 150;
 var SPEED = NORMAL_SPEED;
 var interval;
-
 //landing page
 var landingPage;
-
 //Door
 var door;
-
 //canvas properties
 var context;
 var hudContext;
@@ -4317,7 +4423,6 @@ var canvas;
 var canvasW;
 var canvasH;
 var currentFrame;
-
 //scenes
 var numScenes = 0;
 var splashScene;
@@ -4326,7 +4431,6 @@ var streetScene;
 var brothelScene;
 var paradiseCafeScene;
 var currentScene;
-
 //characters
 var hero;
 var police;
@@ -4337,26 +4441,19 @@ var pimp;
 var dealer;
 var waitress;
 var scout;
-
 //balloons
 var balloon;
-
 //hud
 var hud;
-
 //side menu
 var sideMenu;
-
 //audio
 var audioSource;
-
 var isTransition = false;
 
 function init() {
-
     //landing page stuff
     landingPage = document.getElementById("landing-page");
-
     //setup render stuff
     canvas = document.getElementById("canvas");
     context = canvas.getContext("2d");
@@ -4364,25 +4461,18 @@ function init() {
     context.fillStyle = "#ffffff";
     canvasW = canvas.width;
     canvasH = canvas.height;
-
     //setup audio
     audioSource = new AudioSource();
-
     //setup door object
     door = new Door(appData.door);
-
     //setup balloon
     balloon = new Balloon(appData.balloons);
-
     //setup keyboard
     keyboard = new Keyboard();
-
     //setup hud
     hud = new HUD();
-
     //setup side menu
     sideMenu = new SideMenu();
-
     //setup characters
     hero = new Hero(appData.characters[0]);
     police = new Police(appData.characters[1]);
@@ -4393,7 +4483,6 @@ function init() {
     waitress = new Waitress(appData.characters[6]);
     dealer = new Dealer(appData.characters[7]);
     scout = new Scout(appData.characters[8]);
-
     //setup scenes
     splashScene = new SplashScene(appData.scenes[0]);
     mainScene = new MainScene(appData.scenes[1]);
@@ -4402,19 +4491,16 @@ function init() {
     brothelScene = new BrothelScene(appData.scenes[4]);
     paradiseCafeScene = new ParadiseCafeScene(appData.scenes[5]);
     recordsScene = new RecordsScene(appData.scenes[6]);
-
     //prepare
     onResize();
 }
 
 function initGame() {
-
+    document.getElementById("age-question").style.display = "block";
     keyboard.show([
         appData.keys[2],
         appData.keys[3]
-
     ], function(e) {
-
         keyboard.hide();
         if(e === "key-yes") {
             landingPage.style.display = "none";
@@ -4426,7 +4512,6 @@ function initGame() {
 }
 
 function startGame() {
-
     //start
     if(!DEBUG) {
         changeScenes(splashScene.name);
@@ -4436,7 +4521,6 @@ function startGame() {
 }
 
 function gameLoop() {
-
     if(currentScene.isReady) {
         currentScene.update();
     }
@@ -4446,7 +4530,6 @@ function clearCanvas(){
     context.clearRect(0, 0, canvasW, canvasH);
 }
 function render(image) {
-
     clearCanvas();
     for(i = 0; i < image.length; i++) {
         context.drawImage(image[i], 0, 0, canvasW, canvasH);
@@ -4457,20 +4540,14 @@ function render(image) {
 }
 
 function changeScenes(sceneName) {
-
     if(currentScene) {
-
         if(currentScene.name === sceneName) {
             return;
         }
     }
-
     var previousScene = currentScene;
-
     balloon.clearBalloon();
-
     switch(sceneName) {
-
         case splashScene.name:
         currentScene = splashScene;
         sideMenu.disable();
@@ -4500,9 +4577,7 @@ function changeScenes(sceneName) {
         sideMenu.enable();
         break;
     }
-
     if(previousScene) {
-
         if(previousScene.doTransition) {
             transition(previousScene);
         } else {
@@ -4515,18 +4590,14 @@ function changeScenes(sceneName) {
 }
 
 function setSpeed(speed) {
-
     if(SPEED !== speed) {
         SPEED = speed;
     }
-
     if(speed === 0) {
-
         clearInterval(interval);
         interval = null;
         return;
     }
-
     if(interval) {
         clearInterval(interval);
         interval = null;
@@ -4537,21 +4608,16 @@ function setSpeed(speed) {
 }
 
 function wait(seconds) {
-
     var prevSpeed = SPEED;
     setSpeed(0);
     setTimeout(function() {
-
         setSpeed(prevSpeed);
     }, seconds * 1000);
 }
 
 function sceneReady() {
-
     numScenes++;
-
     if(numScenes === appData.scenes.length) {
-
         initGame();
     }
 }
@@ -4559,10 +4625,8 @@ function sceneReady() {
 function onResize() {
     canvasW = canvas.width;
     canvasH = canvas.height;
-
     var pos = canvas.getBoundingClientRect();
     var ni = document.getElementById("name-input");
-
     var x = Math.round((canvas.offsetWidth / 2 ) - (128 / 2));
     var y = Math.round((pos.top + canvas.offsetHeight - 40));
     ni.style.left = x + "px";
@@ -4570,23 +4634,19 @@ function onResize() {
 }
 
 function d(message) {
-
     console.log(message);
     document.getElementById("debugger").innerHTML = message;
 }
 
 //EVENTS
 window.onresize = function() {
-
     onResize();
 }
 
 //EFFECTS
 function transition(prevScene) {
-
     isTransition = true;
     setSpeed(0);
-
     var int;
     var blocksize = 2;
     var vc = document.createElement("canvas");
@@ -4594,18 +4654,15 @@ function transition(prevScene) {
     vc.height = canvasH;
     var vctx = vc.getContext("2d");
     vctx.drawImage(canvas, 0, 0);
-
     int = setInterval(function(e) {
         blocksize += Math.round(blocksize / 2);
-        //apply pixalate algorithm
-        for(var x = 0; x < canvasW; x += blocksize) {
-            for(var y = 0; y < canvasH; y += blocksize) {
+        for(var x = 1; x < canvasW; x += blocksize) {
+            for(var y = 1; y < canvasH; y += blocksize) {
                 var pixel = vctx.getImageData(x, y, 1, 1);
                 context.fillStyle = "rgb("+pixel.data[0]+","+pixel.data[1]+","+pixel.data[2]+")";
                 context.fillRect(x, y, x + blocksize - 1, y + blocksize - 1);
             }
         }
-
         if(blocksize >= 32) {
             context.fillStyle = "white";
             isTransition = true;
@@ -4617,6 +4674,8 @@ function transition(prevScene) {
         }
     }, 200);
 }
+//WELCOME MESSAGE
+console.log("%c PARADISE CAFÉ 2 / C.C.2016", "background: #222; color: #bada55" );
 /**
  * ############################################ APP END
  */

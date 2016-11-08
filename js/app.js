@@ -1,22 +1,16 @@
-
 //DEBUG
 var DEBUG = false;
-
 //ROOT REFERNCE
 var root = "http://brunoperry.net/paradisecafe2/";
-
 //ANIM PROPERTIES
 var TRANSTION_TIME = 2000;
 var NORMAL_SPEED = 150;
 var SPEED = NORMAL_SPEED;
 var interval;
-
 //landing page
 var landingPage;
-
 //Door
 var door;
-
 //canvas properties
 var context;
 var hudContext;
@@ -24,7 +18,6 @@ var canvas;
 var canvasW;
 var canvasH;
 var currentFrame;
-
 //scenes
 var numScenes = 0;
 var splashScene;
@@ -33,7 +26,6 @@ var streetScene;
 var brothelScene;
 var paradiseCafeScene;
 var currentScene;
-
 //characters
 var hero;
 var police;
@@ -44,26 +36,19 @@ var pimp;
 var dealer;
 var waitress;
 var scout;
-
 //balloons
 var balloon;
-
 //hud
 var hud;
-
 //side menu
 var sideMenu;
-
 //audio
 var audioSource;
-
 var isTransition = false;
 
 function init() {
-
     //landing page stuff
     landingPage = document.getElementById("landing-page");
-
     //setup render stuff
     canvas = document.getElementById("canvas");
     context = canvas.getContext("2d");
@@ -71,25 +56,18 @@ function init() {
     context.fillStyle = "#ffffff";
     canvasW = canvas.width;
     canvasH = canvas.height;
-
     //setup audio
     audioSource = new AudioSource();
-
     //setup door object
     door = new Door(appData.door);
-
     //setup balloon
     balloon = new Balloon(appData.balloons);
-
     //setup keyboard
     keyboard = new Keyboard();
-
     //setup hud
     hud = new HUD();
-
     //setup side menu
     sideMenu = new SideMenu();
-
     //setup characters
     hero = new Hero(appData.characters[0]);
     police = new Police(appData.characters[1]);
@@ -100,7 +78,6 @@ function init() {
     waitress = new Waitress(appData.characters[6]);
     dealer = new Dealer(appData.characters[7]);
     scout = new Scout(appData.characters[8]);
-
     //setup scenes
     splashScene = new SplashScene(appData.scenes[0]);
     mainScene = new MainScene(appData.scenes[1]);
@@ -109,19 +86,16 @@ function init() {
     brothelScene = new BrothelScene(appData.scenes[4]);
     paradiseCafeScene = new ParadiseCafeScene(appData.scenes[5]);
     recordsScene = new RecordsScene(appData.scenes[6]);
-
     //prepare
     onResize();
 }
 
 function initGame() {
-
+    document.getElementById("age-question").style.display = "block";
     keyboard.show([
         appData.keys[2],
         appData.keys[3]
-
     ], function(e) {
-
         keyboard.hide();
         if(e === "key-yes") {
             landingPage.style.display = "none";
@@ -133,7 +107,6 @@ function initGame() {
 }
 
 function startGame() {
-
     //start
     if(!DEBUG) {
         changeScenes(splashScene.name);
@@ -143,7 +116,6 @@ function startGame() {
 }
 
 function gameLoop() {
-
     if(currentScene.isReady) {
         currentScene.update();
     }
@@ -153,7 +125,6 @@ function clearCanvas(){
     context.clearRect(0, 0, canvasW, canvasH);
 }
 function render(image) {
-
     clearCanvas();
     for(i = 0; i < image.length; i++) {
         context.drawImage(image[i], 0, 0, canvasW, canvasH);
@@ -164,20 +135,14 @@ function render(image) {
 }
 
 function changeScenes(sceneName) {
-
     if(currentScene) {
-
         if(currentScene.name === sceneName) {
             return;
         }
     }
-
     var previousScene = currentScene;
-
     balloon.clearBalloon();
-
     switch(sceneName) {
-
         case splashScene.name:
         currentScene = splashScene;
         sideMenu.disable();
@@ -207,9 +172,7 @@ function changeScenes(sceneName) {
         sideMenu.enable();
         break;
     }
-
     if(previousScene) {
-
         if(previousScene.doTransition) {
             transition(previousScene);
         } else {
@@ -222,18 +185,14 @@ function changeScenes(sceneName) {
 }
 
 function setSpeed(speed) {
-
     if(SPEED !== speed) {
         SPEED = speed;
     }
-
     if(speed === 0) {
-
         clearInterval(interval);
         interval = null;
         return;
     }
-
     if(interval) {
         clearInterval(interval);
         interval = null;
@@ -244,21 +203,16 @@ function setSpeed(speed) {
 }
 
 function wait(seconds) {
-
     var prevSpeed = SPEED;
     setSpeed(0);
     setTimeout(function() {
-
         setSpeed(prevSpeed);
     }, seconds * 1000);
 }
 
 function sceneReady() {
-
     numScenes++;
-
     if(numScenes === appData.scenes.length) {
-
         initGame();
     }
 }
@@ -266,10 +220,8 @@ function sceneReady() {
 function onResize() {
     canvasW = canvas.width;
     canvasH = canvas.height;
-
     var pos = canvas.getBoundingClientRect();
     var ni = document.getElementById("name-input");
-
     var x = Math.round((canvas.offsetWidth / 2 ) - (128 / 2));
     var y = Math.round((pos.top + canvas.offsetHeight - 40));
     ni.style.left = x + "px";
@@ -277,23 +229,19 @@ function onResize() {
 }
 
 function d(message) {
-
     console.log(message);
     document.getElementById("debugger").innerHTML = message;
 }
 
 //EVENTS
 window.onresize = function() {
-
     onResize();
 }
 
 //EFFECTS
 function transition(prevScene) {
-
     isTransition = true;
     setSpeed(0);
-
     var int;
     var blocksize = 2;
     var vc = document.createElement("canvas");
@@ -301,18 +249,15 @@ function transition(prevScene) {
     vc.height = canvasH;
     var vctx = vc.getContext("2d");
     vctx.drawImage(canvas, 0, 0);
-
     int = setInterval(function(e) {
         blocksize += Math.round(blocksize / 2);
-        //apply pixalate algorithm
-        for(var x = 0; x < canvasW; x += blocksize) {
-            for(var y = 0; y < canvasH; y += blocksize) {
+        for(var x = 1; x < canvasW; x += blocksize) {
+            for(var y = 1; y < canvasH; y += blocksize) {
                 var pixel = vctx.getImageData(x, y, 1, 1);
                 context.fillStyle = "rgb("+pixel.data[0]+","+pixel.data[1]+","+pixel.data[2]+")";
                 context.fillRect(x, y, x + blocksize - 1, y + blocksize - 1);
             }
         }
-
         if(blocksize >= 32) {
             context.fillStyle = "white";
             isTransition = true;
@@ -324,3 +269,5 @@ function transition(prevScene) {
         }
     }, 200);
 }
+//WELCOME MESSAGE
+console.log("%c PARADISE CAFÉ 2 / C.C.2016", "background: #222; color: #bada55" );
