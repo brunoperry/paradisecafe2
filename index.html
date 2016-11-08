@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Paradise Café2</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <link href="styles.min.css" media="screen" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="appData.json.js"></script>
+    <script type="text/javascript" src="script.min.js"></script>
+  </head>
+  <body onload="init()">
+
+  <div id="landing-page">
+
+    <div class="container">
+      <h1>PARADISE CAFÉ 2 / REMASTERED</h1>
+      <p><span>INTERDITO A MENORES DE IDADE!</span><br>Tem mais de 17 anos?</p>
+    </div>
+  </div>
+
+  <div id="main-container">
+
+    <div id="top-container">
+      <div id="menu-button"></div>
+    </div>
+
+    <div id="mid-container">
+      <canvas id="canvas" width="256" height="192"></canvas>
+      <canvas id="virtual-canvas" width="256" height="192"></canvas>
+    </div>
+
+    <div id="bottom-container">
+      <div id="keyboard">
+        <div id="perm-key-container" class="spacer"></div>
+        <div id="keyboard-container">
+          <div id="keys-container"></div>
+          <div class="spacer"></div>
+        </div>
+      </div>
+
+    </div>
+
+    <input id="name-input" type="input" maxlength="3" placeholder="NOME">
+
+    <div id="side-menu">
+      <div id="side-menu-container">
+        <h1>PARADISE CAFÉ</h1>
+        <ul>
+          <li class="side-menu-item" data-action="mute">Música [X]</li>
+          <li data-action="speed">
+            Velocidade
+            <br>
+            <div id="speed-container" class="flexed">
+              <div class="side-menu-item" data-action="slow" data-value="300">0.5x[ ]</div>
+              <div class="side-menu-item" data-action="normal" data-value="150">1x[X]</div>
+              <div class="side-menu-item" data-action="turbo" data-value="50">turbo[ ]</div>
+            </div>
+          </li>
+          <li class="side-menu-item" data-action="about">Acerca</li>
+          <li class="side-menu-item" data-action="exit">Sair</li>
+          <li class="side-menu-item" data-action="close">Fechar</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div id="debugger">C.C.2016</div>
+
+  <audio id="audio-player" preload="none" oncanplaythrough="audioSource.onAudioCanPlayThrough();">
+    <source src="media/sounds/splash_track.mp3" type="audio/mp3">
+    <source src="media/sounds/main_track.mp3" type="audio/mp3">
+    <source src="media/sounds/streets_track.mp3" type="audio/mp3">
+    <source src="media/sounds/jail_track.mp3" type="audio/mp3">
+    <source src="media/sounds/brothel_track.mp3" type="audio/mp3">
+    <source src="media/sounds/paradisecafe_track.mp3" type="audio/mp3">
+  </audio>
+   
+  </body>
+</html>
