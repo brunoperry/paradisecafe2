@@ -159,11 +159,10 @@ BOTTOM STUFF
 }
 
 .keyboard-key {
-
-    position: relative;
-    display: block;
-    flex: 1;
+    
+    display: inline-block;
     cursor: pointer;
+    margin: 0 5px;
 }
 
 label {
