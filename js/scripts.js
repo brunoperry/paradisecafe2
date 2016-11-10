@@ -3867,7 +3867,7 @@
 
                     if(i === 0) {
                         highestScore = parseInt(scoresData[i].score);
-                    } else if( i === scores.length - 1) {
+                    } else if( i === scoresData.length - 1) {
                         lowestScore = parseInt(scoresData[i].score);
                     }
                     count++;
