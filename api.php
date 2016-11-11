@@ -38,9 +38,18 @@ function insert() {
     getScores();
 }
 
+function getLang() {
+
+    echo "lang";
+}
+
 if(isset($_GET['action'])) {
 
-    getScores();
+    if($_GET['action'] == 'scores') {
+        getScores();
+    } else if($_GET['action'] == 'lang') {
+        getLang();
+    }
 }
 
 if (isset($_GET['insert'])) {
