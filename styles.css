@@ -15,15 +15,27 @@ html, body {
     -webkit-font-smoothing: none;
 }
 
+body {
+
+    display: flex;
+    align-items: center;
+
+    -webkit-transition: -webkit-background-color 0.3s ease;
+    -moz-transition: background-color 0.3s ease;
+    -o-transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease;
+}
+
+
 #main-container {
 
     position: relative;
     display: flex;
     width: 100%;
     height: 100%;
+    max-height: 800px;
     max-width: 512px;
     margin: 0 auto;
-
     flex-direction: column;
 }
 
@@ -303,6 +315,7 @@ LANDING PAGE STUFF
     position: absolute;
     display: block;
     width: 100%;
+    max-height: 800px;
     height: 100%;
     top: 0;
     background: green;
