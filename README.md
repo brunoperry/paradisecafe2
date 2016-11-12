@@ -2,8 +2,8 @@
 The idea came from [falsovsky](https://github.com/falsovsky/paradise.js) who is doing a similar project. I decided to give it a try and make my own remake of the game.
 Using vanilla javascript.
 
-##[Play it here[1]](http://brunoperry.net/paradisecafe2/)
-![alt text](http://brunoperry.net/paradisecafe2/media/images/thumb00.png "hero image")
+##[Play it here[1]](http://brunoperry.net/games/paradisecafe2/)
+![alt text](http://brunoperry.net/games/paradisecafe2/media/images/thumb00.png "hero image")
 *[1]portuguese*
 
 1. ##Todo
@@ -24,8 +24,8 @@ Using vanilla javascript.
   * [x] add splash screen loading effect (spectrum stripes like).
   * [x] normalize ux (include a "pay" button in cafe scene like in brothel scene).
   * [x] fix scout hide anim (their state must be fear).
-  * [x] enhance graphics.
-  * [ ] add english version.
+  * [x] add english version.
+  * [ ] enhance graphics.
 
 2. ##Done
   * [x] add side menu.
@@ -45,9 +45,10 @@ Using vanilla javascript.
   * [x] add splash screen loading effect (spectrum stripes like).
   * [x] normalize ux (include a "pay" button in cafe scene like in brothel scene).
   * [x] fix scout hide anim (their state must be fear).
+  * [x] add english version.
 
 
 #Images
-![alt text](http://brunoperry.net/paradisecafe2/media/images/thumb01.png "thumb01")
-![alt text](http://brunoperry.net/paradisecafe2/media/images/thumb02.png "thumb02")
-![alt text](http://brunoperry.net/paradisecafe2/media/images/thumb03.png "thumb03")
+![alt text](http://brunoperry.net/games/paradisecafe2/media/images/thumb01.png "thumb01")
+![alt text](http://brunoperry.net/games/paradisecafe2/media/images/thumb02.png "thumb02")
+![alt text](http://brunoperry.net/games/paradisecafe2/media/images/thumb03.png "thumb03")
