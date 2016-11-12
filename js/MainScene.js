@@ -35,8 +35,8 @@
         this.enable = function() {
 
             keyboard.show([
-                appData.keys[0],
-                appData.keys[1]], onKeyboardClick);
+                labelsData.keys[0],
+                labelsData.keys[1]], onKeyboardClick);
 
             instance.isEnabled = true;
 
@@ -67,13 +67,13 @@
             switch(action) {
 
                 //play action
-                case appData.keys[0].action:
+                case labelsData.keys[0].action:
 
                 changeScenes(streetScene.name);
                 break;
 
                 //scores action
-                case appData.keys[1].action:
+                case labelsData.keys[1].action:
 
                 changeScenes(recordsScene.name);
 

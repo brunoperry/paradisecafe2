@@ -1,5 +1,9 @@
 //DEBUG
-var DEBUG = false;
+var DEBUG = true;
+
+//LANGUAGE
+var lang;
+
 //ROOT REFERNCE
 var root = "http://brunoperry.net/paradisecafe2/";
 //ANIM PROPERTIES
@@ -47,6 +51,10 @@ var audioSource;
 var isTransition = false;
 
 function init() {
+
+    //LANGUAGE
+    lang = document.body.dataset.lang;
+
     //landing page stuff
     landingPage = document.getElementById("landing-page");
     //setup render stuff
@@ -61,7 +69,7 @@ function init() {
     //setup door object
     door = new Door(appData.door);
     //setup balloon
-    balloon = new Balloon(appData.balloons);
+    balloon = new Balloon(labelsData.balloons);
     //setup keyboard
     keyboard = new Keyboard();
     //setup hud
@@ -93,8 +101,8 @@ function init() {
 function initGame() {
     document.getElementById("age-question").style.display = "block";
     keyboard.show([
-        appData.keys[2],
-        appData.keys[3]
+        labelsData.keys[2],
+        labelsData.keys[3]
     ], function(e) {
         keyboard.hide();
         if(e === "key-yes") {
@@ -111,7 +119,7 @@ function startGame() {
     if(!DEBUG) {
         changeScenes(splashScene.name);
     } else {
-        changeScenes(streetScene.name);
+        changeScenes(mainScene.name);
     }
 }
 

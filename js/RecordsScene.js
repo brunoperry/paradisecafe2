@@ -10,6 +10,8 @@
         var tick = 0;
         var isRegister = false;
 
+        var MAX_SCORES = 6;
+
         var listCanvas = document.getElementById("virtual-canvas");
         var listContext = listCanvas.getContext("2d");
         var nameInput = document.getElementById("name-input");
@@ -55,8 +57,8 @@
             listContext.fillStyle = "black";
             listContext.fillText("HI-SCORES", 80, 40);
             listContext.font = "20px Mono";
-            listContext.fillText("Nome", 55, 60);
-            listContext.fillText("Score", 165, 60);
+            listContext.fillText(labelsData.HUD.name, 55, 60);
+            listContext.fillText(labelsData.HUD.score_simple, 165, 60);
 
             listContext.font = "24px Mono";
             listContext.fillStyle = "white";
@@ -80,9 +82,9 @@
                 }
             }
             listContext.fillStyle = "black";
-            if(scoresData.length < 6) {
+            if(scoresData.length < MAX_SCORES) {
 
-                for(var i = count; i < 6; i++) {
+                for(var i = count; i < MAX_SCORES; i++) {
                     listContext.fillText("---", 55, 80 + (offsetY * i));
                     listContext.fillText("------", 170, 80 + (offsetY * i));
                 }
@@ -90,12 +92,12 @@
             
 
             if(isRegister) {
-                var text = listContext.measureText("NOVO HI-SCORE!");
+                var text = listContext.measureText(labelsData.HUD.new_score);
                 var x = Math.round((canvas.width / 2) - (text.width / 2));
                 var y = Math.round(canvasH - 40);
                 listContext.font = "24px Mono";
                 listContext.fillStyle = "black";
-                listContext.fillText("NOVO HI-SCORE!", x, y);
+                listContext.fillText(labelsData.HUD.new_score, x, y);
 
                 text = listContext.measureText(hero.wallet.points.toString());
                 x = Math.round((canvas.width / 2) - (text.width / 2));
@@ -118,7 +120,7 @@
             setSpeed(NORMAL_SPEED);
 
             isRegister = false;
-            if(scoresData.length === 0 && hero.wallet.points > 0) {
+            if(scoresData.length < MAX_SCORES && hero.wallet.points > 0) {
                 isRegister = true;
             } else {
                 for(i = scoresData.length-1; i > -1; i--) {
@@ -128,7 +130,6 @@
                     }
                 }
             }   
-            
 
             if(isRegister) {
 
@@ -136,8 +137,8 @@
                 nameInput.focus();
 
                 keyboard.show([
-                    appData.keys[9],
-                    appData.keys[10]
+                    labelsData.keys[9],
+                    labelsData.keys[10]
                 ], function(e) {
 
                     if(e === "key-register") {
@@ -153,7 +154,7 @@
             } else {
 
                 keyboard.show([
-                    appData.keys[9]
+                    labelsData.keys[9]
                 ], function(e) {
                     keyboard.hide();
                     changeScenes(mainScene.name);
@@ -196,6 +197,13 @@
                     sceneReady();
                 });
             } else {
+                scoresData = [{
+                    id: 0,
+                    name: "tst",
+                    score: 10000,
+                    date_created: "23-ABR-2016"
+                }];
+                
                 sceneReady();
             }
         }

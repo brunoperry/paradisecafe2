@@ -82,8 +82,8 @@
                                 balloon.showBalloon("scout_hi_friend");
                                 if(!keyboard.isVisible) {
                                     keyboard.show([
-                                        appData.keys[5],
-                                        appData.keys[6]
+                                        labelsData.keys[5],
+                                        labelsData.keys[6]
                                     ], function(e) {
                                         if(e === "key-assault") {
                                             balloon.hideBalloon();
@@ -176,8 +176,8 @@
 
                     if(!keyboard.isVisible) {
                         keyboard.show([
-                            appData.keys[7],
-                            appData.keys[6],
+                            labelsData.keys[7],
+                            labelsData.keys[6],
                         ], function(e) {
 
                             if(e === "key-enter") {
@@ -235,7 +235,7 @@
                                 if(!keyboard.isVisible) {
 
                                     keyboard.showTimedout([
-                                        appData.keys[8]
+                                        labelsData.keys[8]
                                     ], 3, function(e) {
 
 
@@ -375,9 +375,9 @@
                         setSpeed(0);
 
                         keyboard.show([
-                            appData.keys[4],
-                            appData.keys[5],
-                            appData.keys[6]
+                            labelsData.keys[4],
+                            labelsData.keys[5],
+                            labelsData.keys[6]
                             ], function(e) {
 
                                 switch(e) {
@@ -538,8 +538,8 @@
                             whore.hasAsked = true;
 
                             keyboard.show([
-                                appData.keys[2],
-                                appData.keys[3]
+                                labelsData.keys[2],
+                                labelsData.keys[3]
                                 ], function(e) {
 
                                     if(e === "key-yes") {

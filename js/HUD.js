@@ -42,10 +42,10 @@
             }
 
             context.font = "20px Mono";
-            context.fillText("SCORE=" + score, 0, (canvasH - 20));
-            var text = context.measureText("DINHEIRO=" + cash + "$");
-            context.fillText("DINHEIRO=" + cash + "$", (canvasW - text.width), (canvasH - 20));
-            context.fillText("DROGAS=" + hero.wallet.drugs, 0, (canvasH)- 5);
+            context.fillText(labelsData.HUD.score + score, 0, (canvasH - 20));
+            var text = context.measureText(labelsData.HUD.cash + cash + "$");
+            context.fillText(labelsData.HUD.cash + cash + "$", (canvasW - text.width), (canvasH - 20));
+            context.fillText(labelsData.HUD.drugs + hero.wallet.drugs, 0, (canvasH)- 5);
 
             if(currentScene.name === brothelScene.name || currentScene.name === paradiseCafeScene.name) {
 
@@ -58,8 +58,8 @@
                     bill = str + bill;
                 }
                 context.font = "24px Mono";
-                text = context.measureText("DESPESA=" + bill + "$");
-                context.fillText("DESPESA=" + bill + "$", (canvasW - text.width), (canvasH - 40));
+                text = context.measureText(labelsData.HUD.bill + bill + "$");
+                context.fillText(labelsData.HUD.bill + bill + "$", (canvasW - text.width), (canvasH - 40));
             }
 
             if(hero.wallet.isStolen) {

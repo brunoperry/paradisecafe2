@@ -256,7 +256,7 @@
                     if(!keyboard.isVisible) {
 
                         keyboard.show([
-                            appData.keys[17]
+                            labelsData.keys[17]
 
                         ], function(e) {
 
@@ -278,9 +278,9 @@
             } else {
                 balloon.showBalloon("whore_what_you_want", null, true);
                 keyboard.show([
-                    appData.keys[11],
-                    appData.keys[12],
-                    appData.keys[13]
+                    labelsData.keys[11],
+                    labelsData.keys[12],
+                    labelsData.keys[13]
                 ], onKeyPress);
             }
         }

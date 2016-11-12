@@ -163,6 +163,7 @@
 
         var imagesReady = function(data) {
             images = data;
+
             instance.currentFrame = images.empty;
         }
 

@@ -5,6 +5,17 @@
 
     function Utils() {};
 
+    Utils.getAPI = function(apiRoute, callback) {
+        var request = new XMLHttpRequest();
+        request.addEventListener('load', dataHandler);
+        request.open('GET', apiRoute);
+        request.send();
+        
+        function dataHandler() {
+            callback(this.responseText);
+        }
+    }
+
     Utils.loadImages = function(dataIn, callback) {
 
         var totalImages = 0;
@@ -28,15 +39,19 @@
         var imagesLoaded = 0;
         var dataOut = [];
 
-        for(balloon in dataIn) {
-            dataOut[balloon] = new Image();
-            dataOut[balloon].onload = function() {
-                imagesLoaded++;
-                if(imagesLoaded === totalImages) {
-                    callback(dataOut);
+        for(var balloon in dataIn) {
+
+            if (dataIn.hasOwnProperty(balloon)) {
+
+                dataOut[balloon] = new Image();
+                dataOut[balloon].onload = function() {
+                    imagesLoaded++;
+                    if(imagesLoaded === totalImages) {
+                        callback(dataOut);
+                    }
                 }
+                dataOut[balloon].src = "media/images/balloons_" + dataIn[balloon] + ".png";
             }
-            dataOut[balloon].src = "media/images/balloons_" + balloon + ".png";
         }
     }
 
@@ -679,10 +694,10 @@
             }
 
             context.font = "20px Mono";
-            context.fillText("SCORE=" + score, 0, (canvasH - 20));
-            var text = context.measureText("DINHEIRO=" + cash + "$");
-            context.fillText("DINHEIRO=" + cash + "$", (canvasW - text.width), (canvasH - 20));
-            context.fillText("DROGAS=" + hero.wallet.drugs, 0, (canvasH)- 5);
+            context.fillText(labelsData.HUD.score + score, 0, (canvasH - 20));
+            var text = context.measureText(labelsData.HUD.cash + cash + "$");
+            context.fillText(labelsData.HUD.cash + cash + "$", (canvasW - text.width), (canvasH - 20));
+            context.fillText(labelsData.HUD.drugs + hero.wallet.drugs, 0, (canvasH)- 5);
 
             if(currentScene.name === brothelScene.name || currentScene.name === paradiseCafeScene.name) {
 
@@ -695,8 +710,8 @@
                     bill = str + bill;
                 }
                 context.font = "24px Mono";
-                text = context.measureText("DESPESA=" + bill + "$");
-                context.fillText("DESPESA=" + bill + "$", (canvasW - text.width), (canvasH - 40));
+                text = context.measureText(labelsData.HUD.bill + bill + "$");
+                context.fillText(labelsData.HUD.bill + bill + "$", (canvasW - text.width), (canvasH - 40));
             }
 
             if(hero.wallet.isStolen) {
@@ -2496,8 +2511,8 @@
         this.enable = function() {
 
             keyboard.show([
-                appData.keys[0],
-                appData.keys[1]], onKeyboardClick);
+                labelsData.keys[0],
+                labelsData.keys[1]], onKeyboardClick);
 
             instance.isEnabled = true;
 
@@ -2528,13 +2543,13 @@
             switch(action) {
 
                 //play action
-                case appData.keys[0].action:
+                case labelsData.keys[0].action:
 
                 changeScenes(streetScene.name);
                 break;
 
                 //scores action
-                case appData.keys[1].action:
+                case labelsData.keys[1].action:
 
                 changeScenes(recordsScene.name);
 
@@ -2646,8 +2661,8 @@
                                 balloon.showBalloon("scout_hi_friend");
                                 if(!keyboard.isVisible) {
                                     keyboard.show([
-                                        appData.keys[5],
-                                        appData.keys[6]
+                                        labelsData.keys[5],
+                                        labelsData.keys[6]
                                     ], function(e) {
                                         if(e === "key-assault") {
                                             balloon.hideBalloon();
@@ -2740,8 +2755,8 @@
 
                     if(!keyboard.isVisible) {
                         keyboard.show([
-                            appData.keys[7],
-                            appData.keys[6],
+                            labelsData.keys[7],
+                            labelsData.keys[6],
                         ], function(e) {
 
                             if(e === "key-enter") {
@@ -2799,7 +2814,7 @@
                                 if(!keyboard.isVisible) {
 
                                     keyboard.showTimedout([
-                                        appData.keys[8]
+                                        labelsData.keys[8]
                                     ], 3, function(e) {
 
 
@@ -2939,9 +2954,9 @@
                         setSpeed(0);
 
                         keyboard.show([
-                            appData.keys[4],
-                            appData.keys[5],
-                            appData.keys[6]
+                            labelsData.keys[4],
+                            labelsData.keys[5],
+                            labelsData.keys[6]
                             ], function(e) {
 
                                 switch(e) {
@@ -3102,8 +3117,8 @@
                             whore.hasAsked = true;
 
                             keyboard.show([
-                                appData.keys[2],
-                                appData.keys[3]
+                                labelsData.keys[2],
+                                labelsData.keys[3]
                                 ], function(e) {
 
                                     if(e === "key-yes") {
@@ -3385,8 +3400,8 @@
 
             if(hero.wallet.points > 0 && hero.wallet.points >= recordsScene.lowestScore) {
                 keyboard.show([
-                    appData.keys[9],
-                    appData.keys[10]
+                    labelsData.keys[9],
+                    labelsData.keys[10]
                 ], function(e) {
                     keyboard.hide();
                     if(e === "key-restart") {
@@ -3397,7 +3412,7 @@
                 });
             } else {
                 keyboard.show([
-                    appData.keys[9]
+                    labelsData.keys[9]
                 ], function(e) {
                     keyboard.hide();
                     changeScenes(mainScene.name);
@@ -3691,7 +3706,7 @@
                     if(!keyboard.isVisible) {
 
                         keyboard.show([
-                            appData.keys[17]
+                            labelsData.keys[17]
 
                         ], function(e) {
 
@@ -3713,9 +3728,9 @@
             } else {
                 balloon.showBalloon("whore_what_you_want", null, true);
                 keyboard.show([
-                    appData.keys[11],
-                    appData.keys[12],
-                    appData.keys[13]
+                    labelsData.keys[11],
+                    labelsData.keys[12],
+                    labelsData.keys[13]
                 ], onKeyPress);
             }
         }
@@ -3804,6 +3819,8 @@
         var tick = 0;
         var isRegister = false;
 
+        var MAX_SCORES = 6;
+
         var listCanvas = document.getElementById("virtual-canvas");
         var listContext = listCanvas.getContext("2d");
         var nameInput = document.getElementById("name-input");
@@ -3849,8 +3866,8 @@
             listContext.fillStyle = "black";
             listContext.fillText("HI-SCORES", 80, 40);
             listContext.font = "20px Mono";
-            listContext.fillText("Nome", 55, 60);
-            listContext.fillText("Score", 165, 60);
+            listContext.fillText(labelsData.HUD.name, 55, 60);
+            listContext.fillText(labelsData.HUD.score_simple, 165, 60);
 
             listContext.font = "24px Mono";
             listContext.fillStyle = "white";
@@ -3874,9 +3891,9 @@
                 }
             }
             listContext.fillStyle = "black";
-            if(scoresData.length < 6) {
+            if(scoresData.length < MAX_SCORES) {
 
-                for(var i = count; i < 6; i++) {
+                for(var i = count; i < MAX_SCORES; i++) {
                     listContext.fillText("---", 55, 80 + (offsetY * i));
                     listContext.fillText("------", 170, 80 + (offsetY * i));
                 }
@@ -3884,12 +3901,12 @@
             
 
             if(isRegister) {
-                var text = listContext.measureText("NOVO HI-SCORE!");
+                var text = listContext.measureText(labelsData.HUD.new_score);
                 var x = Math.round((canvas.width / 2) - (text.width / 2));
                 var y = Math.round(canvasH - 40);
                 listContext.font = "24px Mono";
                 listContext.fillStyle = "black";
-                listContext.fillText("NOVO HI-SCORE!", x, y);
+                listContext.fillText(labelsData.HUD.new_score, x, y);
 
                 text = listContext.measureText(hero.wallet.points.toString());
                 x = Math.round((canvas.width / 2) - (text.width / 2));
@@ -3912,7 +3929,7 @@
             setSpeed(NORMAL_SPEED);
 
             isRegister = false;
-            if(scoresData.length === 0 && hero.wallet.points > 0) {
+            if(scoresData.length < MAX_SCORES && hero.wallet.points > 0) {
                 isRegister = true;
             } else {
                 for(i = scoresData.length-1; i > -1; i--) {
@@ -3922,7 +3939,6 @@
                     }
                 }
             }   
-            
 
             if(isRegister) {
 
@@ -3930,8 +3946,8 @@
                 nameInput.focus();
 
                 keyboard.show([
-                    appData.keys[9],
-                    appData.keys[10]
+                    labelsData.keys[9],
+                    labelsData.keys[10]
                 ], function(e) {
 
                     if(e === "key-register") {
@@ -3947,7 +3963,7 @@
             } else {
 
                 keyboard.show([
-                    appData.keys[9]
+                    labelsData.keys[9]
                 ], function(e) {
                     keyboard.hide();
                     changeScenes(mainScene.name);
@@ -3990,6 +4006,13 @@
                     sceneReady();
                 });
             } else {
+                scoresData = [{
+                    id: 0,
+                    name: "tst",
+                    score: 10000,
+                    date_created: "23-ABR-2016"
+                }];
+                
                 sceneReady();
             }
         }
@@ -4154,8 +4177,8 @@
 
                         if(isValid && !keyboard.isVisible && !dealer.isAction) {
                             keyboard.show([
-                                appData.keys[15],
-                                appData.keys[16]
+                                labelsData.keys[15],
+                                labelsData.keys[16]
                             ], onKeyboardClick);
                         }
                     }
@@ -4192,7 +4215,7 @@
                         if(!balloon.isShowing) {
                             balloon.showBalloon("waitress_your_bill", null, true);
                             keyboard.show([
-                                appData.keys[17]
+                                labelsData.keys[17]
                             ], function() {
                                 keyboard.hide();
                                 balloon.hideBalloon();
@@ -4364,7 +4387,7 @@
             backgroundInterval = setInterval(updateBackground, NORMAL_SPEED * 50);
 
             keyboard.showPerm([
-                appData.keys[14]
+                labelsData.keys[14]
             ],onKeyboardClick);
 
             instance.bill = 20;
@@ -4410,6 +4433,10 @@
  */
 //DEBUG
 var DEBUG = false;
+
+//LANGUAGE
+var lang;
+
 //ROOT REFERNCE
 var root = "http://brunoperry.net/paradisecafe2/";
 //ANIM PROPERTIES
@@ -4457,6 +4484,10 @@ var audioSource;
 var isTransition = false;
 
 function init() {
+
+    //LANGUAGE
+    lang = document.body.dataset.lang;
+    
     //landing page stuff
     landingPage = document.getElementById("landing-page");
     //setup render stuff
@@ -4471,7 +4502,7 @@ function init() {
     //setup door object
     door = new Door(appData.door);
     //setup balloon
-    balloon = new Balloon(appData.balloons);
+    balloon = new Balloon(labelsData.balloons);
     //setup keyboard
     keyboard = new Keyboard();
     //setup hud
@@ -4503,8 +4534,8 @@ function init() {
 function initGame() {
     document.getElementById("age-question").style.display = "block";
     keyboard.show([
-        appData.keys[2],
-        appData.keys[3]
+        labelsData.keys[2],
+        labelsData.keys[3]
     ], function(e) {
         keyboard.hide();
         if(e === "key-yes") {

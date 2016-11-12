@@ -47,8 +47,8 @@
 
             if(hero.wallet.points > 0 && hero.wallet.points >= recordsScene.lowestScore) {
                 keyboard.show([
-                    appData.keys[9],
-                    appData.keys[10]
+                    labelsData.keys[9],
+                    labelsData.keys[10]
                 ], function(e) {
                     keyboard.hide();
                     if(e === "key-restart") {
@@ -59,7 +59,7 @@
                 });
             } else {
                 keyboard.show([
-                    appData.keys[9]
+                    labelsData.keys[9]
                 ], function(e) {
                     keyboard.hide();
                     changeScenes(mainScene.name);

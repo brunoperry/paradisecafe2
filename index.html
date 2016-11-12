@@ -6,9 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
     <link href="styles.min.css" media="screen" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="appData.json.js"></script>
-    <script type="text/javascript" src="script.min.js"></script>
+    <script type="text/javascript" src="labelsData_ENG.json.js"></script>
+    <!--<script type="text/javascript" src="script.min.js"></script>-->
   </head>
-  <body>
+  <body onload="init();" data-lang="ENG">
 
   <div id="landing-page">
 
@@ -75,15 +76,34 @@
     <source src="media/sounds/brothel_track.mp3" type="audio/mp3">
     <source src="media/sounds/paradisecafe_track.mp3" type="audio/mp3">
   </audio>
+    <script type="text/javascript" src="js/Utils.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="js/AudioSource.js"></script>
+    <script type="text/javascript" src="js/Balloon.js"></script>
+    <script type="text/javascript" src="js/BrothelScene.js"></script>
+    <script type="text/javascript" src="js/Dealer.js"></script>
+    <script type="text/javascript" src="js/Door.js"></script>
+    <script type="text/javascript" src="js/Hero.js"></script>
+    <script type="text/javascript" src="js/HUD.js"></script>
+    <script type="text/javascript" src="js/JailScene.js"></script>
+    <script type="text/javascript" src="js/Keyboard.js"></script>
+    <script type="text/javascript" src="js/MainScene.js"></script>
+    <script type="text/javascript" src="js/OldLady.js"></script>
+    <script type="text/javascript" src="js/ParadiseCafeScene.js"></script>
+    <script type="text/javascript" src="js/Pimp.js"></script>
+    <script type="text/javascript" src="js/Police.js"></script>
+    <script type="text/javascript" src="js/RecordsScene.js"></script>
+    <script type="text/javascript" src="js/Scout.js"></script>
+    <script type="text/javascript" src="js/SideMenu.js"></script>
+    <script type="text/javascript" src="js/SplashScene.js"></script>
+    <script type="text/javascript" src="js/StreetScene.js"></script>
+    <script type="text/javascript" src="js/TemplateScene.js"></script>
+    <script type="text/javascript" src="js/Thief.js"></script>
+    <script type="text/javascript" src="js/Waitress.js"></script>
+    <script type="text/javascript" src="js/Whore.js"></script>
 
-  <script>
-  window.onload = function(e) {
 
-    var lang = Utils.getAPI("api.php?action=lang", function(data) {
 
-      console.log(data);
-    });
-};
-  </script>
+
   </body>
 </html>

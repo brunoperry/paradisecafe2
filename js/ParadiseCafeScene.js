@@ -144,8 +144,8 @@
 
                         if(isValid && !keyboard.isVisible && !dealer.isAction) {
                             keyboard.show([
-                                appData.keys[15],
-                                appData.keys[16]
+                                labelsData.keys[15],
+                                labelsData.keys[16]
                             ], onKeyboardClick);
                         }
                     }
@@ -182,7 +182,7 @@
                         if(!balloon.isShowing) {
                             balloon.showBalloon("waitress_your_bill", null, true);
                             keyboard.show([
-                                appData.keys[17]
+                                labelsData.keys[17]
                             ], function() {
                                 keyboard.hide();
                                 balloon.hideBalloon();
@@ -354,7 +354,7 @@
             backgroundInterval = setInterval(updateBackground, NORMAL_SPEED * 50);
 
             keyboard.showPerm([
-                appData.keys[14]
+                labelsData.keys[14]
             ],onKeyboardClick);
 
             instance.bill = 20;

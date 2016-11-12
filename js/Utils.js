@@ -36,15 +36,19 @@
         var imagesLoaded = 0;
         var dataOut = [];
 
-        for(balloon in dataIn) {
-            dataOut[balloon] = new Image();
-            dataOut[balloon].onload = function() {
-                imagesLoaded++;
-                if(imagesLoaded === totalImages) {
-                    callback(dataOut);
+        for(var balloon in dataIn) {
+
+            if (dataIn.hasOwnProperty(balloon)) {
+
+                dataOut[balloon] = new Image();
+                dataOut[balloon].onload = function() {
+                    imagesLoaded++;
+                    if(imagesLoaded === totalImages) {
+                        callback(dataOut);
+                    }
                 }
+                dataOut[balloon].src = "media/images/balloons_" + dataIn[balloon] + ".png";
             }
-            dataOut[balloon].src = "media/images/balloons_" + balloon + ".png";
         }
     }
 
