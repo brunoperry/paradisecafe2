@@ -3,6 +3,9 @@
 include 'api.php';
 $text = '';
 $lang = getLang();
+
+$db = new DB();
+$db->addVisitor();
 ?>
 <!DOCTYPE html>
 <html>
@@ -55,14 +58,13 @@ $lang = getLang();
           <div class="spacer"></div>
         </div>
       </div>
-
     </div>
 
     <input id="name-input" type="input" maxlength="3" placeholder="NOME">
 
     <div id="side-menu">
       <div id="side-menu-container">
-        <h1>PARADISE CAFÉ</h1>
+        <h2>PARADISE CAFÉ 2</h2>
         <ul>
 
         <?php

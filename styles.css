@@ -257,7 +257,7 @@ SIDE MENU STUFF
     -o-transition: transform 0.3s ease;
     transition: transform 0.3s ease;
 }
-#side-menu-container h1 {
+#side-menu-container h2 {
 
     position: relative;
     display: block;
