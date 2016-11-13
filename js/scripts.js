@@ -420,7 +420,7 @@
                 break;
 
                 case "about":
-                    window.open(root + "about.html", "_blank");
+                    window.open(root + "about_" + lang + ".html", "_blank");
                 break;
 
                 case "slow":
