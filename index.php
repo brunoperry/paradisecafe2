@@ -1,9 +1,17 @@
 <?php
-
 include 'api.php';
 $text = '';
-$lang = getLang();
-
+$lang = '';
+if(isset($_GET['lang'])) {
+  $f = $_GET['lang'];
+  if($f != 'PT' && $f != 'ENG') {
+       $lang = getLang();
+  } else {
+    $lang = $f;
+  }
+} else {
+  $lang = getLang();
+}
 $db = new DB();
 $db->addVisitor();
 ?>
@@ -21,35 +29,31 @@ $db->addVisitor();
     <script type="text/javascript" src="script.min.js"></script>
   </head>
   <body onload="init();" data-lang="ENG">
-
   <div id="landing-page">
-
     <div class="container">
+      <div id="lang-container">
+        <a href="http://brunoperry.net/games/paradisecafe2/index.php?lang=PT" id="button-pt" class="button-lang"></a>
+        <a href="http://brunoperry.net/games/paradisecafe2/index.php?lang=ENG"id="button-eng" class="button-lang"></a>
+      </div>
       <h1>PARADISE CAFÉ 2 / REMASTERED</h1>
-
       <?php
       $text = ($lang == 'PT') ? 'INTERDITO A MENORES DE IDADE!' : 'ADULTS ONLY 18+';
       ?>
       <span><?php echo $text; ?></span>
-
       <?php
       $text = ($lang == 'PT') ? 'Tem mais de 17 anos?' : 'You must be 18 or over to enter.';
       ?>
       <p id="age-question"><br><?php echo $text; ?></p>
     </div>
   </div>
-
   <div id="main-container">
-
     <div id="top-container">
       <div id="menu-button"></div>
     </div>
-
     <div id="mid-container">
       <canvas id="canvas" width="256" height="192"></canvas>
       <canvas id="virtual-canvas" width="256" height="192"></canvas>
     </div>
-
     <div id="bottom-container">
       <div id="keyboard">
         <div id="perm-key-container" class="spacer"></div>
@@ -59,20 +63,16 @@ $db->addVisitor();
         </div>
       </div>
     </div>
-
     <input id="name-input" type="input" maxlength="3" placeholder="NOME">
-
     <div id="side-menu">
       <div id="side-menu-container">
         <h2>PARADISE CAFÉ 2</h2>
         <ul>
-
         <?php
         $text = ($lang == 'PT') ? 'Música [X]' : 'Music [X]';
         ?>
           <li class="side-menu-item" data-action="mute"><?php echo $text; ?></li>
           <li data-action="speed">
-
         <?php
         $text = ($lang == 'PT') ? 'Velocidade:' : 'Speed:';
         echo $text;
@@ -84,17 +84,14 @@ $db->addVisitor();
               <div class="side-menu-item" data-action="turbo" data-value="50">Turbo[ ]</div>
             </div>
           </li>
-
         <?php
         $text = ($lang == 'PT') ? 'Acerca' : 'About';
         ?>
           <li class="side-menu-item" data-action="about"><?php echo $text; ?></li>
-
         <?php
         $text = ($lang == 'PT') ? 'Sair' : 'Exit';
         ?>
           <li class="side-menu-item" data-action="exit"><?php echo $text; ?></li>
-
         <?php
         $text = ($lang == 'PT') ? 'Fechar>>' : 'Close Menu>>';
         ?>
@@ -103,9 +100,7 @@ $db->addVisitor();
       </div>
     </div>
   </div>
-
   <div id="debugger">C.C.2016</div>
-
   <audio id="audio-player" preload="none" oncanplaythrough="audioSource.onAudioCanPlayThrough();">
     <source src="media/sounds/splash_track.mp3" type="audio/mp3">
     <source src="media/sounds/main_track.mp3" type="audio/mp3">
@@ -114,7 +109,6 @@ $db->addVisitor();
     <source src="media/sounds/brothel_track.mp3" type="audio/mp3">
     <source src="media/sounds/paradisecafe_track.mp3" type="audio/mp3">
   </audio>
-
   <script>
   </body>
 </html>

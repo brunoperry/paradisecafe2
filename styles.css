@@ -195,7 +195,6 @@ label {
     background: -ms-linear-gradient(top, rgba(168,187,198,1) 0%, rgba(88,118,132,1) 100%);
     background: linear-gradient(to bottom, rgba(168,187,198,1) 0%, rgba(88,118,132,1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a8bbc6', endColorstr='#587684', GradientType=0 );
-
 }
 
 #perm-key-container {
@@ -269,6 +268,8 @@ SIDE MENU STUFF
 
 #side-menu-container ul {
     list-style-type: square;
+    margin: 0;
+    padding: 15px;
 }
 #side-menu-container ul li {
 
@@ -362,6 +363,32 @@ LANDING PAGE STUFF
     text-align: center;
 }
 
+#lang-container {
+
+    position: relative;
+    display: flex;
+    height: 60px;
+    justify-content: flex-end;
+}
+
+.button-lang {
+    position: relative;
+    display: block;
+    width: 32px;
+    height: 24px;
+    margin-left: 20px;
+    margin-top: 10px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    z-index: 9000;
+}
+#button-pt {
+    background-image: url("media/images/pt_icon.png");
+}
+#button-eng {
+    background-image: url("media/images/eng_icon.png");
+}
+
 
 /*
 OTHER STUFF
@@ -369,7 +396,7 @@ OTHER STUFF
 #debugger {
 
     position: fixed;
-    display: block;
+    display: none;
     top: 0;
     left: 0;   
     font-size: "18px";
@@ -389,5 +416,24 @@ ANIMATIONS
     -moz-transform: translate3d(0, 0, 0) !important;
     -o-transform: translate3d(0, 0, 0) !important;
     transform: translate3d(0, 0, 0) !important;
+}
+
+/*
+MOBILE STUFF
+*/
+@media screen and (max-width: 480px) {
+
+    label {
+        font-size: 32px;
+    }
+
+    #lang-container {
+        padding-right: 7px;
+    }
+
+    #side-menu-container .flexed .side-menu-item {
+
+        font-size: 30px;
+    }
 }
 
