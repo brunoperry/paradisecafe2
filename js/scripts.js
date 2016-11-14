@@ -4438,7 +4438,7 @@ var DEBUG = false;
 var lang;
 
 //ROOT REFERNCE
-var root = "http://brunoperry.net/paradisecafe2/";
+var root = "http://paradisecafe.pt/";
 //ANIM PROPERTIES
 var TRANSTION_TIME = 2000;
 var NORMAL_SPEED = 150;
@@ -4487,7 +4487,7 @@ function init() {
 
     //LANGUAGE
     lang = document.body.dataset.lang;
-    
+
     //landing page stuff
     landingPage = document.getElementById("landing-page");
     //setup render stuff
@@ -4552,7 +4552,7 @@ function startGame() {
     if(!DEBUG) {
         changeScenes(splashScene.name);
     } else {
-        changeScenes(streetScene.name);
+        changeScenes(mainScene.name);
     }
 }
 

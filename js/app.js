@@ -1,11 +1,11 @@
 //DEBUG
-var DEBUG = true;
+var DEBUG = false;
 
 //LANGUAGE
 var lang;
 
 //ROOT REFERNCE
-var root = "http://brunoperry.net/paradisecafe2/";
+var root = "http://paradisecafe.pt/";
 //ANIM PROPERTIES
 var TRANSTION_TIME = 2000;
 var NORMAL_SPEED = 150;
