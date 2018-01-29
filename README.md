@@ -49,6 +49,6 @@ Using vanilla javascript.
 
 
 #Images
-![alt text](http://brunoperry.net/games/paradisecafe/media/images/thumb01.png "thumb01")
-![alt text](http://brunoperry.net/games/paradisecafe/media/images/thumb02.png "thumb02")
-![alt text](http://brunoperry.net/games/paradisecafe/media/images/thumb03.png "thumb03")
+![alt text](https://brunoperry.net/games/paradisecafe/media/images/thumb01.png "thumb01")
+![alt text](https://brunoperry.net/games/paradisecafe/media/images/thumb02.png "thumb02")
+![alt text](https://brunoperry.net/games/paradisecafe/media/images/thumb03.png "thumb03")
