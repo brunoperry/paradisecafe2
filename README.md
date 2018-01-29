@@ -2,8 +2,8 @@
 The idea came from [falsovsky](https://github.com/falsovsky/paradise.js) who is doing a similar project. I decided to give it a try and make my own remake of the game.
 Using vanilla javascript.
 
-##[Play it here[1]](http://brunoperry.net/games/paradisecafe2/)
-![alt text](http://brunoperry.net/games/paradisecafe2/media/images/thumb00.png "hero image")
+##[Play it here[1]](http://brunoperry.net/games/paradisecafe/)
+![alt text](http://brunoperry.net/games/paradisecafe/media/images/thumb00.png "hero image")
 *[1]portuguese*
 
 1. ##Todo
@@ -49,6 +49,6 @@ Using vanilla javascript.
 
 
 #Images
-![alt text](http://brunoperry.net/games/paradisecafe2/media/images/thumb01.png "thumb01")
-![alt text](http://brunoperry.net/games/paradisecafe2/media/images/thumb02.png "thumb02")
-![alt text](http://brunoperry.net/games/paradisecafe2/media/images/thumb03.png "thumb03")
+![alt text](http://brunoperry.net/games/paradisecafe/media/images/thumb01.png "thumb01")
+![alt text](http://brunoperry.net/games/paradisecafe/media/images/thumb02.png "thumb02")
+![alt text](http://brunoperry.net/games/paradisecafe/media/images/thumb03.png "thumb03")

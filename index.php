@@ -32,8 +32,8 @@ $db->addVisitor();
   <div id="landing-page">
     <div class="container">
       <div id="lang-container">
-        <a href="http://brunoperry.net/games/paradisecafe2/index.php?lang=PT" id="button-pt" class="button-lang"></a>
-        <a href="http://brunoperry.net/games/paradisecafe2/index.php?lang=ENG"id="button-eng" class="button-lang"></a>
+        <a href="https://brunoperry.net/games/paradisecafe/index.php?lang=PT" id="button-pt" class="button-lang"></a>
+        <a href="https://brunoperry.net/games/paradisecafe/index.php?lang=ENG"id="button-eng" class="button-lang"></a>
       </div>
       <h1>PARADISE CAFÉ 2 / REMASTERED</h1>
       <?php
