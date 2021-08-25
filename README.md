@@ -1,4 +1,7 @@
 # paradisecafe2 / remastered
+
+Version 3.0
+
 The idea came from [falsovsky](https://github.com/falsovsky/paradise.js) who is doing a similar project. I decided to give it a try and make my own remake of the game.
 Using vanilla javascript.
 
