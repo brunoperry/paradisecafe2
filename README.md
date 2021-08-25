@@ -2,7 +2,7 @@
 The idea came from [falsovsky](https://github.com/falsovsky/paradise.js) who is doing a similar project. I decided to give it a try and make my own remake of the game.
 Using vanilla javascript.
 
-##[Play it here[1]](http://brunoperry.net/games/paradisecafe/)
+[Play it here](http://brunoperry.net/games/paradisecafe/)
 ![alt text](http://brunoperry.net/games/paradisecafe/media/images/thumb00.png "hero image")
 *[1]portuguese*
 
