@@ -1,0 +1,30 @@
+{
+  "name": "paradisecafe",
+  "version": "1.0.0",
+  "description": "Sinclair ZX Spectrum 48k famouse game port to javascript (es6)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "zx",
+    "spectrum",
+    "paradise",
+    "cafe",
+    "retro",
+    "48k",
+    "gaming",
+    "portugal"
+  ],
+  "author": "Bruno Perry",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^10.3.2",
+    "cssnano": "^5.0.8",
+    "gulp": "^4.0.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-postcss": "^9.0.0",
+    "gulp-sourcemaps": "^3.0.0",
+    "gulp-terser": "^2.0.1"
+  }
+}
