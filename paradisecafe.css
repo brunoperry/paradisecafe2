@@ -36,6 +36,7 @@
     --jailscene-color:var(--color-black);
     --brothelscene-color:var(--color-pink);
     --crackhousescene-color:var(--color-black);
+    --newscorescene-color:var(--color-yellow);
 }
 
 html, body {
@@ -210,14 +211,13 @@ button:active {
 }
 
 #new-score {
-    display: flex;
+    display: none;
     flex-direction: column;
     position: absolute;
     justify-content: center;
     align-items: center;
     inset: 0;
     background-color: var(--color-yellow);
-    display: none;
 }
 #new-score h2 {
     font-size: var(--l-font-size);
@@ -226,6 +226,7 @@ button:active {
 }
 #new-score p {
     margin: 0;
+    margin-top: 20px;
     font-size: var(--m-font-size);
 }
 
@@ -233,9 +234,13 @@ input {
     font-family: 'mono';
     text-align: center;
     font-size: var(--m-font-size);
-    max-width: var(--m-font-size);
-    margin: 0;
-    padding: 0;
+    max-width: 72px;
+    margin: 5px 0;
+    padding: 0 5px;
+    letter-spacing: 5px;
+    border-radius: 0;
+    border-width: 3px;
+    border: solid;
     text-transform: uppercase;
 }
 input:focus {

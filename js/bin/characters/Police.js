@@ -48,7 +48,7 @@ class Police extends Character {
             Police.Actions.ASK_PAPERS,
             Police.Actions.SALUTE,
             Police.Actions.SALUTE
-        ])
+        ]);
     }
     doEnterDoor() {
         super.doEnterDoor();
@@ -69,7 +69,6 @@ class Police extends Character {
         this.hasArrest = false;
 
         this.walkTick = 0;
-
         this.x = 0;
     }
 }

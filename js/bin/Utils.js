@@ -1,5 +1,18 @@
 class Utils {
 
+    static checkTopFive(scores, points) {
+
+        let isTop = false;
+        for (let i = 0; i < scores.length; i++) {
+            const x = parseInt(scores[i].score);
+            if (points >= x) {
+                isTop = true;
+                break;
+            }
+        }
+        return isTop;
+    }
+
     static getRandomItem(data) {
         return data[Math.floor(Math.random() * data.length)];
     }

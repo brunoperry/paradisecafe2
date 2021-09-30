@@ -42,7 +42,6 @@ class Door extends Component {
         if (this.x < -this.width) {
             this.scrollTick = 0;
             this.currentAction = this.actions[Math.floor(Math.random() * this.actions.length)];
-            this.currentAction = Door.Actions.POLICE;
             if (this.currentAction === Door.Actions.CRACKHOUSE) {
                 this.currentScrollImage = this.crackhouseScrollImage;
             } else {

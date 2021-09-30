@@ -48,9 +48,6 @@ class Scene {
         if (this.props.length > 0) {
             this.props.forEach(prop => {
 
-                if (this.name === ScoresScene.NAME) {
-                    console.log(prop.isEnabled)
-                }
                 if (prop.isEnabled) this.renderStack.push({
                     imageData: prop.imageData,
                     x: prop.x,
@@ -60,7 +57,6 @@ class Scene {
                 })
             });
         }
-
 
         if (this.NPCs.length > 0) {
             this.NPCs.forEach(npc => {

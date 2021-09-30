@@ -12,10 +12,10 @@ class Game {
 
             switch (e) {
                 case Menu.Actions.MUSIC_ON:
-                    await this.audioSource.play(this.currentScene.music);
+                    this.audioSource.mute();
                     break;
                 case Menu.Actions.MUSIC_OFF:
-                    this.audioSource.stop();
+                    this.audioSource.mute();
                     break;
                 case Menu.Actions.NORMAL_SPEED:
                     this.setSpeed(Game.SPEED.NORMAL);
@@ -32,7 +32,7 @@ class Game {
                     window.location = 'https://brunoperry.net/games';
                     break;
             }
-        })
+        });
 
         this.currentState = Game.States.PAUSED;
         this.HUDUpdate = false;
@@ -80,8 +80,7 @@ class Game {
         HUD.init();
         Loader.clear();
         const splashScene = new SplashScene(e => {
-            this.setSpeed(Game.SPEED.NORMAL);
-            // this.setSpeed(Game.SPEED.FAST);
+            this.setSpeed(Game.SPEED.FAST);
             this.HUDUpdate = false;
             this.setScene(mainScene);
             this.controller.show();
@@ -150,9 +149,44 @@ class Game {
             else this.setScene(streetScene, true);
         });
         const jailScene = new JailScene(e => {
+
             this.HUDUpdate = false;
-            this.setScene(mainScene, true);
-        })
+            if (Utils.checkTopFive(Resources.scoresData, Resources.PLAYER_INVENTORY.points)) {
+                this.setScene(newScoreScene);
+            } else {
+                switch (e) {
+                    case JailScene.Actions.HIGHSCORES:
+                        this.currentState = Game.States.SCORES;
+                        this.setScene(scoresScene, true);
+                        break;
+                    case JailScene.Actions.HOME:
+                        this.setScene(mainScene, true);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
+        const newScoreScene = new NewScoreScene(async e => {
+            if (e.action === NewScoreScene.ACTIONS.SAVE) {
+                const res = await fetch('data', {
+                    method: 'POST',
+                    mode: 'cors',
+                    cache: 'no-cache',
+                    credentials: 'same-origin',
+                    headers: { 'Content-Type': 'application/json' },
+                    redirect: 'follow',
+                    referrerPolicy: 'no-referrer',
+                    body: JSON.stringify({
+                        name: e.name,
+                        score: '' + Resources.PLAYER_INVENTORY.points
+                    })
+                });
+                await res.json();
+            } else {
+                this.setScene(mainScene);
+            }
+        });
 
         this.setSpeed(Game.SPEED.SLOW);
         this.setScene(splashScene);

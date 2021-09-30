@@ -14,8 +14,6 @@ class JailScene extends Scene {
         }
         this.renderStack = [this.background];
         if (!Keyboard.isShown) {
-
-            console.log(Resources.PLAYER_INVENTORY)
             Keyboard.show([
                 {
                     text: Resources.labelsData.HOME,
@@ -27,9 +25,15 @@ class JailScene extends Scene {
                 }
             ]);
             Keyboard.onChange = e => {
-                this.callback(e);
+                Keyboard.hide();
+                if (e === Resources.labelsData.HISCORES) this.callback(JailScene.Actions.HIGHSCORES);
+                else this.callback(JailScene.Actions.HOME);
             }
         }
     }
 }
 JailScene.NAME = 'jail';
+JailScene.Actions = {
+    HIGHSCORES: 'jailsceneactionshighscores',
+    HOME: 'jailsceneactionshighhome'
+};

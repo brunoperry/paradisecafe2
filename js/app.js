@@ -18,9 +18,8 @@ const initGame = async () => {
     }
 
     let req = await fetch('https://brunoperry.net/games/paradisecafe/data')
+    // let req = await fetch('data')
     let res = await req.json();
-
-    console.log(res)
 
     gameData.media.images = res.data.images;
     gameData.media.audios = res.data.audios;
