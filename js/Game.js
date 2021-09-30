@@ -56,6 +56,8 @@ class Game {
         Loader.init();
         Keyboard.init();
 
+
+
         const landingScene = new LandingScene(async e => {
 
             this.pause();
@@ -77,6 +79,7 @@ class Game {
     async startGame() {
 
         await Resources.init(this.gameData);
+        console.log(Resources.scoresData);
         HUD.init();
         Loader.clear();
         const splashScene = new SplashScene(e => {
@@ -151,7 +154,11 @@ class Game {
         const jailScene = new JailScene(e => {
 
             this.HUDUpdate = false;
-            if (Utils.checkTopFive(Resources.scoresData, Resources.PLAYER_INVENTORY.points)) {
+            const playerPoints = Resources.PLAYER_INVENTORY.points
+
+            if (playerPoints > 0 && Resources.scoresData.length < 5) {
+                this.setScene(newScoreScene);
+            } else if (playerPoints > 0 && Utils.checkTopFive(Resources.scoresData, Resources.PLAYER_INVENTORY.points)) {
                 this.setScene(newScoreScene);
             } else {
                 switch (e) {
