@@ -41,6 +41,7 @@ const jsTask = e => {
         'js/bin/scenes/CrackhouseScene.js',
         'js/bin/scenes/BrothelScene.js',
         'js/bin/scenes/JailScene.js',
+        'js/bin/scenes/NewScoreScene.js',
         'js/bin/characters/Character.js',
         'js/bin/characters/Hero.js',
         'js/bin/characters/Thief.js',
