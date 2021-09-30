@@ -14,6 +14,8 @@ class JailScene extends Scene {
         }
         this.renderStack = [this.background];
         if (!Keyboard.isShown) {
+
+            console.log(Resources.PLAYER_INVENTORY)
             Keyboard.show([
                 {
                     text: Resources.labelsData.HOME,

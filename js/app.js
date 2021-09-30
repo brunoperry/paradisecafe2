@@ -16,10 +16,11 @@ const initGame = async () => {
         labels: null,
         scores: null
     }
-    console.log('initializing...');
 
-    let req = await fetch('data')
+    let req = await fetch('https://brunoperry.net/games/paradisecafe/data')
     let res = await req.json();
+
+    console.log(res)
 
     gameData.media.images = res.data.images;
     gameData.media.audios = res.data.audios;
@@ -27,12 +28,6 @@ const initGame = async () => {
     gameData.labels = res.data.labels;
     gameData.scores = res.scores;
 
-    // //SETUP EVENTS
-    addEventListener(Game.Events.INITIALIZED, () => console.log('game ready'))
-
     await new Game().init(gameData);
-}
-
-const onGame = (e) => {
-
+    console.log('brunoperry.net@2021');
 }

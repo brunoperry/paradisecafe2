@@ -2,4 +2,5 @@ db.php
 robots.txt
 .htaccess
 .gitignore
+.DS_Store
 bckup

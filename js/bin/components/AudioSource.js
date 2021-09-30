@@ -13,7 +13,7 @@ class AudioSource {
     }
 
     async play(src = null) {
-        if (!src) return;
+        if (!src || src === this.currentSrc) return;
 
         if (!this.player.paused) {
             this.stop();

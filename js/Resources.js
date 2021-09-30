@@ -65,10 +65,10 @@ class Resources {
 
     static resetPlayerInventory() {
         Resources.PLAYER_INVENTORY = {
-            wallet: true,
+            wallet: false,
             gun: false,
             cash: 30,
-            points: 0,
+            points: 20,
             drugs: 0,
             expense: null
         }
@@ -85,7 +85,7 @@ Resources.initialized = false;
 Resources.HIGH_SCORE = 0;
 
 Resources.PLAYER_INVENTORY = {
-    wallet: true,
+    wallet: false,
     gun: false,
     cash: 30,
     points: 0,

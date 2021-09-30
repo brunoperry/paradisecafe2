@@ -72,7 +72,6 @@ class ScoresScene extends Scene {
             ]);
             Keyboard.onChange = e => {
                 Keyboard.hide();
-                console.log('click')
                 this.callback();
             };
         }
