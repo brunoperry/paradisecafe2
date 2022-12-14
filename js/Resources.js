@@ -1,78 +1,78 @@
 class Resources {
+  static async init(data) {
+    const RESOURCES_TO_LOAD = 2;
 
-    static async init(data) {
+    // const score = data.scores.find((e) => e.name === "paradisecafe").scores;
+    // Resources.scoresData = JSON.parse(score);
 
-        const RESOURCES_TO_LOAD = 2;
+    Resources.scoresData = data.scores;
+    let highest = 0;
+    for (let i = 0; i < Resources.scoresData.length; i++) {
+      const scr = parseInt(Resources.scoresData[i].score);
+      if (scr > highest) highest = scr;
+    }
+    Resources.HIGH_SCORE = highest;
 
-        const score = data.scores.find(e => e.name === 'paradisecafe').scores;
-        Resources.scoresData = JSON.parse(score);
-        let highest = 0;
-        for (let i = 0; i < Resources.scoresData.length; i++) {
-            const scr = parseInt(Resources.scoresData[i].score);
-            if (scr > highest) highest = scr;
-        }
-        Resources.HIGH_SCORE = highest;
+    try {
+      const totalImages = data.media.images.children.length;
 
-        try {
+      for (let i = 0; i < totalImages; i++) {
+        const img = data.media.images.children[i];
 
-            const totalImages = data.media.images.length;
+        const req = await fetch(img.path);
+        const res = await req.blob();
 
-            for (let i = 0; i < totalImages; i++) {
-                const img = data.media.images[i];
+        Loader.update({
+          text: "loading images",
+          value: i / totalImages,
+        });
 
-                const req = await fetch(img.path);
-                const res = await req.blob();
-
-                Loader.update({
-                    text: 'loading images',
-                    value: i / totalImages
-                });
-
-                const image = new Image();
-                image.src = URL.createObjectURL(res);;
-                img.imageData = image;
-            }
-            Resources.imagesData = data.media.images;
-        } catch (error) {
-            console.error('Error loading images!', error)
-        }
-        try {
-            data.media.audios.forEach(async audio => {
-                const req = await fetch(audio.path);
-                const res = await req.blob();
-                audio.audioData = window.URL.createObjectURL(res);
-            })
-            Resources.audioData = data.media.audios;
-        } catch (error) {
-            console.error('Error loading audios!', error)
-        }
-
-        Resources.initialized = true;
+        const image = new Image();
+        image.src = URL.createObjectURL(res);
+        img.imageData = image;
+      }
+      Resources.imagesData = data.media.images.children;
+    } catch (error) {
+      console.error("Error loading images!", error);
+    }
+    try {
+      console.log(data.media.audios.children);
+      data.media.audios.children.forEach(async (audio) => {
+        const req = await fetch(audio.path);
+        const res = await req.blob();
+        audio.audioData = window.URL.createObjectURL(res);
+      });
+      Resources.audioData = data.media.audios.children;
+    } catch (error) {
+      console.error("Error loading audios!", error);
     }
 
-    static getImages(from = null) {
-        if (!from) return Resources.imagesData;
-        return Resources.imagesData.filter(img => img.name.includes(`${from}_`));
-    }
+    Resources.initialized = true;
+  }
 
-    static getImage(imageName) {
-        return Resources.imagesData.find(img => img.name.includes(imageName));
-    }
+  static getImages(from = null) {
+    if (!from) return Resources.imagesData;
+    return Resources.imagesData.filter((img) => img.name.includes(`${from}_`));
+  }
 
-    static getTrack(trackName) {
-        return Resources.audioData.find(img => img.name.includes(trackName));
-    }
+  static getImage(imageName) {
+    return Resources.imagesData.find((img) => img.name.includes(imageName));
+  }
 
-    static resetPlayerInventory() {
-        Resources.PLAYER_INVENTORY = {
-            wallet: true,
-            gun: false,
-            cash: 30,
-            points: 0,
-            drugs: 0,
-            expense: null
-        }
-    }
+  static getTrack(trackName) {
+    return Resources.audioData.find((img) => img.name.includes(trackName));
+  }
+
+  static resetPlayerInventory() {
+    Resources.PLAYER_INVENTORY = {
+      wallet: true,
+      gun: false,
+      cash: 30,
+      points: 0,
+      drugs: 0,
+      expense: null,
+    };
+  }
 }
 Resources.DIALOG_SPEED = 1000;
 Resources.imagesData = null;
@@ -80,15 +80,15 @@ Resources.audioData = null;
 Resources.labelsData = null;
 Resources.scoresData = null;
 
-Resources.VERIFY_AGE_LINK = 'https://www.youtube.com/watch?v=Yzvr9nww1gg';
+Resources.VERIFY_AGE_LINK = "https://www.youtube.com/watch?v=Yzvr9nww1gg";
 Resources.initialized = false;
 Resources.HIGH_SCORE = 0;
 
 Resources.PLAYER_INVENTORY = {
-    wallet: true,
-    gun: false,
-    cash: 30,
-    points: 0,
-    drugs: 0,
-    expense: null
-}
+  wallet: true,
+  gun: false,
+  cash: 30,
+  points: 0,
+  drugs: 0,
+  expense: null,
+};
