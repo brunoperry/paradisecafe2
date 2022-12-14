@@ -21,12 +21,12 @@ class Game {
           this.setSpeed(Game.SPEED.FAST);
           break;
         case Menu.Actions.ABOUT:
-          window.open("https://brunoperry.net/games/paradisecafe/about", "_blank");
+          window.open("https://brunoperry.github.io/paradisecafe2/about.html", "_blank");
           break;
         case Menu.Actions.EXIT:
-          this.pause();
-          this.audioSource.stop();
-          window.location = "https://brunoperry.net/games";
+          //   this.pause();
+          //   this.audioSource.stop();
+          //   window.location = "https://brunoperry.net/games";
           break;
       }
     });
