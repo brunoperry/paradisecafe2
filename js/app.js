@@ -25,8 +25,7 @@ const initGame = async () => {
   gameData.media.font = res.font;
   gameData.labels = res.labels;
   gameData.scores = res.scores;
-  //   console.log(res);
 
   await new Game().init(gameData);
-  //   console.log("brunoperry.net@2021");
+  console.log("CC2025");
 };

@@ -115,6 +115,9 @@ class Game {
           this.HUDUpdate = false;
           this.setScene(jailScene, true);
           break;
+        case DarkAlleyScene.NAME:
+          this.setScene(darkAlleyScene, true);
+          break;
       }
     });
     const brothelScene = new BrothelScene((e) => {
@@ -184,9 +187,14 @@ class Game {
         this.setScene(mainScene);
       }
     });
+    const darkAlleyScene = new DarkAlleyScene(async (e) => {
+      this.setScene(streetScene, true);
+    });
 
     this.setSpeed(Game.SPEED.SLOW);
     this.setScene(splashScene);
+    // this.setSpeed(Game.SPEED.FAST);
+    // this.setScene(darkAlleyScene);
 
     this.currentState = Game.States.PLAYING;
     this.run();

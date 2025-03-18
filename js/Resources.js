@@ -36,7 +36,6 @@ class Resources {
       console.error("Error loading images!", error);
     }
     try {
-      console.log(data.media.audios.children);
       data.media.audios.children.forEach(async (audio) => {
         const req = await fetch(audio.path);
         const res = await req.blob();

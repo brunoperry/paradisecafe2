@@ -10,6 +10,11 @@
         "type": "file"
       },
       {
+        "path": "media/sounds/darkalley_track.mp3",
+        "name": "darkalley_track.mp3",
+        "type": "file"
+      },
+      {
         "path": "media/sounds/crackhouse_track.mp3",
         "name": "crackhouse_track.mp3",
         "type": "file"
@@ -264,6 +269,36 @@
       {
         "path": "media/images/balloons_hero_whats_in_pack.png",
         "name": "balloons_hero_whats_in_pack.png",
+        "type": "file"
+      },
+      {
+        "path": "media/images/balloons_hero_found_40.png",
+        "name": "balloons_hero_found_40.png",
+        "type": "file"
+      },
+      {
+        "path": "media/images/balloons_hero_found_140.png",
+        "name": "balloons_hero_found_140.png",
+        "type": "file"
+      },
+      {
+        "path": "media/images/balloons_hero_found_180.png",
+        "name": "balloons_hero_found_180.png",
+        "type": "file"
+      },
+      {
+        "path": "media/images/balloons_hero_found_200.png",
+        "name": "balloons_hero_found_200.png",
+        "type": "file"
+      },
+      {
+        "path": "media/images/balloons_hero_found_drugs.png",
+        "name": "balloons_hero_found_drugs.png",
+        "type": "file"
+      },
+      {
+        "path": "media/images/balloons_hero_found_nothing.png",
+        "name": "balloons_hero_found_nothing.png",
         "type": "file"
       },
       {
@@ -572,6 +607,31 @@
         "type": "file"
       },
       {
+        "path": "media/images/darkalley_scroll.png",
+        "name": "door_darkalley_scroll.png",
+        "type": "file"
+      },
+      {
+        "path": "media/images/darkalley_bckgrd01.png",
+        "name": "darkalley_bckgrd01.png",
+        "type": "file"
+      },
+      {
+        "path": "media/images/darkalley_eyes_01.png",
+        "name": "darkalley_eyes_01.png",
+        "type": "file"
+      },
+      {
+        "path": "media/images/darkalley_eyes_02.png",
+        "name": "darkalley_eyes_02.png",
+        "type": "file"
+      },
+      {
+        "path": "media/images/darkalley_eyes_03.png",
+        "name": "darkalley_eyes_03.png",
+        "type": "file"
+      },
+      {
         "path": "media/images/empty.png",
         "name": "empty.png",
         "type": "file"
@@ -754,6 +814,16 @@
       {
         "path": "media/images/hero_walk04.png",
         "name": "hero_walk04.png",
+        "type": "file"
+      },
+      {
+        "path": "media/images/hero_search01.png",
+        "name": "hero_search01.png",
+        "type": "file"
+      },
+      {
+        "path": "media/images/hero_search02.png",
+        "name": "hero_search02.png",
         "type": "file"
       },
       {
@@ -1297,6 +1367,8 @@
     "SCORE": "Resultado",
     "CONTINUE": "CONT.",
     "ENTER": "ENTRAR",
+    "EXPLORE": "EXPLORAR",
+    "SEARCH": "PROCURAR",
     "DEFEND": "DEFENDER",
     "POINTS": "PONTOS",
     "CASH": "DINHEIRO",
