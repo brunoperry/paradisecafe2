@@ -192,9 +192,9 @@ class Game {
     });
 
     this.setSpeed(Game.SPEED.SLOW);
-    this.setScene(splashScene);
+    await this.setScene(splashScene);
     // this.setSpeed(Game.SPEED.FAST);
-    // this.setScene(darkAlleyScene);
+    // await this.setScene(darkAlleyScene);
 
     this.currentState = Game.States.PLAYING;
     this.run();
@@ -210,8 +210,8 @@ class Game {
 
         this.currentScene.disable();
         this.currentScene = scene;
-        this.currentScene.enable();
         await this.audioSource.play(this.currentScene.music);
+        this.currentScene.enable();
 
         this.run();
       });
@@ -221,9 +221,9 @@ class Game {
 
     if (this.currentScene) this.currentScene.disable();
     this.currentScene = scene;
-    this.currentScene.enable();
 
     await this.audioSource.play(this.currentScene.music);
+    this.currentScene.enable();
   }
   setSpeed(speed) {
     Game.CURRENT_SPEED = speed;
@@ -238,7 +238,7 @@ class Game {
 
     let tick = 0;
     this.intervalID = setInterval(() => {
-      if (this.menu.isOpen) return;
+      if (this.menu.isOpen || !this.currentScene.isEnabled) return;
 
       this.currentScene.update(tick);
       switch (this.currentState) {

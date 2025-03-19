@@ -1,41 +1,39 @@
 class AudioSource {
+  constructor() {
+    this.player = new Audio();
+    this.currentSrc = null;
 
-    constructor() {
+    this.player.onended = async () => {
+      await this.play(this.currentSrc);
+    };
 
-        this.player = new Audio();
-        this.currentSrc = null;
+    this.mutedVolume = 0;
+  }
 
-        this.player.onended = async () => {
-            await this.play(this.currentSrc);
-        }
+  async play(src = null) {
+    if (!src || src === this.currentSrc) return;
 
-        this.mutedVolume = 0;
+    if (!this.player.paused) {
+      this.stop();
     }
+    this.currentSrc = this.player.src = src;
+    await this.player.play();
+  }
 
-    async play(src = null) {
-        if (!src || src === this.currentSrc) return;
+  stop() {
+    this.player.pause();
+  }
+  set volume(vol) {
+    this.player.volume = vol;
+  }
 
-        if (!this.player.paused) {
-            this.stop();
-        }
-        this.currentSrc = this.player.src = src;
-        await this.player.play();
+  mute() {
+    if (this.mutedVolume === 0) {
+      this.mutedVolume = this.player.volume;
+      this.player.volume = 0;
+    } else {
+      this.player.volume = this.mutedVolume;
+      this.mutedVolume = 0;
     }
-
-    stop() {
-        this.player.pause();
-    }
-    set volume(vol) {
-        this.player.volume = vol;
-    }
-
-    mute() {
-        if (this.mutedVolume === 0) {
-            this.mutedVolume = this.player.volume;
-            this.player.volume = 0;
-        } else {
-            this.player.volume = this.mutedVolume;
-            this.mutedVolume = 0;
-        }
-    }
+  }
 }
