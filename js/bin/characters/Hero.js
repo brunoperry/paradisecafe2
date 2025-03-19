@@ -168,6 +168,10 @@ class Hero extends Character {
     this.hasdrink = false;
     this.isDealing = false;
   }
+
+  hasWallet() {
+    return Resources.PLAYER_INVENTORY.wallet;
+  }
 }
 Hero.States = {
   IDLE_STREET: "herostateidlestreet",

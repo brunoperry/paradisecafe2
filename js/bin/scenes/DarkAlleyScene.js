@@ -2,8 +2,9 @@ class DarkAlleyScene extends Scene {
   #isSearching = false;
   #hasFound = false;
   #wasSnatched = false;
+  #doSnatch = false;
 
-  #alleyEyes;
+  #snatchArm;
   constructor(callback) {
     super(callback, DarkAlleyScene.NAME);
 
@@ -18,10 +19,13 @@ class DarkAlleyScene extends Scene {
       this.NPCs.push(new DarkAlleyEye(img));
     });
 
-    // this.#alleyEyes = new DarkAlleyEyes();
-    // this.#alleyEyes.eyes.forEach((eye) => {
-    //   this.NPCs.push(eye.component);
-    // });
+    this.#snatchArm = new DarkAlleySnatchArm(() => {
+      this.#wasSnatched = true;
+      this.hero.updateInventory({
+        wallet: false,
+      });
+    });
+    this.NPCs.push(this.#snatchArm);
   }
 
   doEntering() {
@@ -65,18 +69,18 @@ class DarkAlleyScene extends Scene {
     if (this.#isSearching) return;
     this.hero.doSearchBin();
     this.#isSearching = true;
+
+    setTimeout(() => (this.#doSnatch = Utils.getRandomBoolean()), 1000);
     setTimeout(() => {
       this.hero.x = 130;
       this.changeAction(DarkAlleyScene.States.IDELING);
       if (this.#wasSnatched) {
-        this.balloon.doDialog([this.hero.getBalloon(this.#createFinding())]);
-        this.hero.updateInventory({
-          drugs: Utils.getRandomItem([2, 1, 4, 3, 2, 4, 1, 5]),
-        });
+        this.balloon.doDialog([this.hero.getBalloon("nothing")]);
       } else {
         this.balloon.doDialog([this.hero.getBalloon(this.#createFinding())]);
       }
 
+      this.#isSearching = false;
       this.#hasFound = true;
     }, 5000);
   }
@@ -120,8 +124,11 @@ class DarkAlleyScene extends Scene {
   update(delta) {
     this.currentAction();
 
+    if (this.#isSearching && this.#doSnatch && !this.#wasSnatched) {
+      if (!this.#snatchArm.isEnabled) this.#snatchArm.enable();
+      this.#snatchArm.update();
+    }
     this.hero.update();
-    // this.#alleyEyes.update();
     super.update(delta);
   }
 
@@ -145,7 +152,6 @@ class DarkAlleyScene extends Scene {
   enable() {
     super.enable();
     this.hero.enable();
-    // this.#alleyEyes.enable();
     this.hero.x = -150;
     this.changeAction(DarkAlleyScene.States.ENTERING);
     HUD.hiScoresEnabled = true;
@@ -158,6 +164,49 @@ class DarkAlleyScene extends Scene {
     this.hero.disable();
     this.currentAction = null;
     this.endAction = false;
+  }
+}
+
+class DarkAlleySnatchArm extends Component {
+  constructor(callback) {
+    super(callback, "snatch_arm");
+
+    this.armInCycle = this.getImagesByName("snatch_arm_in");
+    this.armOutCycle = this.getImagesByName("snatch_arm_out");
+    this.doArmIn();
+  }
+
+  doArmIn() {
+    if (this.currentCycle !== this.armInCycle) {
+      this.setCurrentCycle(this.armInCycle, false);
+    }
+  }
+  doArmOut() {
+    if (this.currentCycle !== this.armOutCycle) {
+      this.setCurrentCycle(this.armOutCycle, false);
+    }
+  }
+
+  update(delta) {
+    if (!this.isEnabled) return;
+    super.update(delta);
+    const tFrames = this.currentCycle.length - 1;
+    if (this.tick === tFrames) {
+      if (this.currentCycle == this.armInCycle) {
+        this.setCurrentCycle(this.armOutCycle);
+      } else if (this.isEnabled) {
+        this.disable();
+        this.callback();
+      }
+    }
+  }
+
+  enable() {
+    this.isEnabled = true;
+  }
+
+  disable() {
+    this.isEnabled = false;
   }
 }
 
@@ -187,47 +236,6 @@ class DarkAlleyEye extends Component {
 
   disable() {
     this.isEnabled = false;
-  }
-}
-
-class DarkAlleyEyes {
-  eyes = [];
-  #times = [1000, 2300, 3000, 2000, 4000, 5000, 2500, 1000, 5000, 4500];
-  constructor() {
-    const images = Resources.getImages("darkalley_eyes");
-
-    images.forEach((img, index) => {
-      const comp = new Component(new Component(null, `eye${index}`));
-      comp.setCurrentCycle([img], false);
-      const eye = {
-        component: comp,
-        isEnabled: false,
-      };
-      //   setTimeout(() => this.#updateEye(eye), Utils.getRandomItem(this.#times));
-      this.eyes.push(eye);
-    });
-  }
-
-  //   #updateEye(eye) {
-  // eye.isEnabled ? eye.disable() : eye.enable();
-  // setTimeout(() => this.#updateEye(eye), Utils.getRandomItem(this.#times));
-  //   }
-
-  update() {
-    // this.eyes.forEach((eye) => {
-    //   if (eye.isEnabled) eye.component.update();
-    // });
-  }
-
-  enable() {
-    // this.eyes.forEach((eye) => {
-    //   eye.component.enable();
-    // });
-  }
-  disable() {
-    // this.eyes.forEach((eye) => {
-    //   eye.component.disable();
-    // });
   }
 }
 

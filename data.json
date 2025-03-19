@@ -632,6 +632,61 @@
         "type": "file"
       },
       {
+        "path": "media/images/darkalley_snatch_arm_in_01.png",
+        "name": "darkalley_snatch_arm_in_01.png",
+        "type": "file"
+      },
+      {
+        "path": "media/images/darkalley_snatch_arm_in_02.png",
+        "name": "darkalley_snatch_arm_in_02.png",
+        "type": "file"
+      },
+      {
+        "path": "media/images/darkalley_snatch_arm_in_03.png",
+        "name": "darkalley_snatch_arm_in_03.png",
+        "type": "file"
+      },
+      {
+        "path": "media/images/darkalley_snatch_arm_in_04.png",
+        "name": "darkalley_snatch_arm_in_04.png",
+        "type": "file"
+      },
+      {
+        "path": "media/images/darkalley_snatch_arm_in_05.png",
+        "name": "darkalley_snatch_arm_in_05.png",
+        "type": "file"
+      },
+      {
+        "path": "media/images/darkalley_snatch_arm_in_06.png",
+        "name": "darkalley_snatch_arm_in_06.png",
+        "type": "file"
+      },
+      {
+        "path": "media/images/darkalley_snatch_arm_in_07.png",
+        "name": "darkalley_snatch_arm_in_07.png",
+        "type": "file"
+      },
+      {
+        "path": "media/images/darkalley_snatch_arm_out_01.png",
+        "name": "darkalley_snatch_arm_out_01.png",
+        "type": "file"
+      },
+      {
+        "path": "media/images/darkalley_snatch_arm_out_02.png",
+        "name": "darkalley_snatch_arm_out_02.png",
+        "type": "file"
+      },
+      {
+        "path": "media/images/darkalley_snatch_arm_out_03.png",
+        "name": "darkalley_snatch_arm_out_03.png",
+        "type": "file"
+      },
+      {
+        "path": "media/images/darkalley_snatch_arm_out_04.png",
+        "name": "darkalley_snatch_arm_out_04.png",
+        "type": "file"
+      },
+      {
         "path": "media/images/empty.png",
         "name": "empty.png",
         "type": "file"

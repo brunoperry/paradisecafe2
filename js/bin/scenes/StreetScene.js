@@ -641,8 +641,12 @@ class StreetScene extends Scene {
         else this.hero.doAction = false;
         return;
       }
-      if (this.hero.isOutside) this.changeAction(Door.Actions.SCROLL);
-      else {
+      if (this.hero.isOutside) {
+        console.log(this.hero.hasWallet());
+        if (this.hero.hasWallet()) {
+        }
+        this.changeAction(Door.Actions.SCROLL);
+      } else {
         this.callback(DarkAlleyScene.NAME);
       }
       return;
