@@ -12,7 +12,7 @@ This game contains mature content, discretion advised.
 
 ## Description
 
-I played this legendary game back in the 80's and all I can remember is how cool and "illegal" it was back then :)
+I played this legendary ZX-Spectrum 48K game back in the 80's and all I can remember is how cool and "illegal" it was back then :)
 
 I got the idea from [falsovsky](https://github.com/falsovsky/paradise.js) who is doing a similar project. I decided to give it a try and make my own remake of the game.
 
