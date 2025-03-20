@@ -213,6 +213,8 @@ class DarkAlleySnatchArm extends Component {
   }
 
   disable() {
+    this.tick = 0;
+    this.#frame = 0;
     this.isEnabled = false;
   }
 }
