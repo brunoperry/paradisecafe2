@@ -24,9 +24,9 @@ class Game {
           window.open("https://brunoperry.github.io/paradisecafe2/about.html", "_blank");
           break;
         case Menu.Actions.EXIT:
-          this.pause();
-          this.audioSource.stop();
-          this.setScene(mainScene, true);
+          // this.pause();
+          // this.audioSource.stop();
+          // this.setScene(mainScene, true);
           //   window.location = "https://brunoperry.net/games";
           break;
       }

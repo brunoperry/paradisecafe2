@@ -71,6 +71,7 @@ class DarkAlleyScene extends Scene {
     this.#isSearching = true;
 
     setTimeout(() => (this.#doSnatch = Utils.getRandomBoolean()), 1000);
+    // setTimeout(() => (this.#doSnatch = true), 1000);
     setTimeout(() => {
       this.hero.x = 130;
       this.changeAction(DarkAlleyScene.States.IDELING);
