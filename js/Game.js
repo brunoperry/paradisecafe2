@@ -193,11 +193,11 @@ class Game {
       this.setScene(streetScene, true);
     });
 
-    // this.setSpeed(Game.SPEED.SLOW);
-    // await this.setScene(splashScene);
-    this.setSpeed(Game.SPEED.FAST);
-    this.HUDUpdate = true;
-    await this.setScene(paradiseCafeScene);
+    this.setSpeed(Game.SPEED.SLOW);
+    await this.setScene(splashScene);
+    // this.setSpeed(Game.SPEED.FAST);
+    // this.HUDUpdate = true;
+    // await this.setScene(paradiseCafeScene);
 
     this.currentState = Game.States.PLAYING;
     this.run();

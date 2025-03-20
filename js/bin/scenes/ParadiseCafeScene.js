@@ -148,7 +148,12 @@ class ParadiseCafeScene extends Scene {
       );
       this.balloon.doDialog(this.dealer.currentDeal.offerBalloon);
     } else {
-      if (this.dealer.currentDeal.value < Resources.PLAYER_INVENTORY.cash) {
+      const dealType = this.dealer.currentDeal.dealType;
+      console.log(this.dealer.currentDeal.dealType);
+      if (
+        this.dealer.currentDeal.value < Resources.PLAYER_INVENTORY.cash ||
+        dealType === "buy"
+      ) {
         this.balloon.doDialog(this.dealer.currentDeal.valueBalloon, false);
         if (!Keyboard.isShown) {
           Keyboard.show([

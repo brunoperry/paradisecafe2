@@ -1,52 +1,51 @@
 class Resources {
   static async init(data) {
-    const RESOURCES_TO_LOAD = 2;
-
-    // const score = data.scores.find((e) => e.name === "paradisecafe").scores;
-    // Resources.scoresData = JSON.parse(score);
-
-    Resources.scoresData = data.scores;
-    let highest = 0;
-    for (let i = 0; i < Resources.scoresData.length; i++) {
-      const scr = parseInt(Resources.scoresData[i].score);
-      if (scr > highest) highest = scr;
-    }
-    Resources.HIGH_SCORE = highest;
-
-    try {
-      const totalImages = data.media.images.children.length;
-
-      for (let i = 0; i < totalImages; i++) {
-        const img = data.media.images.children[i];
-
-        const req = await fetch(img.path);
-        const res = await req.blob();
-
-        Loader.update({
-          text: "loading images",
-          value: i / totalImages,
-        });
-
-        const image = new Image();
-        image.src = URL.createObjectURL(res);
-        img.imageData = image;
+    return new Promise(async (resolve, reject) => {
+      Resources.scoresData = data.scores;
+      let highest = 0;
+      for (let i = 0; i < Resources.scoresData.length; i++) {
+        const scr = parseInt(Resources.scoresData[i].score);
+        if (scr > highest) highest = scr;
       }
-      Resources.imagesData = data.media.images.children;
-    } catch (error) {
-      console.error("Error loading images!", error);
-    }
-    try {
-      data.media.audios.children.forEach(async (audio) => {
-        const req = await fetch(audio.path);
-        const res = await req.blob();
-        audio.audioData = window.URL.createObjectURL(res);
-      });
-      Resources.audioData = data.media.audios.children;
-    } catch (error) {
-      console.error("Error loading audios!", error);
-    }
+      Resources.HIGH_SCORE = highest;
 
-    Resources.initialized = true;
+      try {
+        const images = data.media.images.children;
+        const totalImages = images.length;
+        for (let i = 0; i < totalImages; i++) {
+          const image = images[i];
+          const req = await fetch(image.path);
+          const res = await req.blob();
+          Loader.update({
+            text: "loading images",
+            value: i / totalImages,
+          });
+          image.imageData = await createImageBitmap(res);
+        }
+        Resources.imagesData = data.media.images.children;
+
+        const audios = data.media.audios.children;
+        const totalAudios = audios.length;
+        for (let i = 0; i < totalAudios; i++) {
+          const audio = audios[i];
+          const req = await fetch(audio.path);
+          const res = await req.blob();
+
+          Loader.update({
+            text: "loading Audios",
+            value: i / totalAudios,
+          });
+          audio.audioData = window.URL.createObjectURL(res);
+        }
+        Resources.audioData = data.media.audios.children;
+
+        Resources.initialized = true;
+        resolve(true);
+      } catch (error) {
+        console.log(error);
+        reject(new Error("Error loading images!"));
+      }
+    });
   }
 
   static getImages(from = null) {
@@ -86,7 +85,7 @@ Resources.HIGH_SCORE = 0;
 Resources.PLAYER_INVENTORY = {
   wallet: true,
   gun: false,
-  cash: 60,
+  cash: 100,
   points: 0,
   drugs: 0,
   expense: null,

@@ -153,7 +153,7 @@ class DarkAlleyScene extends Scene {
   enable() {
     super.enable();
     this.hero.enable();
-    this.#snatchArm.enable();
+    // this.#snatchArm.enable();
     this.hero.x = -150;
     this.changeAction(DarkAlleyScene.States.ENTERING);
     HUD.hiScoresEnabled = true;
@@ -209,7 +209,6 @@ class DarkAlleySnatchArm extends Component {
   enable() {
     this.tick = 0;
     this.#frame = 0;
-    this.currentCycle = null;
     this.isEnabled = true;
   }
 
@@ -220,7 +219,7 @@ class DarkAlleySnatchArm extends Component {
 
 class DarkAlleyEye extends Component {
   constructor(img) {
-    super(null);
+    super(null, "snatch_eye");
 
     this.setCurrentCycle([img], false);
     this.enable();
