@@ -1,5 +1,7 @@
 # paradisecafe2 / remastered
 
+![Alt text](https://brunoperry.github.io/paradisecafe2/media/images/thumb00.png)
+
 ## !ATTENTION!
 
 This game contains mature content, discretion advised.
