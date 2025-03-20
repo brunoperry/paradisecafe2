@@ -148,10 +148,7 @@ class ParadiseCafeScene extends Scene {
       );
       this.balloon.doDialog(this.dealer.currentDeal.offerBalloon);
     } else {
-      if (
-        !this.dealer.currentDeal === Dealer.States.ASKING_DRUGS &&
-        this.dealer.currentDeal.value < Resources.PLAYER_INVENTORY.cash
-      ) {
+      if (this.dealer.currentDeal.value < Resources.PLAYER_INVENTORY.cash) {
         this.balloon.doDialog(this.dealer.currentDeal.valueBalloon, false);
         if (!Keyboard.isShown) {
           Keyboard.show([

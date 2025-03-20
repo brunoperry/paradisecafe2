@@ -643,7 +643,6 @@ class StreetScene extends Scene {
         return;
       }
       if (this.hero.isOutside) {
-        console.log(this.hero.hasWallet());
         if (this.hero.hasWallet()) {
         }
         this.changeAction(Door.Actions.SCROLL);

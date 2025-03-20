@@ -86,7 +86,7 @@ Resources.HIGH_SCORE = 0;
 Resources.PLAYER_INVENTORY = {
   wallet: true,
   gun: false,
-  cash: 30,
+  cash: 60,
   points: 0,
   drugs: 0,
   expense: null,
