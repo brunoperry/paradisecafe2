@@ -61,7 +61,7 @@ class DarkAlleyScene extends Scene {
       Keyboard.showExit((e) => {
         Keyboard.hide();
         Keyboard.hideExit();
-        this.callback(DarkAlleyScene.States.EXITING);
+        this.callback(DarkAlleyScene.States.EXITING, this.#wasSnatched);
       });
     }
   }
@@ -82,7 +82,7 @@ class DarkAlleyScene extends Scene {
 
       this.#isSearching = false;
       this.#hasFound = true;
-    }, 5000);
+    }, 3500);
   }
   doExiting() {}
 
@@ -168,6 +168,7 @@ class DarkAlleyScene extends Scene {
 }
 
 class DarkAlleySnatchArm extends Component {
+  #frame = 0;
   constructor(callback) {
     super(callback, "snatch_arm");
 
@@ -189,6 +190,8 @@ class DarkAlleySnatchArm extends Component {
 
   update(delta) {
     if (!this.isEnabled) return;
+    this.#frame++;
+    if (this.#frame % 2) return;
     super.update(delta);
     const tFrames = this.currentCycle.length - 1;
     if (this.tick === tFrames) {

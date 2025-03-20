@@ -14,8 +14,8 @@ class Door extends Component {
 
     this.darkAlleyScrollImage = this.getImagesByName("door_darkalley_scroll");
 
-    // this.currentScrollImage = this.doorScrollImage;
-    this.currentScrollImage = this.darkAlleyScrollImage;
+    this.currentScrollImage = this.doorScrollImage;
+    // this.currentScrollImage = this.darkAlleyScrollImage;
 
     this.isOpened = false;
 
@@ -32,7 +32,7 @@ class Door extends Component {
       Door.Actions.OLD_LADY,
       Door.Actions.SCROLL,
     ];
-    this.currentAction = Door.Actions.SCROLL;
+    this.currentAction = Door.Actions.POLICE;
     // this.currentAction = Door.Actions.DARKALLEY;
   }
 

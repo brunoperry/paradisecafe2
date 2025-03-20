@@ -302,6 +302,11 @@
         "type": "file"
       },
       {
+        "path": "media/images/balloons_hero_got_snatched.png",
+        "name": "balloons_hero_got_snatched.png",
+        "type": "file"
+      },
+      {
         "path": "media/images/balloons_junkie_alright.png",
         "name": "balloons_junkie_alright.png",
         "type": "file"
@@ -684,6 +689,16 @@
       {
         "path": "media/images/darkalley_snatch_arm_out_04.png",
         "name": "darkalley_snatch_arm_out_04.png",
+        "type": "file"
+      },
+      {
+        "path": "media/images/darkalley_snatch_arm_out_05.png",
+        "name": "darkalley_snatch_arm_out_05.png",
+        "type": "file"
+      },
+      {
+        "path": "media/images/darkalley_snatch_arm_out_06.png",
+        "name": "darkalley_snatch_arm_out_06.png",
         "type": "file"
       },
       {

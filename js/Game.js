@@ -24,8 +24,9 @@ class Game {
           window.open("https://brunoperry.github.io/paradisecafe2/about.html", "_blank");
           break;
         case Menu.Actions.EXIT:
-          //   this.pause();
-          //   this.audioSource.stop();
+          this.pause();
+          this.audioSource.stop();
+          this.setScene(mainScene, true);
           //   window.location = "https://brunoperry.net/games";
           break;
       }
@@ -187,13 +188,15 @@ class Game {
         this.setScene(mainScene);
       }
     });
-    const darkAlleyScene = new DarkAlleyScene(async (e) => {
+    const darkAlleyScene = new DarkAlleyScene(async (e, wasSnatched) => {
+      if (wasSnatched) streetScene.setBalloon("got_snatched");
       this.setScene(streetScene, true);
     });
 
     this.setSpeed(Game.SPEED.SLOW);
     await this.setScene(splashScene);
     // this.setSpeed(Game.SPEED.FAST);
+    // this.HUDUpdate = true;
     // await this.setScene(darkAlleyScene);
 
     this.currentState = Game.States.PLAYING;

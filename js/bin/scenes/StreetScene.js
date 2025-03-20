@@ -3,6 +3,7 @@ class StreetScene extends Scene {
     super(callback, StreetScene.NAME);
 
     this.balloon = new Balloon();
+    this.currentBalloon = null;
 
     this.hero = new Hero();
 
@@ -670,6 +671,13 @@ class StreetScene extends Scene {
       };
     }
   }
+  doBalloon() {
+    this.door.doMove();
+    this.hero.doIdleStreet(2);
+    this.balloon.doDialog([this.currentBalloon]);
+    this.currentBalloon = null;
+    this.changeAction(Door.Actions.SCROLL);
+  }
 
   changeAction(action) {
     switch (action) {
@@ -677,7 +685,6 @@ class StreetScene extends Scene {
         this.currentNPCIndex = null;
         this.currentAction = this.doScroll;
         break;
-
       case Door.Actions.DARKALLEY:
         this.currentNPCIndex = null;
         this.currentAction = this.doDarkAlley;
@@ -724,11 +731,21 @@ class StreetScene extends Scene {
     super.update(delta);
   }
 
+  setBalloon(bln) {
+    this.currentBalloon = this.hero.getBalloon(bln);
+  }
+
   enable() {
     super.enable();
     this.hero.enable();
     this.door.enable();
-    this.changeAction(Door.Actions.SCROLL);
+
+    if (this.currentBalloon) {
+      this.currentAction = this.doBalloon;
+    } else {
+      this.changeAction(Door.Actions.SCROLL);
+    }
+
     HUD.hiScoresEnabled = true;
   }
   disable() {
@@ -742,6 +759,7 @@ class StreetScene extends Scene {
     this.oldLady.disable();
     this.currentAction = null;
     this.endAction = false;
+    this.currentBalloon = null;
   }
 }
 StreetScene.NAME = "street";
