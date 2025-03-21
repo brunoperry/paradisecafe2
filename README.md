@@ -12,13 +12,9 @@ This game contains mature content, discretion advised.
 
 ## Description
 
-I played this legendary ZX-Spectrum 48K game back in the 80's and all I can remember is how cool and "illegal" it was back then :)
+I played this legendary ZX-Spectrum 48K game back in the 80's and all I can remember is how cool and "illegal" it was back then, so I decided to make a web version remake of the game.
 
-I got the idea from [falsovsky](https://github.com/falsovsky/paradise.js) who is doing a similar project. I decided to give it a try and make my own remake of the game.
-
-Some game design was added because the original had some critically flaws.
-
-This is the list of new characters and levels I added so far:
+Apart from the orignal content, this is a list of new characters and levels I added so far:
 
 - Boy scout (character)
 - Crackhouse (level)
@@ -26,4 +22,4 @@ This is the list of new characters and levels I added so far:
 
 I will keep adding more characters and levels just for the fun of it :)
 
-If you ever played this game before, I hope this would bring some good memories!
+If you ever played this game before I hope this would bring good memories!
