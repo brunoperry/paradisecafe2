@@ -6,3 +6,4 @@ robots.txt
 bckup
 node_modules
 package-lock.json
+media/.DS_Store
