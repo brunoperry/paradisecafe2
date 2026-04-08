@@ -3,6 +3,7 @@ robots.txt
 .htaccess
 .gitignore
 .DS_Store
+.vscode
 bckup
 node_modules
 package-lock.json

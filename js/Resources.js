@@ -11,39 +11,52 @@ class Resources {
 
       try {
         const images = data.media.images.children;
-        const totalImages = images.length;
-        for (let i = 0; i < totalImages; i++) {
-          const image = images[i];
-          const req = await fetch(image.path);
-          const res = await req.blob();
-          Loader.update({
-            text: "loading images",
-            value: i / totalImages,
-          });
-          image.imageData = await createImageBitmap(res);
-        }
-        Resources.imagesData = data.media.images.children;
-
         const audios = data.media.audios.children;
+        let loadedImages = 0;
+        let loadedAudios = 0;
+        const totalImages = images.length;
         const totalAudios = audios.length;
-        for (let i = 0; i < totalAudios; i++) {
-          const audio = audios[i];
-          const req = await fetch(audio.path);
-          const res = await req.blob();
 
-          Loader.update({
-            text: "loading Audios",
-            value: i / totalAudios,
-          });
-          audio.audioData = window.URL.createObjectURL(res);
-        }
-        Resources.audioData = data.media.audios.children;
+        // Load images and audios fully in parallel
+        await Promise.all([
+          Promise.all(
+            images.map((image) =>
+              fetch(image.path)
+                .then((r) => r.blob())
+                .then((blob) => createImageBitmap(blob))
+                .then((bitmap) => {
+                  image.imageData = bitmap;
+                  loadedImages++;
+                  Loader.update({
+                    text: "loading images",
+                    value: loadedImages / totalImages,
+                  });
+                }),
+            ),
+          ),
+          Promise.all(
+            audios.map((audio) =>
+              fetch(audio.path)
+                .then((r) => r.blob())
+                .then((blob) => {
+                  audio.audioData = window.URL.createObjectURL(blob);
+                  loadedAudios++;
+                  Loader.update({
+                    text: "loading audios",
+                    value: loadedAudios / totalAudios,
+                  });
+                }),
+            ),
+          ),
+        ]);
 
+        Resources.imagesData = images;
+        Resources.audioData = audios;
         Resources.initialized = true;
         resolve(true);
       } catch (error) {
         console.log(error);
-        reject(new Error("Error loading images!"));
+        reject(new Error("Error loading assets!"));
       }
     });
   }

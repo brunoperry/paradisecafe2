@@ -12,8 +12,6 @@ class Loader {
     let barW = w * data.value - paddingLeft * 2;
     if (barW < 0) barW = 0;
 
-    // console.log(data);
-
     Loader.ctx.font = "28px Mono";
     Loader.ctx.fillStyle = "#ffffff";
     Loader.ctx.clearRect(0, 0, w, h);

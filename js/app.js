@@ -16,7 +16,6 @@ const initGame = async () => {
     scores: null,
   };
 
-  // let req = await fetch('https://brunoperry.net/games/paradisecafe/data')
   let req = await fetch("./data.json");
   let res = await req.json();
 
@@ -27,5 +26,5 @@ const initGame = async () => {
   gameData.scores = res.scores;
 
   await new Game().init(gameData);
-  console.log("CC2025");
+  console.log("C.C 2016");
 };
